@@ -1,3 +1,4 @@
+@import "animation";
 @import "zeroing";
 @import "variables";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,400,500,600,700,800,900);
@@ -5,10 +6,6 @@
 @mixin header-shadow {
     filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.3));
 }
-
-// * {
-// border: 1px dotted red;
-// }
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -35,6 +32,10 @@ input::-webkit-inner-spin-button {
 .center {
     padding-left: calc(50% - ($site-width / 2));
     padding-right: calc(50% - ($site-width / 2));
+}
+
+.logo-img:hover {
+    animation: logo-anim 0.7s ease-in-out 0s 1 normal none;
 }
 
 .top {
@@ -137,6 +138,10 @@ input::-webkit-inner-spin-button {
 
         &-title-mgt {
             margin-top: 127px;
+        }
+
+        &-link {
+            transition: color $hover-duration;
         }
 
         &-link:hover {
@@ -278,9 +283,11 @@ input::-webkit-inner-spin-button {
             line-height: 20px;
             transition: all $hover-duration;
 
+
             &:hover {
                 background-color: #000000;
                 color: #FFFFFF;
+                animation: order-btn 1s ease 0s 3 normal forwards;
             }
         }
     }
@@ -422,6 +429,7 @@ input::-webkit-inner-spin-button {
             font-weight: 400;
             font-size: 14px;
             line-height: 17px;
+            transition: all $hover-duration;
 
             &:hover {
                 background-color: #000000;
@@ -462,6 +470,11 @@ input::-webkit-inner-spin-button {
         align-items: center;
         color: $color-top-text;
         background-size: cover;
+        transition: transform $hover-duration;
+
+        &:hover {
+            transform: scale(1.02);
+        }
 
         &-chill {
             background-image: url(../img/for_chill.jpg);
@@ -495,13 +508,20 @@ input::-webkit-inner-spin-button {
     flex-direction: column;
     position: relative;
     padding: 8px;
-    transition: transform 0.2s;
-    box-shadow: 0px 0px 10px rgb(122 122 122 / 30%);
+    transition: all 0.2s;
+    box-shadow: 0px 0px 20px rgb(122 122 122 / 10%);
     border-radius: 3px;
 
     &:hover {
         transform: scale(1.02);
+        box-shadow: 5px 5px 20px rgb(122 122 122 / 30%);
+
+        .product-icons {
+            opacity: 1;
+        }
     }
+
+
 
     &-content {
         display: flex;
@@ -539,9 +559,9 @@ input::-webkit-inner-spin-button {
     &-img {
         width: 100%;
 
-        &:hover~.product-icons {
-            opacity: 1;
-        }
+        // &:hover~.product-icons {
+        // opacity: 1;
+        // }
     }
 
     &-icons {
@@ -569,7 +589,6 @@ input::-webkit-inner-spin-button {
 
         &-link:hover {
             text-decoration: underline;
-            // color: inherit;
         }
     }
 
@@ -652,6 +671,7 @@ input::-webkit-inner-spin-button {
         font-size: 14px;
         line-height: 17px;
         color: #888888 !important;
+        transition: color $hover-duration;
     }
 
     &-contacts {
@@ -681,6 +701,7 @@ input::-webkit-inner-spin-button {
         font-size: 14px;
         line-height: 17px;
         color: #888888 !important;
+        transition: color $hover-duration;
     }
 
     &-icons {
@@ -693,9 +714,11 @@ input::-webkit-inner-spin-button {
             background-size: 100%;
             width: 29px;
             height: 29px;
+            transition: transform $hover-duration;
 
             &:hover {
                 background: url(../img/inst_black.svg) no-repeat;
+                transform: scale(1.10);
             }
         }
 
@@ -703,9 +726,11 @@ input::-webkit-inner-spin-button {
             background: url(../img/twitter.svg) no-repeat;
             width: 25px;
             height: 20px;
+            transition: transform $hover-duration;
 
             &:hover {
                 background: url(../img/twitter_black.svg) no-repeat;
+                transform: scale(1.10);
             }
         }
 
@@ -713,16 +738,28 @@ input::-webkit-inner-spin-button {
             background: url(../img/facebook.svg) no-repeat;
             width: 14px;
             height: 24px;
+            transition: transform $hover-duration;
 
             &:hover {
                 background: url(../img/facebook_black.svg) no-repeat;
+                transform: scale(1.10);
             }
         }
-
-        &-svg:hover svg {
-            fill: black;
-        }
     }
+
+    &-link:hover,
+    &-contact:hover {
+        color: #000000 !important;
+    }
+}
+
+.soc-icon path {
+    transition: all $hover-duration;
+}
+
+.soc-icon:hover path {
+    fill: #000000;
+    transform: scale(1.1);
 }
 
 .subscribe {
@@ -775,6 +812,7 @@ input::-webkit-inner-spin-button {
         font-size: 15px;
         line-height: 18px;
         color: #000000;
+        transition: all $hover-duration;
 
         &:hover {
             background-color: #000000;

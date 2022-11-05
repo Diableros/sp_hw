@@ -13,9 +13,9 @@
     <div class="wrapper">
         <div class="top-cart center">
             <header class="top-header">
-                <a href="index.html"><img src="img/logo.svg" alt="Логотип"></a>
+                <a href="index.html"><img class="logo-img" src="./img/logo.svg" alt="Логотип"></a>
                 <form action="#">
-                    <input type="input" class="top-header-input" placeholder="Поиск">
+                    <input type="search" class="top-header-input" placeholder="Поиск">
                 </form>
                 <nav class="top-nav">
                     <a href="catalog.html" class="top-cart-link top-nav-link">Каталог</a>
@@ -109,7 +109,7 @@
                         <div class="cart-item-count">
                             <button class="number-plus"
                                 onclick="this.nextElementSibling.stepUp(); this.nextElementSibling.onchange();"></button>
-                            <input class="count-field" type="number" name="count" min="1" value="1" size="2">
+                            <input class="count-field" type="number" name="count" min="1" value="1">
                             <button class="number-minus"
                                 onclick="this.previousElementSibling.stepDown(); this.previousElementSibling.onchange();"></button>
                         </div>
@@ -136,13 +136,13 @@
             <div class="product-content">
 
                 <div class="product">
-                    <img class="product-img" src="./img/bed_TATRAN_2.jpg" alt="product photo" class="product-img">
+                    <img class="product-img" src="./img/bed_TATRAN_2.jpg" alt="product photo">
                     <div class="product-icons">
-                        <img src="img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
-                        <img src="img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
+                        <img src="./img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
+                        <img src="./img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
                     </div>
                     <h3 class="product-name">
-                        <a href="product.html" class="product-name-link">Кровать TATRAN</a>
+                        <a href="#" class="product-name-link">Кровать TATRAN</a>
                     </h3>
                     <p class="product-about">Основание из полированной нержавеющей стали, придает оригинальный парящий
                         эффект.</p>
@@ -153,13 +153,13 @@
                 </div>
 
                 <div class="product">
-                    <img class="product-img" src="./img/armchair_VILORA.jpg" alt="product photo" class="product-img">
+                    <img class="product-img" src="./img/armchair_VILORA.jpg" alt="product photo">
                     <div class="product-icons">
-                        <img src="img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
-                        <img src="img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
+                        <img src="./img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
+                        <img src="./img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
                     </div>
                     <h3 class="product-name">
-                        <a href="product.html" class="product-name-link">Кресло VILORA</a>
+                        <a href="#" class="product-name-link">Кресло VILORA</a>
                     </h3>
                     <p class="product-about">Мягкое и уютное, аккуратное и стильное. Упругие подушки сиденья и приятная
                         на
@@ -171,13 +171,13 @@
                 </div>
 
                 <div class="product">
-                    <img class="product-img" src="./img/table_MENU_2.jpg" alt="product photo" class="product-img">
+                    <img class="product-img" src="./img/table_MENU_2.jpg" alt="product photo">
                     <div class="product-icons">
-                        <img src="img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
-                        <img src="img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
+                        <img src="./img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
+                        <img src="./img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
                     </div>
                     <h3 class="product-name">
-                        <a href="product.html" class="product-name-link">Стол MENU</a>
+                        <a href="#" class="product-name-link">Стол MENU</a>
                     </h3>
                     <p class="product-about">Европейский дуб - отличается особой прочностью и стабильностью.</p>
                     <div class="product-box-price">
@@ -196,8 +196,7 @@
         <footer class="footer center">
 
             <div class="footer-logo">
-                <a href="index.html" alt="logo"><img src="./img/logo_black.svg" alt="Логотип"
-                        class="footer-logo-svg"></a>
+                <a href="index.html"><img class="logo-img" src="./img/logo_black.svg" alt="Логотип"></a>
             </div>
 
             <div class="footer-content">
@@ -212,18 +211,38 @@
 
                     <div class="footer-contacts-box">
                         <h4 class="footer-contacts-header">Контакты</h4>
-                        <a href="tel:+7(908)800-80-80" class="footer-contact">+7 908 800 80 80</a>
+                        <a href="tel:+79088008080" class="footer-contact">+7 (908) 800-80-80</a>
                         <a href="mailto:help@interier.com" class="footer-contact">help@interier.com</a>
                         <div class="footer-icons">
+
                             <a href="#">
-                                <div class="footer-icons-inst"></div>
+                                <svg class="soc-icon" width="28" height="29" viewBox="0 0 28 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14 2.83398C17.1699 2.83398 17.5654 2.84565 18.809 2.90398C20.0515 2.96232 20.8974 3.15715 21.6417 3.44648C22.4117 3.74282 23.0604 4.14415 23.709 4.79165C24.3023 5.37486 24.7613 6.08034 25.0542 6.85898C25.3424 7.60215 25.5384 8.44915 25.5967 9.69165C25.6515 10.9353 25.6667 11.3308 25.6667 14.5007C25.6667 17.6705 25.655 18.066 25.5967 19.3097C25.5384 20.5522 25.3424 21.398 25.0542 22.1423C24.7622 22.9214 24.303 23.627 23.709 24.2097C23.1257 24.8027 22.4202 25.2617 21.6417 25.5548C20.8985 25.843 20.0515 26.039 18.809 26.0973C17.5654 26.1522 17.1699 26.1673 14 26.1673C10.8302 26.1673 10.4347 26.1557 9.19104 26.0973C7.94854 26.039 7.10271 25.843 6.35837 25.5548C5.57942 25.2625 4.87382 24.8034 4.29104 24.2097C3.69768 23.6265 3.23863 22.921 2.94587 22.1423C2.65654 21.3992 2.46171 20.5522 2.40337 19.3097C2.34854 18.066 2.33337 17.6705 2.33337 14.5007C2.33337 11.3308 2.34504 10.9353 2.40337 9.69165C2.46171 8.44798 2.65654 7.60332 2.94587 6.85898C3.23782 6.07986 3.69698 5.37419 4.29104 4.79165C4.87399 4.19809 5.57954 3.739 6.35837 3.44648C7.10271 3.15715 7.94737 2.96232 9.19104 2.90398C10.4347 2.84915 10.8302 2.83398 14 2.83398ZM14 8.66732C12.4529 8.66732 10.9692 9.2819 9.87525 10.3759C8.78129 11.4698 8.16671 12.9536 8.16671 14.5007C8.16671 16.0477 8.78129 17.5315 9.87525 18.6254C10.9692 19.7194 12.4529 20.334 14 20.334C15.5471 20.334 17.0309 19.7194 18.1248 18.6254C19.2188 17.5315 19.8334 16.0477 19.8334 14.5007C19.8334 12.9536 19.2188 11.4698 18.1248 10.3759C17.0309 9.2819 15.5471 8.66732 14 8.66732ZM21.5834 8.37565C21.5834 7.98888 21.4297 7.61794 21.1562 7.34445C20.8827 7.07096 20.5118 6.91732 20.125 6.91732C19.7383 6.91732 19.3673 7.07096 19.0938 7.34445C18.8204 7.61794 18.6667 7.98888 18.6667 8.37565C18.6667 8.76243 18.8204 9.13336 19.0938 9.40685C19.3673 9.68034 19.7383 9.83398 20.125 9.83398C20.5118 9.83398 20.8827 9.68034 21.1562 9.40685C21.4297 9.13336 21.5834 8.76243 21.5834 8.37565ZM14 11.0007C14.9283 11.0007 15.8185 11.3694 16.4749 12.0258C17.1313 12.6822 17.5 13.5724 17.5 14.5007C17.5 15.4289 17.1313 16.3191 16.4749 16.9755C15.8185 17.6319 14.9283 18.0007 14 18.0007C13.0718 18.0007 12.1815 17.6319 11.5252 16.9755C10.8688 16.3191 10.5 15.4289 10.5 14.5007C10.5 13.5724 10.8688 12.6822 11.5252 12.0258C12.1815 11.3694 13.0718 11.0007 14 11.0007Z"
+                                        fill="#888888" />
+                                </svg>
+
                             </a>
+
                             <a href="#">
-                                <div class="footer-icons-twit"></div>
+                                <svg class="soc-icon" width="28" height="29" viewBox="0 0 28 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M25.8557 7.09907C24.965 7.49305 24.0205 7.75179 23.0534 7.86674C24.0728 7.25708 24.8357 6.29759 25.2001 5.16707C24.2434 5.7364 23.1946 6.1354 22.1014 6.35124C21.3671 5.56558 20.3938 5.04453 19.3328 4.86908C18.2719 4.69364 17.1827 4.87364 16.2345 5.3811C15.2864 5.88855 14.5325 6.69503 14.09 7.67516C13.6475 8.65529 13.5413 9.75415 13.7877 10.8009C11.8477 10.7037 9.94978 10.1995 8.21723 9.32118C6.48468 8.44284 4.95621 7.20996 3.73106 5.70257C3.2974 6.44743 3.06951 7.29417 3.07073 8.15607C3.07073 9.84774 3.93173 11.3422 5.24073 12.2172C4.46607 12.1928 3.70847 11.9836 3.03106 11.6071V11.6677C3.0313 12.7944 3.42116 13.8863 4.13455 14.7583C4.84794 15.6303 5.84096 16.2288 6.94523 16.4522C6.22611 16.6471 5.47209 16.6758 4.74023 16.5362C5.05157 17.506 5.6584 18.3541 6.47575 18.9619C7.2931 19.5696 8.28004 19.9065 9.29839 19.9254C8.28629 20.7203 7.12743 21.3079 5.88809 21.6546C4.64874 22.0013 3.35321 22.1004 2.07556 21.9461C4.30588 23.3804 6.90217 24.1419 9.55389 24.1394C18.5291 24.1394 23.4372 16.7042 23.4372 10.2561C23.4372 10.0461 23.4314 9.83374 23.4221 9.62607C24.3774 8.9356 25.2019 8.08026 25.8569 7.10024L25.8557 7.09907Z"
+                                        fill="#888888" />
+                                </svg>
                             </a>
+
                             <a href="#">
-                                <div class="footer-icons-face"></div>
+                                <svg class="soc-icon" width="28" height="29" viewBox="0 0 28 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16.3333 16.2218H19.25L20.4166 11.5552H16.3333V9.22184C16.3333 8.02018 16.3333 6.88851 18.6666 6.88851H20.4166V2.96851C20.0363 2.91834 18.6001 2.80518 17.0835 2.80518C13.916 2.80518 11.6666 4.73834 11.6666 8.28851V11.5552H8.16663V16.2218H11.6666V26.1385H16.3333V16.2218Z"
+                                        fill="#888888" />
+                                </svg>
                             </a>
+
                         </div>
                     </div>
 

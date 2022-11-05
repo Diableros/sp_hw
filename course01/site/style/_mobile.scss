@@ -198,14 +198,16 @@
             gap: 52px;
         }
 
-        .link-box {
-            margin-top: 36px;
-            margin-bottom: 32px;
-        }
+
 
         .footer {
             padding-bottom: 32px;
         }
+    }
+
+    .link-box {
+        margin-top: 36px;
+        margin-bottom: 32px;
     }
 }
 
@@ -255,8 +257,16 @@
             width: 240px;
         }
     }
+}
 
+@media (max-width: 324px) {
     .product-price {
         font-size: 15px;
+    }
+}
+
+@media (max-width: 287px) {
+    .product-price {
+        font-size: 14px;
     }
 }
