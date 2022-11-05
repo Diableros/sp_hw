@@ -1,5 +1,6 @@
 @import "zeroing";
 @import "variables";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,400,500,600,700,800,900);
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -316,25 +317,36 @@ input::-webkit-inner-spin-button {
             position: relative;
 
             .number {
-                &-plus {
-                    top: 0px;
+                @mixin item-count-buttons ($btnimg, $btnpos) {
+                    #{$btnpos}: 0px;
                     right: 0px;
                     width: 50%;
                     height: 20px;
                     position: absolute;
-                    background: url(../img/num_arrow_up.svg) no-repeat;
-                    background-position: left 30% bottom 30%;
+                    background: url(../img/num_arrow_#{$btnimg}.svg) no-repeat;
+                    border-radius: 6px;
+                    background-position: left 30% $btnpos 70%;
+
+                    &:hover {
+                        border: 1px solid #333333;
+                        background-color: #EFEFEF;
+                        box-shadow: inset -2px -2px 2px #DDDDDD;
+                    }
+
+                    &:active {
+                        background-color: #555555;
+                        box-shadow: inset 2px 2px 2px #333333;
+                    }
+                }
+
+                &-plus {
+                    @include item-count-buttons ('up', top);
                 }
 
                 &-minus {
-                    bottom: 0px;
-                    right: 0px;
-                    width: 50%;
-                    height: 20px;
-                    position: absolute;
-                    background: url(../img/num_arrow_down.svg) no-repeat;
-                    background-position: left 30% top 30%;
+                    @include item-count-buttons('down', bottom);
                 }
+
             }
         }
 
@@ -396,7 +408,7 @@ input::-webkit-inner-spin-button {
 
 .for {
     &-box {
-        margin-bottom: 64px;
+        // margin-bottom: 64px;
     }
 
     &-header {
@@ -424,6 +436,7 @@ input::-webkit-inner-spin-button {
         justify-content: center;
         align-items: center;
         color: $color-top-text;
+        background-size: cover;
 
         &-chill {
             background-image: url(../img/for_chill.jpg);
@@ -452,7 +465,7 @@ input::-webkit-inner-spin-button {
 }
 
 .product {
-    width: calc(($site-width - ($product-gap * 2)) / 3);
+    width: 378px;
     display: flex;
     flex-direction: column;
 
@@ -465,7 +478,9 @@ input::-webkit-inner-spin-button {
     }
 
     &-box {
-        margin-bottom: 64px;
+        h2 {
+            margin-top: 64px;
+        }
 
         &-title {
             font-weight: 600;
@@ -610,7 +625,7 @@ input::-webkit-inner-spin-button {
         font-weight: 500;
         font-size: 14px;
         line-height: 17px;
-        color: #888888;
+        color: #888888 !important;
     }
 
     &-contacts {
@@ -639,7 +654,7 @@ input::-webkit-inner-spin-button {
         font-weight: 500;
         font-size: 14px;
         line-height: 17px;
-        color: #888888;
+        color: #888888 !important;
     }
 
     &-icons {
