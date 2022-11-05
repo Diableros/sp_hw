@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Корзина</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="top-cart center">
+            <header class="top-header">
+                <a href="index.html"><img class="logo-img" src="./img/logo.svg" alt="Логотип"></a>
+                <form action="#">
+                    <input type="search" class="top-header-input" placeholder="Поиск">
+                </form>
+                <nav class="top-nav">
+                    <a href="catalog.html" class="top-cart-link top-nav-link">Каталог</a>
+                    <a href="cart.html" class="top-cart-link  top-nav-link">Корзина</a>
+                </nav>
+                <div class="top-nav-mobile">
+                    <a href="#" class="top-nav-movile-link"><svg width="20" height="19" viewBox="0 0 20 19" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_310_627)">
+                                <path
+                                    d="M5.7515 2.99141C4.59282 4.14838 3.91891 5.70363 3.86709 7.34023C3.81528 8.97682 4.38946 10.5716 5.47264 11.7995C6.55581 13.0275 8.06645 13.7962 9.69672 13.9491C11.2973 14.0991 12.8949 13.6444 14.1757 12.6766L17.5069 16.0085L17.5069 16.0085C17.5897 16.0914 17.6881 16.1571 17.7963 16.2019C17.9046 16.2468 18.0206 16.2698 18.1377 16.2698C18.2549 16.2698 18.3709 16.2468 18.4791 16.2019C18.5873 16.1571 18.6857 16.0914 18.7685 16.0085C18.8514 15.9257 18.9171 15.8274 18.9619 15.7191C19.0068 15.6109 19.0298 15.4949 19.0298 15.3777C19.0298 15.2606 19.0068 15.1446 18.9619 15.0363C18.9171 14.9281 18.8514 14.8298 18.7685 14.7469L18.7685 14.7469L15.4368 11.416C16.4021 10.135 16.8547 8.53846 16.7038 6.93943C16.5501 5.31054 15.7816 3.80139 14.5547 2.719C13.3277 1.63662 11.7345 1.06232 10.0992 1.11292C8.46381 1.16352 6.90917 1.83523 5.7515 2.99141ZM5.7515 2.99141L5.82216 3.06217L5.7515 2.99141ZM13.5895 4.25366C14.0271 4.68416 14.3751 5.19703 14.6135 5.76269C14.8518 6.32835 14.9758 6.93561 14.9783 7.54944C14.9808 8.16327 14.8618 8.77152 14.628 9.3391C14.3943 9.90669 14.0505 10.4224 13.6164 10.8564C13.1824 11.2905 12.6667 11.6343 12.0991 11.868C11.5315 12.1018 10.9233 12.2208 10.3094 12.2183C9.6956 12.2158 9.08834 12.0918 8.52268 11.8535C7.95702 11.6151 7.44415 11.2671 7.01365 10.8295C6.15334 9.95509 5.67341 8.77613 5.6784 7.54944C5.6834 6.32275 6.17291 5.14773 7.04032 4.28033C7.90772 3.41292 9.08274 2.92341 10.3094 2.91841C11.5361 2.91342 12.7151 3.39335 13.5895 4.25366Z"
+                                    fill="white" stroke="white" stroke-width="0.2" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_310_627">
+                                    <rect width="19" height="19" fill="white" transform="translate(0.800537)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+                    <a href="catalog.html" class="top-nav-movile-link"><svg width="20" height="21" viewBox="0 0 20 21"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.800537" y="0.900024" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="0.800537" y="8.21436" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="0.800537" y="15.5286" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="8.11401" y="8.21436" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="8.11401" y="15.5286" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="8.11401" y="0.900024" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="15.4285" y="8.21436" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="15.4285" y="15.5286" width="4.57143" height="4.57143" fill="white" />
+                            <rect x="15.4285" y="0.900024" width="4.57143" height="4.57143" fill="white" />
+                        </svg>
+                    </a>
+                    <a href="cart.html" class="top-nav-movile-link"><svg width="25" height="25" viewBox="0 0 25 25"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14.5834 20.8333C15.1359 20.8333 15.6658 20.6138 16.0566 20.2231C16.4473 19.8324 16.6667 19.3025 16.6667 18.75C16.6667 18.1974 16.4473 17.6675 16.0566 17.2768C15.6658 16.8861 15.1359 16.6666 14.5834 16.6666C14.0309 16.6666 13.501 16.8861 13.1103 17.2768C12.7196 17.6675 12.5001 18.1974 12.5001 18.75C12.5001 19.3025 12.7196 19.8324 13.1103 20.2231C13.501 20.6138 14.0309 20.8333 14.5834 20.8333ZM7.29174 20.8333C7.84428 20.8333 8.37418 20.6138 8.76488 20.2231C9.15558 19.8324 9.37508 19.3025 9.37508 18.75C9.37508 18.1974 9.15558 17.6675 8.76488 17.2768C8.37418 16.8861 7.84428 16.6666 7.29174 16.6666C6.73921 16.6666 6.20931 16.8861 5.81861 17.2768C5.4279 17.6675 5.20841 18.1974 5.20841 18.75C5.20841 19.3025 5.4279 19.8324 5.81861 20.2231C6.20931 20.6138 6.73921 20.8333 7.29174 20.8333ZM20.873 6.16975C21.133 6.16136 21.3796 6.05217 21.5606 5.86525C21.7416 5.67834 21.8428 5.42836 21.8428 5.16819C21.8428 4.90801 21.7416 4.65804 21.5606 4.47112C21.3796 4.28421 21.133 4.17501 20.873 4.16663H19.674C18.7345 4.16663 17.922 4.81871 17.7178 5.73538L16.4126 11.6125C16.2084 12.5291 15.3959 13.1812 14.4563 13.1812H6.63133L5.12924 7.17079H14.8636C15.1212 7.15904 15.3644 7.04844 15.5425 6.86199C15.7206 6.67555 15.82 6.42761 15.82 6.16975C15.82 5.91189 15.7206 5.66395 15.5425 5.47751C15.3644 5.29106 15.1212 5.18046 14.8636 5.16871H5.12924C4.82473 5.16862 4.5242 5.23796 4.25051 5.37145C3.97682 5.50495 3.73716 5.69909 3.54976 5.93911C3.36236 6.17913 3.23215 6.45872 3.16903 6.75662C3.10591 7.05452 3.11154 7.36289 3.1855 7.65829L4.68758 13.6666C4.79586 14.1002 5.046 14.485 5.39821 14.7601C5.75042 15.0351 6.18447 15.1844 6.63133 15.1843H14.4563C15.368 15.1845 16.2524 14.8736 16.9636 14.3032C17.6748 13.7327 18.1701 12.9368 18.3678 12.0468L19.674 6.16975H20.873Z"
+                                fill="white" />
+                        </svg>
+                    </a>
+                </div>
+            </header>
+            <h1 class="top-title top-cat-title-mgt">Корзина</h1>
+        </div>
+
+        <div class="cart-box center">
+            <div class="cart-content">
+                <div class="cart-items">
+                    <div class="cart-content-head">
+                        <p>Товар</p>
+                        <p>Кол-во</p>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-left">
+                            <img src="./img/cart_item_1.jpg" alt="cart item" class="cart-item-img">
+                            <div class="cart-item-info">
+                                <h4 class="cart-item-name">Стол MENU</h4>
+                                <p class="cart-item-about">Для того чтобы трапезничать было приятно, необходим
+                                    правильный
+                                    обеденный
+                                    стол.</p>
+                                <p class="cart-item-pricebox">34 000 руб.</p>
+                                <div class="cart-item-action">
+                                    <a href="#" class="cart-item-action-link">Избранные</a>
+                                    <a href="#" class="cart-item-action-link">Удалить</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-count">
+                            <button class="number-plus" onclick="this.nextElementSibling.stepUp();"></button>
+                            <input class="count-field" type="number" name="count" min="1" value="1">
+                            <button class="number-minus" onclick="this.previousElementSibling.stepDown();"></button>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="cart-left">
+                            <img src="./img/cart_item_2.jpg" alt="cart item" class="cart-item-img">
+                            <div class="cart-item-info">
+                                <h4 class="cart-item-name">Диван NASTAN</h4>
+                                <p class="cart-item-about">Модель отличается простотой линий и форм, отсутствием
+                                    броского
+                                    декора. </p>
+                                <p class="cart-item-pricebox">80 000 руб.</p>
+                                <div class="cart-item-action">
+                                    <a href="#" class="cart-item-action-link">Избранные</a>
+                                    <a href="#" class="cart-item-action-link">Удалить</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-count">
+                            <button class="number-plus"
+                                onclick="this.nextElementSibling.stepUp(); this.nextElementSibling.onchange();"></button>
+                            <input class="count-field" type="number" name="count" min="1" value="1">
+                            <button class="number-minus"
+                                onclick="this.previousElementSibling.stepDown(); this.previousElementSibling.onchange();"></button>
+                        </div>
+                    </div>
+                </div>
+                <form action="#" class="cart-action">
+                    <button class="cart-action-btn">Очистить корзину</button>
+                    <button class="cart-action-btn">Продолжить покупки</button>
+                </form>
+            </div>
+            <form class="cart-form">
+                <h3 class="cart-form-header">Оформление заказа</h3>
+                <input type="text" class="cart-form-field" name="name" placeholder="Имя Фамилия">
+                <input type="tel" class="cart-form-field" name="tel" placeholder="+7 904 000 80 80">
+                <input type="text" class="cart-form-field" name="address" placeholder="Адрес доставки">
+                <p class="cart-form-pricebox">Итого: <b>114 000 руб.</b></p>
+                <button type="submit" class="cart-form-btn">Оформить заказ</button>
+            </form>
+        </div>
+
+        <section class="product-box center">
+
+            <h2 class="product-box-title">Специальные предложения</h2>
+            <div class="product-content">
+
+                <div class="product">
+                    <img class="product-img" src="./img/bed_TATRAN_2.jpg" alt="product photo">
+                    <div class="product-icons">
+                        <img src="./img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
+                        <img src="./img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
+                    </div>
+                    <h3 class="product-name">
+                        <a href="#" class="product-name-link">Кровать TATRAN</a>
+                    </h3>
+                    <p class="product-about">Основание из полированной нержавеющей стали, придает оригинальный парящий
+                        эффект.</p>
+                    <div class="product-box-price">
+                        <span class="product-price">120 000 руб.</span>
+                        <span class="product-price line-through">140 000 руб</span>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img class="product-img" src="./img/armchair_VILORA.jpg" alt="product photo">
+                    <div class="product-icons">
+                        <img src="./img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
+                        <img src="./img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
+                    </div>
+                    <h3 class="product-name">
+                        <a href="#" class="product-name-link">Кресло VILORA</a>
+                    </h3>
+                    <p class="product-about">Мягкое и уютное, аккуратное и стильное. Упругие подушки сиденья и приятная
+                        на
+                        ощупь ткань.</p>
+                    <div class="product-box-price">
+                        <span class="product-price">21 000 руб.</span>
+                        <span class="product-price line-through">28 000 руб.</span>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img class="product-img" src="./img/table_MENU_2.jpg" alt="product photo">
+                    <div class="product-icons">
+                        <img src="./img/to_cart_icon.svg" class="cart-icon" alt="cart icon">
+                        <img src="./img/to_favorite_icon.svg" class="favorite-icon" alt="favorite icon">
+                    </div>
+                    <h3 class="product-name">
+                        <a href="#" class="product-name-link">Стол MENU</a>
+                    </h3>
+                    <p class="product-about">Европейский дуб - отличается особой прочностью и стабильностью.</p>
+                    <div class="product-box-price">
+                        <span class="product-price">34 000 руб.</span>
+                        <span class="product-price line-through">45 000 руб.</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="link-box center">
+            <a href="catalog.html" class="link-box-item">Перейти в каталог</a>
+        </div>
+
+        <footer class="footer center">
+
+            <div class="footer-logo">
+                <a href="index.html"><img class="logo-img" src="./img/logo_black.svg" alt="Логотип"></a>
+            </div>
+
+            <div class="footer-content">
+                <div class="footer-info">
+
+                    <nav class="footer-nav-box">
+                        <h4 class="footer-menu-header">Меню</h4>
+                        <a href="index.html" class="footer-link">Главная</a>
+                        <a href="catalog.html" class="footer-link">Каталог</a>
+                        <a href="cart.html" class="footer-link">Корзина</a>
+                    </nav>
+
+                    <div class="footer-contacts-box">
+                        <h4 class="footer-contacts-header">Контакты</h4>
+                        <a href="tel:+79088008080" class="footer-contact">+7 (908) 800-80-80</a>
+                        <a href="mailto:help@interier.com" class="footer-contact">help@interier.com</a>
+                        <div class="footer-icons">
+
+                            <a href="#">
+                                <svg class="soc-icon" width="28" height="29" viewBox="0 0 28 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M14 2.83398C17.1699 2.83398 17.5654 2.84565 18.809 2.90398C20.0515 2.96232 20.8974 3.15715 21.6417 3.44648C22.4117 3.74282 23.0604 4.14415 23.709 4.79165C24.3023 5.37486 24.7613 6.08034 25.0542 6.85898C25.3424 7.60215 25.5384 8.44915 25.5967 9.69165C25.6515 10.9353 25.6667 11.3308 25.6667 14.5007C25.6667 17.6705 25.655 18.066 25.5967 19.3097C25.5384 20.5522 25.3424 21.398 25.0542 22.1423C24.7622 22.9214 24.303 23.627 23.709 24.2097C23.1257 24.8027 22.4202 25.2617 21.6417 25.5548C20.8985 25.843 20.0515 26.039 18.809 26.0973C17.5654 26.1522 17.1699 26.1673 14 26.1673C10.8302 26.1673 10.4347 26.1557 9.19104 26.0973C7.94854 26.039 7.10271 25.843 6.35837 25.5548C5.57942 25.2625 4.87382 24.8034 4.29104 24.2097C3.69768 23.6265 3.23863 22.921 2.94587 22.1423C2.65654 21.3992 2.46171 20.5522 2.40337 19.3097C2.34854 18.066 2.33337 17.6705 2.33337 14.5007C2.33337 11.3308 2.34504 10.9353 2.40337 9.69165C2.46171 8.44798 2.65654 7.60332 2.94587 6.85898C3.23782 6.07986 3.69698 5.37419 4.29104 4.79165C4.87399 4.19809 5.57954 3.739 6.35837 3.44648C7.10271 3.15715 7.94737 2.96232 9.19104 2.90398C10.4347 2.84915 10.8302 2.83398 14 2.83398ZM14 8.66732C12.4529 8.66732 10.9692 9.2819 9.87525 10.3759C8.78129 11.4698 8.16671 12.9536 8.16671 14.5007C8.16671 16.0477 8.78129 17.5315 9.87525 18.6254C10.9692 19.7194 12.4529 20.334 14 20.334C15.5471 20.334 17.0309 19.7194 18.1248 18.6254C19.2188 17.5315 19.8334 16.0477 19.8334 14.5007C19.8334 12.9536 19.2188 11.4698 18.1248 10.3759C17.0309 9.2819 15.5471 8.66732 14 8.66732ZM21.5834 8.37565C21.5834 7.98888 21.4297 7.61794 21.1562 7.34445C20.8827 7.07096 20.5118 6.91732 20.125 6.91732C19.7383 6.91732 19.3673 7.07096 19.0938 7.34445C18.8204 7.61794 18.6667 7.98888 18.6667 8.37565C18.6667 8.76243 18.8204 9.13336 19.0938 9.40685C19.3673 9.68034 19.7383 9.83398 20.125 9.83398C20.5118 9.83398 20.8827 9.68034 21.1562 9.40685C21.4297 9.13336 21.5834 8.76243 21.5834 8.37565ZM14 11.0007C14.9283 11.0007 15.8185 11.3694 16.4749 12.0258C17.1313 12.6822 17.5 13.5724 17.5 14.5007C17.5 15.4289 17.1313 16.3191 16.4749 16.9755C15.8185 17.6319 14.9283 18.0007 14 18.0007C13.0718 18.0007 12.1815 17.6319 11.5252 16.9755C10.8688 16.3191 10.5 15.4289 10.5 14.5007C10.5 13.5724 10.8688 12.6822 11.5252 12.0258C12.1815 11.3694 13.0718 11.0007 14 11.0007Z"
+                                        fill="#888888" />
+                                </svg>
+
+                            </a>
+
+                            <a href="#">
+                                <svg class="soc-icon" width="28" height="29" viewBox="0 0 28 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M25.8557 7.09907C24.965 7.49305 24.0205 7.75179 23.0534 7.86674C24.0728 7.25708 24.8357 6.29759 25.2001 5.16707C24.2434 5.7364 23.1946 6.1354 22.1014 6.35124C21.3671 5.56558 20.3938 5.04453 19.3328 4.86908C18.2719 4.69364 17.1827 4.87364 16.2345 5.3811C15.2864 5.88855 14.5325 6.69503 14.09 7.67516C13.6475 8.65529 13.5413 9.75415 13.7877 10.8009C11.8477 10.7037 9.94978 10.1995 8.21723 9.32118C6.48468 8.44284 4.95621 7.20996 3.73106 5.70257C3.2974 6.44743 3.06951 7.29417 3.07073 8.15607C3.07073 9.84774 3.93173 11.3422 5.24073 12.2172C4.46607 12.1928 3.70847 11.9836 3.03106 11.6071V11.6677C3.0313 12.7944 3.42116 13.8863 4.13455 14.7583C4.84794 15.6303 5.84096 16.2288 6.94523 16.4522C6.22611 16.6471 5.47209 16.6758 4.74023 16.5362C5.05157 17.506 5.6584 18.3541 6.47575 18.9619C7.2931 19.5696 8.28004 19.9065 9.29839 19.9254C8.28629 20.7203 7.12743 21.3079 5.88809 21.6546C4.64874 22.0013 3.35321 22.1004 2.07556 21.9461C4.30588 23.3804 6.90217 24.1419 9.55389 24.1394C18.5291 24.1394 23.4372 16.7042 23.4372 10.2561C23.4372 10.0461 23.4314 9.83374 23.4221 9.62607C24.3774 8.9356 25.2019 8.08026 25.8569 7.10024L25.8557 7.09907Z"
+                                        fill="#888888" />
+                                </svg>
+                            </a>
+
+                            <a href="#">
+                                <svg class="soc-icon" width="28" height="29" viewBox="0 0 28 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16.3333 16.2218H19.25L20.4166 11.5552H16.3333V9.22184C16.3333 8.02018 16.3333 6.88851 18.6666 6.88851H20.4166V2.96851C20.0363 2.91834 18.6001 2.80518 17.0835 2.80518C13.916 2.80518 11.6666 4.73834 11.6666 8.28851V11.5552H8.16663V16.2218H11.6666V26.1385H16.3333V16.2218Z"
+                                        fill="#888888" />
+                                </svg>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="subscribe-box">
+                <form action="#" class="subscribe">
+                    <p class="subscribe-title">Получайте наши новости и обновления</p>
+                    <input type="email" class="subscribe-input" placeholder="Email Address">
+                    <button class="subscribe-btn">Подписаться</button>
+                </form>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
