@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.header {
+    height: 76px;
+}
+
 .nav-top-item {
     font-size: 16px;
     line-height: 20px;
@@ -7,11 +17,14 @@
     font-weight: 600;
     font-size: 64px;
     line-height: 70px;
+    margin-top: 64px;
+    margin-bottom: 16px;
 }
 
 .top-slogan {
     font-size: 24px;
     line-height: 32px;
+    margin-bottom: 16px;
 }
 
 .top-cat-link {
@@ -24,6 +37,7 @@
     font-size: 48px;
     line-height: 59px;
     color: #000000;
+    margin-bottom: 32px;
 }
 
 .spec-item-name {
@@ -31,12 +45,14 @@
     font-size: 24px;
     line-height: 29px;
     color: #000000;
+    margin-bottom: 8px;
 }
 
 .spec-item-about {
     font-size: 14px;
     line-height: 17px;
     color: #888888;
+    margin-bottom: 12px;
 }
 
 .spec-item-price1 {
@@ -54,11 +70,28 @@
     color: #888888;
 }
 
-.footer-header {
+.footer-menu-header {
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
+    margin-bottom: 12px;
+}
+
+.footer-contacts-header {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.footer-link {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #888888;
+    text-decoration: none;
 }
 
 .footer-item {
@@ -73,6 +106,7 @@
     font-size: 14px;
     line-height: 16px;
     color: #000000;
+    margin-bottom: 16px;
 }
 
 .subscribe-input {
@@ -97,4 +131,8 @@
     font-size: 15px;
     line-height: 18px;
     color: #000000;
+}
+
+.nav-top-item:hover, .footer-link:hover {
+    text-decoration: underline;
 }
