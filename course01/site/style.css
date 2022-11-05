@@ -1,16 +1,60 @@
 * {
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
     text-decoration: none;
+}
+
+.top {
+    background-color: #C4C4C4;
+    background-image: url(img/top_bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 735px;
+    color: #FFFFFF;
 }
 
 .header {
     height: 76px;
 }
 
-.nav-top-item {
+.header-input {
+    font-family: inherit;
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+    width: 288px;
+    height: 41px;
+    background-color: transparent;
+    outline: none;
+    font-style: normal;
+    font-weight: 400;
     font-size: 16px;
     line-height: 20px;
+    color: inherit;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+.header-input::placeholder {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: inherit;
+}
+
+.top-nav-link {
+    font-size: 16px;
+    line-height: 20px;
+    color: inherit;
 }
 
 .top-title {
@@ -30,9 +74,11 @@
 .top-cat-link {
     font-size: 16px;
     line-height: 24px;
+    color: inherit;
+    text-decoration: underline;
 }
 
-.spec-title {
+.section-title {
     font-weight: 600;
     font-size: 48px;
     line-height: 59px;
@@ -40,7 +86,7 @@
     margin-bottom: 32px;
 }
 
-.spec-item-name {
+.product-name {
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
@@ -48,26 +94,39 @@
     margin-bottom: 8px;
 }
 
-.spec-item-about {
+.product-about {
     font-size: 14px;
     line-height: 17px;
     color: #888888;
     margin-bottom: 12px;
 }
 
-.spec-item-price1 {
+.product-price1 {
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
     color: #050505;
 }
 
-.spec-item-price2 {
+.product-price2 {
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
     text-decoration: line-through;
     color: #888888;
+}
+
+.link-box {
+    margin-bottom: 34px;
+}
+
+.link-box-item {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color:#000000;
+    text-decoration: underline;
 }
 
 .footer-menu-header {
@@ -86,20 +145,18 @@
     margin-bottom: 12px;
 }
 
+.footer-contact {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #888888;
+}
+
 .footer-link {
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
     color: #888888;
-    text-decoration: none;
-}
-
-.footer-item {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    color: #888888;
-    text-decoration: none;
 }
 
 .subscribe-title {
@@ -110,6 +167,7 @@
 }
 
 .subscribe-input {
+    font-family: inherit;
     background: #FFFFFF;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
@@ -117,11 +175,20 @@
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
-    line-height: 18px;
+    height: 46px;
+    color: #C4C4C4;
+    outline: none;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.subscribe-input::placeholder {
+    font-size: 15px;
     color: #C4C4C4;
 }
 
 .subscribe-btn {
+    font-family: inherit;
     background: rgba(222, 215, 215, 0.41);
     border: 1px solid #FFFFFF;
     box-sizing: border-box;
