@@ -1,7 +1,14 @@
+@media (max-width: 1248px) {
+    .center {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
 @media (max-width: 1024px) {
     .center {
-        padding-left: calc(50% - (786px / 2) - 1px);
-        padding-right: calc(50% - (786px / 2) - 1px);
+        padding-left: calc(50% - (768px / 2) - 1px);
+        padding-right: calc(50% - (768px / 2) - 1px);
     }
 
     .for-item {
@@ -30,9 +37,10 @@
         display: none;
     }
 
-    .footer-info {
-        justify-content: center;
-    }
+    // .footer-info {
+    // justify-content: center;
+    // justify-content: space-between;
+    // }
 
     .subscribe-box {
         justify-content: center;
