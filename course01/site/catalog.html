@@ -8,46 +8,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style/style.css">
     <title>Каталог</title>
 </head>
 
 <body>
     <div class="top-cat center">
-        <header class="header">
+        <header class="top-header">
             <a href="index.html"><img src="img/logo.svg" alt="Логотип"></a>
             <form action="#">
-                <input type="input" class="header-input" placeholder="Поиск">
+                <input type="input" class="top-header-input" placeholder="Поиск">
             </form>
-            <nav class="nav-top">
-                <a href="catalog.html" class="top-nav-link cat-spec-link">Каталог</a>
-                <a href="#" class="top-nav-link cat-spec-link">Корзина</a>
+            <nav class="top-nav">
+                <a href="catalog.html" class="top-cat-link top-nav-link">Каталог</a>
+                <a href="cart.html" class="top-cat-link top-nav-link">Корзина</a>
             </nav>
         </header>
         <section class="top-section center">
-            <h1 class="top-title cat-title-mgt">Каталог</h1>
+            <h1 class="top-title top-cat-title-mgt">Каталог</h1>
         </section>
     </div>
 
+    <div class="cat-sub-top center">
+        <nav>
+            <ul class="bread-crumbs">
+                <li class="bread-crumbs-item"><a href="#">Главная</a></li>
+                <li class="bread-crumbs-item"><a href="#">Каталог товаров</a></li>
+            </ul>
+        </nav>
+
+        <form action="#">
+            <select name="sort" id="#" class="form-sort-select">
+                <option value="1">Порядок: сперва новые</option>
+                <option value="2">Порядок: сперва дорогие</option>
+                <option value="3">Порядок: сперва дешевые</option>
+            </select>
+        </form>
+
+    </div>
+
     <section class="product-box center">
-
-        <div class="bread-n-sort">
-            <nav class="bread">
-                <ul class="bread-crumbs">
-                    <li class="bread-crumbs-item"><a href="#">Главная</a></li>
-                    <li class="bread-crumbs-item"><a href="#">Каталог товаров</a></li>
-                </ul>
-            </nav>
-
-            <form action="#" class="form-sort">
-                <select name="sort" id="#" class="form-sort-select">
-                    <option value="1">Порядок: сперва новые</option>
-                    <option value="2">Порядок: сперва дорогие</option>
-                    <option value="3">Порядок: сперва дешевые</option>
-                </select>
-            </form>
-
-        </div>
 
         <div class="product-content">
 
@@ -264,19 +264,19 @@
                     <a href="#" class="footer-link">Корзина</a>
                 </nav>
 
-                <div class="footer-cont-box">
+                <div class="footer-contacts-box">
                     <h4 class="footer-contacts-header">Контакты</h4>
                     <a href="tel:+7(908)800-80-80" class="footer-contact">+7 908 800 80 80</a>
                     <a href="mailto:help@interier.com" class="footer-contact">help@interier.com</a>
                     <div class="footer-icons">
                         <a href="#">
-                            <div class="foot-inst-logo"></div>
+                            <div class="footer-icons-inst"></div>
                         </a>
                         <a href="#">
-                            <div class="foot-twit-logo"></div>
+                            <div class="footer-icons-twit"></div>
                         </a>
                         <a href="#">
-                            <div class="foot-face-logo"></div>
+                            <div class="footer-icons-face"></div>
                         </a>
                     </div>
                 </div>

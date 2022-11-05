@@ -1,0 +1,25 @@
+@media screen and (max-width: 950px) {
+    .footer-logo {
+        display: none;
+    }
+
+    .footer-info {
+        justify-content: center;
+    }
+
+    .subscribe-box {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1216px) {
+
+    .footer,
+    .link-box {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+
+
+}
