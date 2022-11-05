@@ -9,6 +9,12 @@ body {
 
 a {
     text-decoration: none;
+    color: #000000;
+}
+
+.center {
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
 }
 
 .top {
@@ -23,10 +29,15 @@ a {
 
 .header {
     height: 76px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.8);
 }
 
 .header-input {
-    font-family: inherit;
+    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
     border: 1px solid #FFFFFF;
     border-radius: 20px;
@@ -51,10 +62,20 @@ a {
     color: inherit;
 }
 
+.nav-top {
+    display: flex;
+    gap: 32px;
+}
+
 .top-nav-link {
     font-size: 16px;
     line-height: 20px;
     color: inherit;
+}
+
+.top-nav-link:hover {
+    color: #000000;
+    text-decoration: underline;
 }
 
 .top-title {
@@ -78,12 +99,43 @@ a {
     text-decoration: underline;
 }
 
-.section-title {
+.top-cat-link:hover {
+    color: #000000;
+}
+
+.product-box {
+    padding-top: 64px;
+}
+
+.product-box-title {
     font-weight: 600;
     font-size: 48px;
     line-height: 59px;
     color: #000000;
-    margin-bottom: 32px;
+}
+
+.product-content {
+    margin-top: 32px;
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: 32px;
+    row-gap: 56px;
+    justify-content: center;
+}
+
+.product {
+    width: 378px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-img {
+    width: 100%;
+}
+
+.product-name-link:hover {
+    text-decoration: underline;
+    color: inherit;
 }
 
 .product-name {
@@ -91,7 +143,8 @@ a {
     font-size: 24px;
     line-height: 29px;
     color: #000000;
-    margin-bottom: 8px;
+    margin-top: 10px;
+    margin-bottom: 9px;
 }
 
 .product-about {
@@ -101,23 +154,18 @@ a {
     margin-bottom: 12px;
 }
 
-.product-price1 {
+.product-box-price {
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
     color: #050505;
-}
-
-.product-price2 {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-    text-decoration: line-through;
-    color: #888888;
+    display: flex;
+    gap: 32px
 }
 
 .link-box {
-    margin-bottom: 34px;
+    margin-top: 39px;
+    margin-bottom: 64px;
 }
 
 .link-box-item {
@@ -127,6 +175,55 @@ a {
     line-height: 24px;
     color:#000000;
     text-decoration: underline;
+}
+
+.link-box-item:hover {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #888888;
+    text-decoration: none;
+}
+
+.footer {
+    display: flex;
+    min-height: 207px;
+    background: #F7F6F6;
+    padding-top: 32px;
+    justify-content: space-between;
+    gap: 32px;
+    flex-flow: row wrap;
+}
+
+.footer-logo {
+    flex: 1;
+}
+
+.footer-content {
+    width: 378px;
+    display: flex;
+    flex: 1;
+    justify-items: center;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    gap: 32px;
+    padding-right: 40px;
+}
+
+.footer-nav-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-cont-box {
+    display: flex;
+    flex-direction: column;
+    /* margin-right: 55px; */
 }
 
 .footer-menu-header {
@@ -150,6 +247,7 @@ a {
     font-size: 14px;
     line-height: 17px;
     color: #888888;
+    margin-bottom: 12px;
 }
 
 .footer-link {
@@ -157,16 +255,67 @@ a {
     font-size: 14px;
     line-height: 17px;
     color: #888888;
+    margin-bottom: 12px;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.foot-inst-logo {
+    background: url(img/inst.svg) no-repeat;
+    /* background-size: 100%; */
+    width: 29px;
+    height: 29px;
+}
+
+.foot-inst-logo:hover {
+    background: url(img/inst_black.svg) no-repeat;
+}
+
+.foot-twit-logo {
+    background: url(img/twitter.svg) no-repeat;
+    width: 25px;
+    height: 20px;
+}
+
+.foot-twit-logo:hover {
+    background: url(img/twitter_black.svg) no-repeat;
+}
+
+.foot-face-logo {
+    background: url(img/facebook.svg) no-repeat;
+    width: 14px;
+    height: 24px;
+}
+
+.foot-face-logo:hover {
+    background: url(img/facebook_black.svg) no-repeat;
+}
+
+.subscribe-box {
+    display: flex;
+    justify-content: end;
+    flex: 1;
+}
+
+.subscribe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .subscribe-title {
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 12px;
+    line-height: 15px;
     color: #000000;
     margin-bottom: 16px;
 }
 
 .subscribe-input {
+    width: 275px;
     font-family: inherit;
     background: #FFFFFF;
     border: 1px solid #C4C4C4;
@@ -180,6 +329,7 @@ a {
     outline: none;
     padding-left: 25px;
     padding-right: 25px;
+    margin-bottom: 12px;
 }
 
 .subscribe-input::placeholder {
@@ -200,6 +350,18 @@ a {
     color: #000000;
 }
 
-.nav-top-item:hover, .footer-link:hover {
+.subscribe-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.footer-link:hover {
     text-decoration: underline;
+    color: #000000;
+}
+
+.line-through {
+    text-decoration: line-through;
+    color: #888888;
 }
