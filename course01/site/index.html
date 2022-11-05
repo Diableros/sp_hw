@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Главная страница</title>
 </head>
 <body>
@@ -12,40 +13,40 @@
         <form action="#">
             <input type="text">
         </form>
-        <nav>
-            <a href="catalog.html">Каталог</a>
-            <a href="#">Корзина</a>
+        <nav class="nav-top">
+            <a href="catalog.html" class="nav-top-item">Каталог</a>
+            <a href="#" class="nav-top-item">Корзина</a>
         </nav>
     </header>
-    <section>
-        <h1>Всё, чего заслуживает ваш дом</h1>
-        <p>Наша мебель — ваше отражение</p>
-        <a href="catalog.html">Перейти в каталог</a>
+    <section class="top">
+        <h1 class="top-title">Всё, чего заслуживает ваш дом</h1>
+        <p class="top-slogan">Наша мебель — ваше отражение</p>
+        <a href="catalog.html" class="top-cat-link">Перейти в каталог</a>
     </section>
-    <section>
-        <h2>Специальные предложения</h2>
+    <section class="spec">
+        <h2 class="spec-title">Специальные предложения</h2>
         <img src="img/product1.jpg" alt="VILORA">
-        <h3>Кресло VILORA</h3>
-        <p>Мягкое и уютное, аккуратное и стильное. Упругие подушки, сиденья и приятная на ощупь ткань.</p>
-        <p>21 000</p>
-        <p>28 000</p>
+        <h3 class="spec-item-name">Кресло VILORA</h3>
+        <p class="spec-item-about">Мягкое и уютное, аккуратное и стильное. Упругие подушки, сиденья и приятная на ощупь ткань.</p>
+        <p class="spec-item-price1">21 000</p>
+        <p class="spec-item-price2">28 000</p>
     </section>
-    <footer>
+    <footer class="footer">
         <img src="img/logo.svg" alt="Логотип">
-        <h4>Меню</h4>
-        <a href="index.html">Главная</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="#">Корзина</a>
-        <h4>Контакты</h4>
-        <a href="#">+7 908 800 80 80</a>
-        <a href="#">help@interier.com</a>
+        <h4 class="footer-header">Меню</h4>
+        <a href="index.html" class="footer-item">Главная</a>
+        <a href="catalog.html" class="footer-item">Каталог</a>
+        <a href="#" class="footer-item">Корзина</a>
+        <h4 class="footer-header">Контакты</h4>
+        <a href="#" class="footer-item">+7 908 800 80 80</a>
+        <a href="#" class="footer-item">help@interier.com</a>
         <a href="#"><img src="img/inst.svg" alt="Instagram"></a>
         <a href="#"><img src="img/twitter.svg" alt="Twitter"></a>
         <a href="#"><img src="img/facebook.svg" alt="Facebook"></a>
-        <form action="#">
-            <p>Получайте наши новости и обновления</p>
-            <input type="email">
-            <button>Подписаться</button>
+        <form action="#" class="subscribe">
+            <p class="subscribe-title">Получайте наши новости и обновления</p>
+            <input type="email" class="subscribe-input">
+            <button class="subscribe-btn">Подписаться</button>
         </form>
     </footer>
 </body>
