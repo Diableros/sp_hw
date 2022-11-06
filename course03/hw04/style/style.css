@@ -1,0 +1,280 @@
+*,
+*::before,
+*::after {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+   outline: none;
+   border: none;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+}
+a:visited,
+a:focus,
+a:hover {
+   color: inherit;
+}
+
+ul,
+ol,
+li {
+   list-style: none;
+}
+
+img {
+   vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+   font-size: inherit;
+   font-weight: inherit;
+}
+
+input,
+textarea,
+button,
+select {
+   font-family: inherit;
+   font-size: inherit;
+   color: inherit;
+   background-color: transparent;
+   outline: none;
+}
+
+button,
+input[type='submit'] {
+   box-shadow: none;
+   background-color: transparent;
+   background: none;
+   cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+   outline: none;
+}
+
+html,
+body {
+   height: 100%;
+   line-height: 1;
+}
+
+html {
+   font-size: 16px;
+}
+
+body {
+   font-family: courier;
+   background-color: #f0db4f;
+   color: #323330;
+}
+
+label {
+   font-size: 16px;
+}
+
+.div {
+   width: 100%;
+}
+
+.wrapper {
+   min-height: 100%;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+}
+
+.container {
+   max-width: calc(1100px + 2rem);
+   margin: 0 auto;
+   padding: 0 1rem;
+   height: 100%;
+}
+
+._hover {
+   transition: all 0.1s;
+}
+._hover:hover {
+   transform: scale(1.02);
+   box-shadow: 0 0 10px 2px rgba(50, 51, 48, 0.3);
+}
+._hover:active {
+   transform: scale(1.01);
+}
+
+.header__box {
+   border-bottom: 1px solid #323330;
+   height: 120px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.header__logo {
+   margin: 0 2rem;
+}
+.header__svg {
+   border: 1px solid #323330;
+   width: 4.5rem;
+   height: 4.5rem;
+}
+.header__title {
+   font-size: 2rem;
+   font-weight: 700;
+   text-align: right;
+   margin: 0 2rem;
+}
+
+.main {
+   flex: 1 1 auto;
+}
+.main__box {
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: center;
+   align-items: center;
+   padding: 32px;
+   gap: 32px;
+}
+.main__btn {
+   height: 3rem;
+   border: 1px solid #323330;
+   border-radius: 1rem;
+   text-align: center;
+   line-height: 3rem;
+   font-weight: 700;
+   width: 500px;
+}
+.main__btn:hover {
+   cursor: pointer;
+}
+.main__text {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 50vh;
+}
+.main__congrat {
+   font-size: 24px;
+   font-weight: 900;
+}
+
+.test__info,
+.test__time {
+   font-size: 16px;
+}
+
+.run {
+   width: 100%;
+   font-size: 18px;
+}
+
+.crancky-input,
+.greedy-input {
+   height: 32px;
+   border: 1px solid #323330;
+   border-radius: 16px;
+   padding: 0 12px;
+}
+.crancky-input::-moz-placeholder,
+.greedy-input::-moz-placeholder {
+   color: rgba(50, 51, 48, 0.4);
+}
+.crancky-input:-ms-input-placeholder,
+.greedy-input:-ms-input-placeholder {
+   color: rgba(50, 51, 48, 0.4);
+}
+.crancky-input::placeholder,
+.greedy-input::placeholder {
+   color: rgba(50, 51, 48, 0.4);
+}
+
+.greedy-input {
+   width: 100%;
+}
+
+.back-text {
+   font-weight: 900;
+}
+
+.iknowwhereyoulive {
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   flex-flow: column nowrap;
+   height: 30vh;
+   gap: 32px;
+}
+
+.forms {
+   display: flex;
+   justify-content: space-evenly;
+   padding: 32px 0;
+}
+
+.form_1,
+.form_2,
+.form_3 {
+   width: 25vw;
+   border: 1px solid #323330;
+   border-radius: 6px;
+   padding: 12px;
+   display: flex;
+   flex-flow: column nowrap;
+   gap: 16px;
+   align-items: center;
+}
+.form__header {
+   font-size: 24px;
+   font-weight: 900;
+}
+.form__descr {
+   font-size: 12px;
+   width: 100%;
+}
+.form__descr-greedy {
+   font-weight: 900;
+}
+.form__passes {
+   font-size: 16px;
+}
+
+.take-values {
+   width: 100%;
+}
+
+.log__text {
+   padding: 0 32px;
+}
+
+.footer {
+   height: 120px;
+}
+.footer__text {
+   font-size: 1.2rem;
+   font-weight: 900;
+   line-height: 120px;
+}
+
+@media (max-width: 768px) {
+   .header__title {
+      font-size: 1.6rem;
+   }
+}
+@media (max-width: 425px) {
+   .header__title {
+      font-size: 1.1rem;
+      font-weight: 900;
+   }
+} /*# sourceMappingURL=style.css.map */

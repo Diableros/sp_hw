@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Урок 3.4. Document Object Model. Часть 2</title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <header class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="/">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">
+                     Урок 3.4. Document Object Model. Часть 2
+                  </h1>
+               </div>
+            </div>
+         </header>
+
+         <main class="main">
+            <div class="container">
+               <section class="forms">
+                  <form class="form_1">
+                     <h1 class="form__header">Форма №1</h1>
+                     <p class="form__descr">
+                        Input'ы отбираются как потомки form первого уровня с
+                        тегом input
+                     </p>
+                     <input
+                        type="text"
+                        class="form__donor greedy-input"
+                        placeholder="Значение 1"
+                     />
+                     <input
+                        type="text"
+                        class="form__donor greedy-input"
+                        placeholder="Значение 2"
+                     />
+                     <input
+                        type="text"
+                        class="form__donor greedy-input"
+                        placeholder="Значение 3"
+                     />
+                     <p class="form__descr-greedy">Жадное поле ввода</p>
+                     <input
+                        type="text"
+                        class="form__greedy-input greedy-input"
+                        placeholder="Забираю всё, что найду"
+                     />
+                  </form>
+                  <form class="form_2">
+                     <h1 class="form__header">Форма №2</h1>
+                     <p class="form__descr">
+                        Input'ы с разнысми уровнями вложенности.
+                     </p>
+                     <div class="div">
+                        <input
+                           type="text"
+                           class="form__donor greedy-input"
+                           placeholder="Значение 1"
+                        />
+                     </div>
+                     <div class="div">
+                        <div class="div">
+                           <input
+                              type="text"
+                              class="form__donor greedy-input"
+                              placeholder="Значение 2"
+                           />
+                        </div>
+                     </div>
+                     <div class="div">
+                        <div class="div">
+                           <div class="div">
+                              <input
+                                 type="text"
+                                 class="form__donor greedy-input"
+                                 placeholder="Значение 3"
+                              />
+                           </div>
+                        </div>
+                     </div>
+                     <p class="form__descr-greedy">Жадное поле ввода</p>
+                     <input
+                        type="text"
+                        class="form__greedy-input greedy-input"
+                        placeholder="Забираю всё, что найду"
+                     />
+                  </form>
+                  <form class="form_3 test form__header">
+                     <h1>Тест формы №2</h1>
+                     <ul>
+                        <li class="test__options">
+                           <input
+                              class="option"
+                              type="radio"
+                              name="option"
+                              id="elements"
+                              value="elements"
+                              checked
+                           />
+                           <label for="elements">form.elements</label>
+                        </li>
+                        <li class="test__options">
+                           <input
+                              class="option"
+                              type="radio"
+                              name="option"
+                              id="query"
+                              value="query"
+                           />
+                           <label for="query">querySelectorAll</label>
+                        </li>
+                        <li class="test__options">
+                           <input class="option" type="radio" name="option" id="
+                           recursion" value="recursion"">
+                           <label for=" recursion">Рекурсия</label>
+                        </li>
+                     </ul>
+                     <input
+                        type="text"
+                        class="form__passes greedy-input"
+                        placeholder="Проходов (max 100 000)"
+                        value="1"
+                     />
+                     <div class="main__btn _hover run">Погнали!</div>
+                     <p class="test__info"></p>
+                     <p class="test__time"></p>
+                  </form>
+               </section>
+               <section class="log">
+                  <p class="log__text"></p>
+               </section>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script src="./js/greedy_script.js"></script>
+   </body>
+</html>

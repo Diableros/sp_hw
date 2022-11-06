@@ -1,0 +1,231 @@
+// @import url(https://fonts.googleapis.com/css?family=Courier+Prime:regular,700);
+@import 'reset';
+
+$yel-color: #f0db4f;
+$dark-color: #323330;
+
+html {
+   font-size: 16px;
+}
+
+body {
+   font-family: courier;
+   background-color: $yel-color;
+   color: $dark-color;
+}
+
+label {
+   font-size: 16px;
+}
+
+.div {
+   width: 100%;
+}
+
+.wrapper {
+   min-height: 100%;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+}
+
+.container {
+   max-width: calc(1100px + 1rem * 2);
+   margin: 0 auto;
+   padding: 0 1rem;
+   height: 100%;
+}
+
+._hover {
+   transition: all 0.1s;
+
+   &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 10px 2px rgba($dark-color, 0.3);
+   }
+
+   &:active {
+      transform: scale(1.01);
+   }
+}
+
+.header {
+   &__box {
+      border-bottom: 1px solid $dark-color;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   &__logo {
+      margin: 0 2rem;
+   }
+
+   &__svg {
+      border: 1px solid $dark-color;
+      width: 4.5rem;
+      height: 4.5rem;
+   }
+
+   &__title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: right;
+      margin: 0 2rem;
+   }
+}
+
+.main {
+   flex: 1 1 auto;
+
+   &__box {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      padding: 32px;
+      gap: 32px;
+   }
+
+   &__btn {
+      height: 3rem;
+      border: 1px solid $dark-color;
+      border-radius: 1rem;
+      text-align: center;
+      line-height: 3rem;
+      font-weight: 700;
+      width: 500px;
+
+      &:hover {
+         cursor: pointer;
+      }
+   }
+
+   &__text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50vh;
+   }
+
+   &__congrat {
+      font-size: 24px;
+      font-weight: 900;
+   }
+}
+
+.test {
+   &__info,
+   &__time {
+      font-size: 16px;
+   }
+}
+
+.run {
+   width: 100%;
+   font-size: 18px;
+}
+
+.crancky-input,
+.greedy-input {
+   height: 32px;
+   border: 1px solid $dark-color;
+   border-radius: 16px;
+   padding: 0 12px;
+
+   &::placeholder {
+      color: rgba($dark-color, 0.4);
+   }
+}
+
+.greedy-input {
+   width: 100%;
+}
+
+.back-text {
+   font-weight: 900;
+}
+
+.iknowwhereyoulive {
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   flex-flow: column nowrap;
+   height: 30vh;
+   gap: 32px;
+}
+
+.forms {
+   display: flex;
+   justify-content: space-evenly;
+   padding: 32px 0;
+}
+
+.form {
+   &_1,
+   &_2,
+   &_3 {
+      width: 25vw;
+      border: 1px solid $dark-color;
+      border-radius: 6px;
+      padding: 12px;
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 16px;
+      align-items: center;
+   }
+
+   &__header {
+      font-size: 24px;
+      font-weight: 900;
+   }
+
+   &__descr {
+      font-size: 12px;
+      width: 100%;
+
+      &-greedy {
+         font-weight: 900;
+      }
+   }
+
+   &__passes {
+      font-size: 16px;
+   }
+}
+
+.take-values {
+   width: 100%;
+}
+
+.log__text {
+   padding: 0 32px;
+}
+
+.footer {
+   height: 120px;
+
+   &__text {
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 120px;
+   }
+}
+
+@media (max-width: 768px) {
+   .header {
+      &__title {
+         font-size: 1.6rem;
+      }
+   }
+}
+
+@media (max-width: 425px) {
+   .header {
+      &__title {
+         font-size: 1.1rem;
+         font-weight: 900;
+      }
+   }
+}
