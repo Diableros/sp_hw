@@ -1,0 +1,243 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,regular,700,900);
+*,
+*::before,
+*::after {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+a {
+   text-decoration: none;
+   color: inherit;
+}
+a:visited,
+a:focus,
+a:hover {
+   color: inherit;
+}
+
+ul,
+ol,
+li {
+   list-style: none;
+}
+
+img {
+   vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+   font-size: inherit;
+   font-weight: inherit;
+}
+
+input,
+textarea,
+button,
+select {
+   font-family: inherit;
+   font-size: inherit;
+   color: inherit;
+   background-color: transparent;
+   outline: none;
+}
+
+button,
+input[type='submit'] {
+   box-shadow: none;
+   background-color: transparent;
+   background: none;
+   cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+   outline: none;
+}
+
+html,
+body {
+   height: 100%;
+   line-height: 1;
+}
+
+body {
+   font-family: Raleway;
+   background: url(https://www.brewdog.com/assets/images/bubbles.jpg);
+   background-size: cover;
+}
+
+.wrapper {
+   min-height: 100%;
+   overflow: hidden;
+}
+
+.container {
+   max-width: calc(1000px + 2rem);
+   margin: 0 auto;
+   padding: 0 1rem;
+   height: 100%;
+}
+
+.header {
+   min-height: 100vh;
+   background: url(https://images.ctfassets.net/ezd6as8gi91c/6A0eM5KgwdQ5vd2dXzk5KE/a30ac3507bc6e46293241b4c3076588f/collabfest_2022_hero.jpg?fm=webp);
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   margin-bottom: -300px;
+}
+.header__stripe {
+   background: rgba(0, 0, 0, 0.5);
+   padding: 12px 0;
+}
+.header__top {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 100px;
+   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7))
+      drop-shadow(0 0 3px rgb(0, 0, 0));
+}
+.header__logo {
+   min-width: 234px;
+   max-width: 234px;
+   font-size: 32px;
+   font-weight: 900;
+   color: #fff;
+   text-align: center;
+   border: 3px dashed #fff;
+   border-radius: 10px;
+   padding: 12px;
+   transition: 0.2s;
+   cursor: pointer;
+}
+.header__menu {
+   width: 600px;
+}
+.header__list {
+   height: 50px;
+   color: #fff;
+   font-weight: 700;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   gap: 24px;
+}
+.header__link {
+   font-size: 24px;
+   cursor: pointer;
+}
+
+.main__product-box {
+   display: flex;
+   justify-content: center;
+   gap: 32px;
+   align-items: flex-start;
+   flex-wrap: wrap;
+}
+.main__card-outer {
+   background: #ffd;
+   border-radius: 6px;
+   padding: 4px;
+   height: 404px;
+   width: 220px;
+   transition: 0.1s;
+}
+.main__card-inner {
+   width: 100%;
+   height: 100%;
+   border: 2px dashed #bb8;
+}
+
+.prod__pic {
+   display: flex;
+   justify-content: center;
+   padding: 10px;
+   position: relative;
+}
+.prod__img {
+   height: 200px;
+   cursor: pointer;
+}
+.prod__tag {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   position: absolute;
+   transform: rotate(275deg);
+   top: 50%;
+   left: -30%;
+   border: 1px solid red;
+   width: 200px;
+   height: 32px;
+   color: red;
+}
+.prod__name {
+   height: 60px;
+   padding: 6px;
+   font-size: 20px;
+   font-weight: 900;
+   color: #fff;
+   background: #000;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   text-align: center;
+}
+.prod__prop {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding: 4px;
+   font-size: 10px;
+}
+.prod__prop-box {
+   display: flex;
+   justify-content: space-evenly;
+   background: #777;
+   color: #fff;
+}
+.prod__prop-val {
+   text-align: center;
+}
+.prod__descr {
+   height: 78px;
+   padding: 8px;
+   font-size: 14px;
+   text-align: justify;
+   overflow: hidden;
+}
+.prod__descr-more-link {
+   font-size: 12px;
+   color: red;
+}
+.prod__descr-more-link:hover {
+   text-decoration: underline;
+}
+
+.footer {
+   height: 150px;
+   font-size: 24px;
+   font-weight: 700;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.hover:hover {
+   transform: scale(1.02);
+   filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.2));
+} /*# sourceMappingURL=style.css.map */

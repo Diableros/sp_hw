@@ -1,0 +1,199 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,regular,700,900);
+@import 'reset';
+
+body {
+   font-family: Raleway;
+   background: url(https://www.brewdog.com/assets/images/bubbles.jpg);
+   background-size: cover;
+}
+
+.wrapper {
+   min-height: 100%;
+   overflow: hidden;
+}
+
+.container {
+   max-width: calc(1000px + 2rem);
+   margin: 0 auto;
+   padding: 0 1rem;
+   height: 100%;
+}
+
+.header {
+   min-height: 100vh;
+   background: url(https://images.ctfassets.net/ezd6as8gi91c/6A0eM5KgwdQ5vd2dXzk5KE/a30ac3507bc6e46293241b4c3076588f/collabfest_2022_hero.jpg?fm=webp);
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   margin-bottom: -300px;
+
+   &__stripe {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 12px 0;
+   }
+
+   &__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 100px;
+      filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7))
+         drop-shadow(0 0 3px rgba(0, 0, 0, 1));
+   }
+
+   &__logo {
+      min-width: 234px;
+      max-width: 234px;
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      text-align: center;
+      border: 3px dashed #fff;
+      border-radius: 10px;
+      padding: 12px;
+      transition: 0.2s;
+      cursor: pointer;
+   }
+
+   &__menu {
+      width: 600px;
+   }
+
+   &__list {
+      height: 50px;
+      color: #fff;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+   }
+
+   &__link {
+      font-size: 24px;
+      cursor: pointer;
+   }
+}
+
+.main {
+   &__product-box {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+   }
+
+   &__card {
+      &-outer {
+         background: #ffd;
+         border-radius: 6px;
+         padding: 4px;
+         height: 404px;
+         width: 220px;
+         transition: 0.1s;
+      }
+
+      &-inner {
+         width: 100%;
+         height: 100%;
+         border: 2px dashed #bb8;
+      }
+   }
+}
+
+.prod {
+   &__pic {
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+      position: relative;
+   }
+
+   &__img {
+      height: 200px;
+      cursor: pointer;
+   }
+
+   &__tag {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: absolute;
+      transform: rotate(275deg);
+      top: 50%;
+      left: -30%;
+      border: 1px solid red;
+      width: 200px;
+      height: 32px;
+      color: red;
+   }
+
+   &__name {
+      height: 60px;
+      padding: 6px;
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      text-align: center;
+   }
+
+   &__prop {
+      &-box {
+         display: flex;
+         justify-content: space-evenly;
+         background: #777;
+         color: #fff;
+      }
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4px;
+      font-size: 10px;
+
+      &-val {
+         text-align: center;
+      }
+   }
+
+   &__descr {
+      height: 78px;
+      padding: 8px;
+      font-size: 14px;
+      text-align: justify;
+      overflow: hidden;
+
+      &-more-link {
+         font-size: 12px;
+         color: red;
+
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+   }
+}
+
+.footer {
+   height: 150px;
+   font-size: 24px;
+   font-weight: 700;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.hover {
+   &:hover {
+      transform: scale(1.02);
+      filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.2));
+   }
+}
