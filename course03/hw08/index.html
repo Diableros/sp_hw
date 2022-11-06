@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Урок 3.8. События. Часть 2</title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">Урок 3.8. События. Часть 2</h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="container">
+               <ul class="main__box">
+                  <li class="main__item">
+                     <button class="main__btn _hover" data-href="task01.html">
+                        Задание 1. Инпут несогласных
+                     </button>
+                  </li>
+                  <li class="main__item">
+                     <button class="main__btn _hover" data-href="task02.html">
+                        Задание 2. Инпуткман
+                     </button>
+                  </li>
+                  <li class="main__item">
+                     <button class="main__btn _hover" data-href="task03.html">
+                        Задание 3. Инпуткман 2.0
+                     </button>
+                  </li>
+               </ul>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const buttons = document.querySelectorAll('.main__btn');
+
+         for (button of buttons) {
+            button.addEventListener('click', (event) => {
+               window.location = event.target.dataset.href;
+            });
+         }
+      </script>
+   </body>
+</html>
