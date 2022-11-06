@@ -1,0 +1,256 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,regular,600,700);
+@import "reset";
+
+body {
+    color: #FFF;
+    font-family: montserrat;
+    font-size: 18px;
+    font-weight: normal;
+    background-color: #000915;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: calc(1200px + 48px);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.btn {
+    width: 234px;
+    height: 48px;
+    border-radius: 24px;
+    display: flex;
+    background-color: #9C0332;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    height: 1024px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) -7.35%, #000915 100%), url(../img/header_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 31.5% 50%;
+
+    &__content {
+        width: 716px;
+        margin-top: 217px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 122%;
+        margin-bottom: 32px;
+    }
+
+    &__text {
+        width: 480px;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 32px;
+        margin-bottom: 44px;
+    }
+}
+
+.games {
+
+
+    &__content {
+        flex: 1 1 auto;
+        display: flex;
+        flex-flow: row wrap;
+        gap: 32px;
+        padding: 128px 0;
+        justify-content: center;
+    }
+
+    &__card {
+        position: relative;
+        // max-width: 100%;
+    }
+
+    &__img {
+        border-radius: 16px;
+    }
+
+    &__title {
+        position: absolute;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        bottom: 32px;
+        left: 32px;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.seasons {
+
+    &__content {
+        height: 800px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__about {
+        flex: 1 1 400px;
+        max-width: 510px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        padding-right: 32px;
+    }
+
+    &__img {
+        flex: 1 1 400px;
+        max-width: 485px;
+        // max-width: 50vw;
+        // max-width: 100%;
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
+
+.game-title {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 59px;
+}
+
+.game-about {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 32px;
+}
+
+
+@media (max-width: 1040px) {
+    .seasons {
+        &__content {
+            justify-content: center;
+        }
+    }
+}
+
+
+
+@media (max-width: 716px) {
+    .header__content {
+        width: 100%;
+    }
+
+    .seasons__about {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 610px) {
+    .header {
+        &__content {
+            align-items: center;
+        }
+
+        &__title,
+        &__text {
+            text-align: center;
+        }
+    }
+
+}
+
+@media (max-width: 530px) {
+    .container {
+        padding: 0 16px;
+    }
+
+
+    .header {
+        &__title {
+            font-size: 42px;
+        }
+
+        &__text {
+            width: 100%;
+        }
+    }
+
+    .seasons {
+        &__content {
+            justify-content: center;
+            height: auto;
+        }
+
+        &__about {
+            margin-top: 51px;
+            margin-bottom: 64px;
+            align-items: center;
+        }
+
+        &__img {
+            margin-bottom: 85px;
+        }
+    }
+
+    .game-title {
+        text-align: center;
+        font-size: 32px;
+        line-height: 39px;
+    }
+
+    .game-about {
+        text-align: center;
+        font-size: 14px;
+        line-height: 22px;
+    }
+}
+
+@media (max-width: 375px) {
+    .header {
+        height: 735px;
+
+        &__title {
+            font-size: 32px;
+        }
+
+        &__text {
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 44px;
+        }
+
+    }
+
+}
+
+// @media (max-width: 280px) {
+// .header {
+// &__title {
+// font-size: 42px;
+// }
+
+// &__text {
+// font-size: 14px;
+// }
+
+// }
