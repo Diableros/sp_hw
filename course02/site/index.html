@@ -20,15 +20,15 @@
                     <p class="header__text">Вам предстоит пройти несколько увлекательных игр. Если готов нажимай
                         <b>поехали</b> и <b>приступай</b>
                     </p>
-                    <a href="#" class="btn" onmouseover="curVis();" onmouseleave="curNoVis()">Поехали!</a>
+                    <a href="#games" class="btn" onmouseover="curVis();" onmouseleave="curNoVis()">Поехали!</a>
                 </div>
             </div>
         </header>
-        <nav class="games">
+        <nav class="games" id="games">
             <div class="container">
                 <div class="games__content">
                     <div class="games__card" onmouseover="curVis();" onmouseleave="curNoVis()">
-                        <a href="#" class="games__link">
+                        <a href="#seasons" class="games__link" name="games">
                             <img class="games__img" src="./img/game_1.jpg" alt="Game cover">
                             <p class="games__title">Игра 1</p>
                             <div class="hover-border"></div>
@@ -36,16 +36,15 @@
 
                     </div>
                     <div class="games__card" onmouseover="curVis();" onmouseleave="curNoVis()">
-                        <a href="#" class="games__link">
+                        <a href="#memorize" class="games__link">
                             <img class="games__img" src="./img/game_2.jpg" alt="Game cover">
                             <p class="games__title">Игра 2</p>
                             <div class="hover-border"></div>
                         </a>
 
-
                     </div>
                     <div class="games__card" onmouseover="curVis();" onmouseleave="curNoVis()">
-                        <a href="#" class="games__link">
+                        <a href="#puzzles" class="games__link">
                             <img class="games__img" src="./img/game_3.jpg" alt="Game cover">
                             <p class="games__title">Игра 3</p>
                             <div class="hover-border"></div>
@@ -56,14 +55,15 @@
             </div>
         </nav>
 
-        <section class="section seasons">
+        <section class="section seasons" id="seasons">
             <div class="container">
                 <div class="seсtion__content _wrap-normal">
                     <div class="seсtion__about seсtion__about_pr">
                         <h1 class="game-title">Времена года</h1>
-                        <p class="game-about">Вам предстоит пройти несколько увлекательных игр. Если готов нажимай
-                            поехали и приступай</p>
-                        <a class="btn" href="#" onmouseover="curVis();" onmouseleave="curNoVis()">Поехали!</a>
+                        <p class="game-about">При нажатии на кнопку вам нужно будет ввести номер месяца, а программа
+                            сообщит к какому времени года он относится.</p>
+                        <div class="btn" onclick="seasons();" onmouseover="curVis();" onmouseleave="curNoVis()">Поехали!
+                        </div>
                     </div>
                     <div class="seсtion__img">
                         <img src="./img/seasons_img.svg" alt="Game picture">
@@ -72,7 +72,7 @@
             </div>
         </section>
 
-        <section class="section memorize">
+        <section class="section memorize" id="memorize">
             <div class="container">
                 <div class="seсtion__content _wrap-reverse">
                     <div class="seсtion__img">
@@ -88,7 +88,7 @@
             </div>
         </section>
 
-        <section class="section puzzles">
+        <section class="section puzzles" id="puzzles">
             <div class="container">
                 <div class="seсtion__content">
                     <div class="seсtion__puzzles">
