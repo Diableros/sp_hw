@@ -1,0 +1,508 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:300,regular,600,700);
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:visited, a:focus, a:hover {
+  color: inherit;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+  outline: none;
+}
+
+button,
+input[type=submit] {
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+}
+
+html,
+body {
+  height: 100%;
+  line-height: 1;
+}
+
+body {
+  color: #FFF;
+  font-family: montserrat;
+  font-size: 18px;
+  font-weight: normal;
+  background-color: #000915;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@-webkit-keyframes btn-hover {
+  0% {
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+    background-color: #9C0332;
+    transform: scale(1);
+    transform-origin: center center;
+    filter: drop-shadow(0px 0px 0px #fff);
+  }
+  70% {
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+    background-color: #FFF;
+    transform: scale(1.1);
+    transform-origin: center center;
+    filter: drop-shadow(0px 0px 20px #fff);
+  }
+  100% {
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+    background-color: #EB443F;
+    transform: scale(1);
+    transform-origin: center center;
+    filter: drop-shadow(0px 0px 0px #fff);
+  }
+}
+
+@keyframes btn-hover {
+  0% {
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+    background-color: #9C0332;
+    transform: scale(1);
+    transform-origin: center center;
+    filter: drop-shadow(0px 0px 0px #fff);
+  }
+  70% {
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+    background-color: #FFF;
+    transform: scale(1.1);
+    transform-origin: center center;
+    filter: drop-shadow(0px 0px 20px #fff);
+  }
+  100% {
+    -webkit-animation-timing-function: ease;
+            animation-timing-function: ease;
+    background-color: #EB443F;
+    transform: scale(1);
+    transform-origin: center center;
+    filter: drop-shadow(0px 0px 0px #fff);
+  }
+}
+@-webkit-keyframes neon-start {
+  0% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0;
+  }
+  2% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 1;
+  }
+  5% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0.5;
+  }
+  10% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 1;
+  }
+  20% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0.3;
+  }
+  40% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0.1;
+  }
+  70% {
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    opacity: 1;
+  }
+  80% {
+    -webkit-animation-timing-function: steps(2, end);
+            animation-timing-function: steps(2, end);
+    opacity: 0.3;
+  }
+  100% {
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    opacity: 1;
+  }
+}
+@keyframes neon-start {
+  0% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0;
+  }
+  2% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 1;
+  }
+  5% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0.5;
+  }
+  10% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 1;
+  }
+  20% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0.3;
+  }
+  40% {
+    -webkit-animation-timing-function: steps(3, end);
+            animation-timing-function: steps(3, end);
+    opacity: 0.1;
+  }
+  70% {
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    opacity: 1;
+  }
+  80% {
+    -webkit-animation-timing-function: steps(2, end);
+            animation-timing-function: steps(2, end);
+    opacity: 0.3;
+  }
+  100% {
+    -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+    opacity: 1;
+  }
+}
+@-webkit-keyframes neon-process {
+  5%, 8%, 30%, 35%, 37%, 50%, 55%, 60%, 90%, 99% {
+    -webkit-animation-timing-function: steps(2, jump-none);
+            animation-timing-function: steps(2, jump-none);
+    opacity: 0.8;
+  }
+  0%, 3%, 7%, 10%, 32%, 37%, 39%, 52%, 57%, 62%, 92%, 100% {
+    opacity: 1;
+  }
+}
+@keyframes neon-process {
+  5%, 8%, 30%, 35%, 37%, 50%, 55%, 60%, 90%, 99% {
+    -webkit-animation-timing-function: steps(2, jump-none);
+            animation-timing-function: steps(2, jump-none);
+    opacity: 0.8;
+  }
+  0%, 3%, 7%, 10%, 32%, 37%, 39%, 52%, 57%, 62%, 92%, 100% {
+    opacity: 1;
+  }
+}
+.cursor-pointer {
+  display: none;
+  z-index: 50;
+  height: 33px;
+  width: 29px;
+  pointer-events: none;
+  position: fixed;
+  background: url("../img/cursor.svg");
+  transform: translate(-11px, -2px);
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+[class|=section] > a {
+  cursor: none;
+}
+
+.container {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn {
+  width: 234px;
+  height: 48px;
+  border-radius: 24px;
+  display: flex;
+  background-color: #9C0332;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+.btn:hover {
+  background-color: #EB443F;
+  -webkit-animation: btn-hover 0.1s ease 0s 1 normal forwards;
+          animation: btn-hover 0.1s ease 0s 1 normal forwards;
+  cursor: none;
+}
+
+.header {
+  height: 1024px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) -7.35%, #000915 100%), url(../img/header_bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 31.5% 50%;
+}
+.header__content {
+  width: 716px;
+  margin-top: 217px;
+  display: flex;
+  flex-direction: column;
+}
+.header__title {
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 122%;
+  margin-bottom: 32px;
+}
+.header__text {
+  width: 480px;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 32px;
+  margin-bottom: 44px;
+}
+
+.games__content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 32px;
+  padding: 128px 0;
+  justify-content: center;
+}
+.games__card {
+  position: relative;
+}
+.games__img {
+  border-radius: 16px;
+}
+.games__title {
+  position: absolute;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  bottom: 32px;
+  left: 32px;
+}
+.games img {
+  max-width: 100%;
+}
+
+.seсtion__content {
+  height: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.seсtion__about, .seсtion__puzzles {
+  flex: 1 1 400px;
+  max-width: 510px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.seсtion__about_pr {
+  padding-right: 32px;
+}
+.seсtion__about_pl {
+  padding-left: 32px;
+}
+.seсtion__img {
+  flex: 1 1 400px;
+  max-width: 485px;
+}
+.seсtion__img img {
+  width: 100%;
+}
+.seсtion__puzzles {
+  max-width: 100%;
+  align-items: center;
+}
+
+.game-title {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 59px;
+}
+.game-about {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.puzzles {
+  background: linear-gradient(180deg, #000915 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) -7.35%, #000915 100%), url(../img/puzzles_bg.jpg), #000915;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.footer__text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 80px;
+  text-align: center;
+  border-top: 1px solid rgba(184, 212, 255, 0.2);
+}
+
+.hover-border {
+  cursor: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  box-sizing: border-box;
+  border: 3px solid #44D2FF;
+  border-radius: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0px 0px 2px #44D2FF) drop-shadow(0px 0px 6px #44D2FF);
+}
+.hover-border:hover {
+  -webkit-animation: neon-start 0.4s ease 0s 1 normal forwards, neon-process 4s linear 0.6s infinite normal forwards;
+          animation: neon-start 0.4s ease 0s 1 normal forwards, neon-process 4s linear 0.6s infinite normal forwards;
+}
+
+._wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+._wrap-normal {
+  flex-wrap: wrap;
+}
+
+._center {
+  text-align: center;
+}
+
+@media (max-width: 1040px) {
+  .seсtion__content {
+    justify-content: center;
+  }
+}
+@media (max-width: 716px) {
+  .header__content {
+    width: 100%;
+  }
+  .seсtion__about_pr {
+    padding-right: 0;
+  }
+  .seсtion__about_pl {
+    padding-left: 0;
+  }
+}
+@media (max-width: 610px) {
+  .header__content {
+    align-items: center;
+  }
+  .header__title, .header__text {
+    text-align: center;
+  }
+}
+@media (max-width: 530px) {
+  .container {
+    padding: 0 16px;
+  }
+  .header__title {
+    font-size: 42px;
+  }
+  .header__text {
+    width: 100%;
+  }
+  .seсtion__content {
+    justify-content: center;
+    height: auto;
+  }
+  .seсtion__about, .seсtion__puzzles {
+    margin-top: 51px;
+    margin-bottom: 64px;
+    align-items: center;
+  }
+  .seсtion__img {
+    margin-bottom: 85px;
+  }
+  .game-title {
+    text-align: center;
+    font-size: 32px;
+    line-height: 39px;
+  }
+  .game-about {
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+@media (max-width: 375px) {
+  .header {
+    height: 735px;
+  }
+  .header__title {
+    font-size: 32px;
+  }
+  .header__text {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 44px;
+  }
+}/*# sourceMappingURL=style.css.map */

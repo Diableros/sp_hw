@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Games</title>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="cursor-pointer"></div>
+        <header class="header">
+            <div class="container">
+                <div class="header__content">
+                    <div class="header__title">Добро пожаловать на мой сайт !</div>
+                    <p class="header__text">Вам предстоит пройти несколько увлекательных игр. Если готов нажимай
+                        <b>поехали</b> и <b>приступай</b>
+                    </p>
+                    <a href="#games" class="btn" onmouseover="curVis();" onmouseleave="curNoVis()">Поехали!</a>
+                </div>
+            </div>
+        </header>
+        <nav class="games" id="games">
+            <div class="container">
+                <div class="games__content">
+                    <div class="games__card" onmouseover="curVis();" onmouseleave="curNoVis()">
+                        <a href="#seasons" class="games__link" name="games">
+                            <img class="games__img" src="./img/game_1.jpg" alt="Game cover">
+                            <p class="games__title">Игра 1</p>
+                            <div class="hover-border"></div>
+                        </a>
+
+                    </div>
+                    <div class="games__card" onmouseover="curVis();" onmouseleave="curNoVis()">
+                        <a href="#memorize" class="games__link">
+                            <img class="games__img" src="./img/game_2.jpg" alt="Game cover">
+                            <p class="games__title">Игра 2</p>
+                            <div class="hover-border"></div>
+                        </a>
+
+                    </div>
+                    <div class="games__card" onmouseover="curVis();" onmouseleave="curNoVis()">
+                        <a href="#puzzles" class="games__link">
+                            <img class="games__img" src="./img/game_3.jpg" alt="Game cover">
+                            <p class="games__title">Игра 3</p>
+                            <div class="hover-border"></div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="section seasons" id="seasons">
+            <div class="container">
+                <div class="seсtion__content _wrap-normal">
+                    <div class="seсtion__about seсtion__about_pr">
+                        <h1 class="game-title">Времена года</h1>
+                        <p class="game-about">При нажатии на кнопку вам нужно будет ввести номер месяца, а программа
+                            сообщит к какому времени года он относится.</p>
+                        <button class="btn" onclick="seasons();" onmouseover="curVis();"
+                            onmouseleave="curNoVis()">Поехали!
+                        </button>
+                    </div>
+                    <div class="seсtion__img">
+                        <img src="./img/seasons_img.svg" alt="Game picture">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section memorize" id="memorize">
+            <div class="container">
+                <div class="seсtion__content _wrap-reverse">
+                    <div class="seсtion__img">
+                        <img src="./img/memorize_img.svg" alt="Game picture">
+                    </div>
+                    <div class="seсtion__about seсtion__about_pl">
+                        <h1 class="game-title">Запомни слова</h1>
+                        <p class="game-about">При нажатии на кнопку играть, вы увидите несколько слов, которые вам
+                            необходимо запомнить.</p>
+                        <button class="btn" onclick="memorize();" onmouseover="curVis();"
+                            onmouseleave="curNoVis()">Играть!</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section puzzles" id="puzzles">
+            <div class="container">
+                <div class="seсtion__content">
+                    <div class="seсtion__puzzles">
+                        <h1 class="game-title">Игра в загадки</h1>
+                        <p class="game-about _center">Компьютер загадывает загадку, вам необходимо ее угадать, если вы
+                            дадите не
+                            правильный ответ, то компьютер даст вам подсказку. У вас будет три попытки и две подсказки.
+                        </p>
+                        <button class="btn" onclick="riddles();" onmouseover="curVis();"
+                            onmouseleave="curNoVis()">Играть!</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer__text">
+                <a href="#" class="footer__link">
+                    Все права защищены © 2022 SkyPro
+                </a>
+            </div>
+        </footer>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
