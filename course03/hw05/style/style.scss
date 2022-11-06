@@ -1,0 +1,175 @@
+// @import url(https://fonts.googleapis.com/css?family=Courier+Prime:regular,700);
+@import 'reset';
+
+$yel-color: #f0db4f;
+$dark-color: #323330;
+
+html {
+   font-size: 16px;
+}
+
+body {
+   font-family: courier;
+   background-color: $yel-color;
+   color: $dark-color;
+}
+
+label {
+   font-size: 16px;
+}
+
+.wrapper {
+   min-height: 100%;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+}
+
+.container {
+   max-width: calc(1100px + 1rem * 2);
+   margin: 0 auto;
+   padding: 0 1rem;
+   height: 100%;
+}
+
+._hover {
+   transition: all 0.1s;
+
+   &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 10px 2px rgba($dark-color, 0.3);
+   }
+
+   &:active {
+      transform: scale(1.01);
+   }
+}
+
+.header {
+   &__box {
+      border-bottom: 1px solid $dark-color;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   &__logo {
+      margin: 0 2rem;
+   }
+
+   &__svg {
+      border: 1px solid $dark-color;
+      width: 4.5rem;
+      height: 4.5rem;
+   }
+
+   &__title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: right;
+      margin: 0 2rem;
+   }
+}
+
+.main {
+   flex: 1 1 auto;
+
+   &__box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 32px;
+      gap: 32px;
+
+      &_hidden {
+         display: none;
+      }
+   }
+
+   &__picture {
+      height: 50vh;
+      cursor: pointer;
+      transition: all 0.1s;
+
+      &:hover {
+         transform: scale(1.01);
+      }
+
+      &:active {
+         transform: scale(0.99);
+      }
+   }
+
+   &__spinner {
+      animation: rotate 2s linear infinite;
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -25px 0 0 -25px;
+      width: 50px;
+      height: 50px;
+
+      &_hidden {
+         display: none;
+      }
+
+      & .path {
+         stroke: $dark-color;
+         stroke-linecap: round;
+         animation: dash 1.5s ease-in-out infinite;
+      }
+   }
+}
+
+.footer {
+   height: 120px;
+
+   &__text {
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 120px;
+   }
+}
+
+@keyframes rotate {
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+@keyframes dash {
+   0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+   }
+
+   50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+   }
+
+   100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+   }
+}
+
+@media (max-width: 768px) {
+   .header {
+      &__title {
+         font-size: 1.6rem;
+      }
+   }
+}
+
+@media (max-width: 425px) {
+   .header {
+      &__title {
+         font-size: 1.1rem;
+         font-weight: 900;
+      }
+   }
+}
