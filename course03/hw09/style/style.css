@@ -128,11 +128,13 @@ input {
 }
 
 ._hover {
-  transition: all 0.1s;
+  transition: all 50ms;
 }
 ._hover:hover {
-  transform: scale(1.02);
   box-shadow: 0 0 10px 2px rgba(50, 51, 48, 0.3);
+}
+._hover:active {
+  transform: scale(0.98);
 }
 
 .header__box {

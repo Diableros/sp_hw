@@ -44,10 +44,32 @@
          </footer>
       </div>
       <script>
+         const msg = document.querySelector('.main__header');
          const params = new URLSearchParams(location.search);
-         document.querySelector(
-            '.main__header'
-         ).textContent = `Ура! Едем в ${params.get('city')}!`;
+         const ref = document.referrer.split('/')[3]?.split('.')[0]; // получаем файл-реферал, если он есть ;)
+
+         if (ref) {
+            switch (ref) {
+               case 'task01':
+                  msg.innerHTML = `Поздравляю!<br> Вы вошли с логином: ${params.get(
+                     'login'
+                  )}<br> и паролем: ${params.get('pass')}`;
+                  break;
+
+               case 'task02':
+                  msg.innerHTML = `Поздравляю!<br> Вы подписались на полезную рассылку от сервиса!`;
+                  break;
+
+               case 'task04':
+                  msg.textContent = `Ура! Едем в ${params.get('city')}!`;
+                  break;
+
+               default:
+                  break;
+            }
+         } else {
+            msg.textContent = 'Странно, что вы сюда попали.';
+         }
       </script>
    </body>
 </html>

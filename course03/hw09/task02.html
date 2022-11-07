@@ -37,7 +37,7 @@
                <h1 class="main__header">
                   Задание 2. Согласие на полезную рассылку
                </h1>
-               <form class="form" novalidate>
+               <form class="form" action="form_handler.html" novalidate>
                   <div class="form__checkblock">
                      <input
                         class="form__checkbox"
@@ -71,12 +71,12 @@
          const button = form.querySelector('.form__button');
          const alert = form.querySelector('.form__alert');
 
-         function checkValid(input, event) {
+         function checkValid(event) {
             checkBlock.classList.remove('form__checkblock_invalid'); // скидываем красную рамку
             alert.textContent = ''; // очищаем сообщеие под кнопкой
 
             // если форма не валидна и событие пришло от формы
-            if (!input.validity.valid && event.target.nodeName === 'FORM') {
+            if (!checkBox.validity.valid && event.target.nodeName === 'FORM') {
                event.preventDefault(); // предотвращаем дефолтное событие
                checkBlock.classList.add('form__checkblock_invalid'); // ставим рамку
                alert.textContent = // пишем сообщение в параграф alert
@@ -85,11 +85,11 @@
          }
 
          form.addEventListener('submit', (event) => {
-            checkValid(checkBox, event);
+            checkValid(event);
          });
 
          checkBox.addEventListener('input', (event) => {
-            checkValid(checkBox, event);
+            checkValid(event);
          });
       </script>
    </body>

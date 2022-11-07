@@ -79,21 +79,21 @@
 
          form.addEventListener('submit', (event) => {
             const checked = form.querySelector('.gender:checked');
+            event.preventDefault();
 
-            if (!checked) {
-               // если вариант не выбран
-               msg.textContent = 'Необходимо выбрать гендерную принадлежность!'; // сообщаем об этом
-               event.preventDefault(); // предотвращаем событие по умолчанию
-            } else {
-               if (checked.value === 'male') {
+            switch (checked ? checked.value : null) {
+               case 'male':
                   msg.textContent = 'Мужчинам вход запрещен!';
-                  event.preventDefault(); // предотвращаем событие по умолчанию
-               }
+                  break;
 
-               if (checked.value === 'female') {
+               case 'female':
                   msg.textContent = 'Женщинам вход запрещен!';
-                  event.preventDefault(); // предотвращаем событие по умолчанию
-               }
+                  break;
+
+               case null:
+                  msg.textContent =
+                     'Необходимо выбрать гендерную принадлежность!';
+                  break;
             }
          });
       </script>
