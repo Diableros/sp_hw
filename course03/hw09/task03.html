@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>
+         Урок 3.9. Работа с формами и элементами на странице. Часть 1
+      </title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">
+                     Урок 3.9. Работа с формами и элементами на странице. Часть
+                     1
+                  </h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="main__box">
+               <h1 class="main__header">Задание 3. Гендерное равенство</h1>
+               <form class="form-gender">
+                  <div class="form-gender__controls">
+                     <div class="form-gender__male-box">
+                        <label class="form-gender__label" for="male">♂️</label>
+                        <input
+                           class="gender"
+                           type="radio"
+                           name="gender"
+                           id="male"
+                           value="male"
+                        />
+                     </div>
+                     <div class="form-gender__female-box">
+                        <label class="form-gender__label" for="female"
+                           >♀️</label
+                        >
+                        <input
+                           class="gender"
+                           type="radio"
+                           name="gender"
+                           id="female"
+                           value="female"
+                        />
+                     </div>
+                  </div>
+                  <button class="form-gender__btn main__btn _hover">
+                     Войти
+                  </button>
+                  <p class="form-gender__message"></p>
+               </form>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const form = document.querySelector('.form-gender'); // получаем узел формы
+         const msg = form.querySelector('.form-gender__message'); // получаем узел сообщения
+
+         form.addEventListener('submit', (event) => {
+            const checked = form.querySelector('.gender:checked');
+
+            if (!checked) {
+               // если вариант не выбран
+               msg.textContent = 'Необходимо выбрать гендерную принадлежность!'; // сообщаем об этом
+               event.preventDefault(); // предотвращаем событие по умолчанию
+            } else {
+               if (checked.value === 'male') {
+                  msg.textContent = 'Мужчинам вход запрещен!';
+                  event.preventDefault(); // предотвращаем событие по умолчанию
+               }
+
+               if (checked.value === 'female') {
+                  msg.textContent = 'Женщинам вход запрещен!';
+                  event.preventDefault(); // предотвращаем событие по умолчанию
+               }
+            }
+         });
+      </script>
+   </body>
+</html>

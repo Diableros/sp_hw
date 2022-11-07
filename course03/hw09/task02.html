@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>
+         Урок 3.9. Работа с формами и элементами на странице. Часть 1
+      </title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">
+                     Урок 3.9. Работа с формами и элементами на странице. Часть
+                     1
+                  </h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="main__box">
+               <h1 class="main__header">
+                  Задание 2. Согласие на полезную рассылку
+               </h1>
+               <form class="form" novalidate>
+                  <div class="form__checkblock">
+                     <input
+                        class="form__checkbox"
+                        type="checkbox"
+                        id="checkbox"
+                        name="agree"
+                        required
+                     />
+                     <label for="checkbox" class="form__label">
+                        Cогласен на полезную рассылку от сервиса</label
+                     >
+                  </div>
+                  <button class="form__button main__btn _hover">
+                     Продолжить
+                  </button>
+                  <p class="form__alert"></p>
+               </form>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         // получаем все элементы формы
+         const form = document.querySelector('.form');
+         const checkBlock = form.querySelector('.form__checkblock');
+         const checkBox = form.querySelector('.form__checkbox');
+         const button = form.querySelector('.form__button');
+         const alert = form.querySelector('.form__alert');
+
+         function checkValid(input, event) {
+            checkBlock.classList.remove('form__checkblock_invalid'); // скидываем красную рамку
+            alert.textContent = ''; // очищаем сообщеие под кнопкой
+
+            // если форма не валидна и событие пришло от формы
+            if (!input.validity.valid && event.target.nodeName === 'FORM') {
+               event.preventDefault(); // предотвращаем дефолтное событие
+               checkBlock.classList.add('form__checkblock_invalid'); // ставим рамку
+               alert.textContent = // пишем сообщение в параграф alert
+                  'Без согласия на полезную рассылку отправить форму не получится!';
+            }
+         }
+
+         form.addEventListener('submit', (event) => {
+            checkValid(checkBox, event);
+         });
+
+         checkBox.addEventListener('input', (event) => {
+            checkValid(checkBox, event);
+         });
+      </script>
+   </body>
+</html>
