@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Урок 3.8. События. Часть 2</title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">Урок 3.8. События. Часть 2</h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="main__box">
+               <h1 class="main__header">Задание 3. Инпуткман 2.0</h1>
+               <div class="main__food-box">
+                  <div class="food" data-number="1">🍎</div>
+                  <div class="food" data-number="2">🍎</div>
+                  <div class="food" data-number="3">🍎</div>
+                  <div class="food" data-number="4">🍎</div>
+                  <div class="food" data-number="5">🍎</div>
+                  <div class="food" data-number="6">🍎</div>
+                  <div class="food" data-number="7">🍎</div>
+                  <div class="food" data-number="8">🍎</div>
+                  <div class="food" data-number="9">🍎</div>
+                  <div class="food" data-number="10">🍎</div>
+                  <div class="food" data-number="11">🍎</div>
+                  <div class="food" data-number="12">🍎</div>
+                  <div class="food" data-number="13">🍎</div>
+                  <div class="food" data-number="14">🍎</div>
+                  <div class="food" data-number="15">🍎</div>
+                  <div class="food" data-number="16">🍎</div>
+                  <div class="food" data-number="17">🍎</div>
+                  <div class="food" data-number="18">🍎</div>
+                  <div class="food" data-number="19">🍎</div>
+                  <div class="food" data-number="20">🍎</div>
+                  <input class="main__input" type="text" size="5" />
+                  <div class="food" data-number="1">🍎</div>
+                  <div class="food" data-number="2">🍎</div>
+                  <div class="food" data-number="3">🍎</div>
+                  <div class="food" data-number="4">🍎</div>
+                  <div class="food" data-number="5">🍎</div>
+                  <div class="food" data-number="6">🍎</div>
+                  <div class="food" data-number="7">🍎</div>
+                  <div class="food" data-number="8">🍎</div>
+                  <div class="food" data-number="9">🍎</div>
+                  <div class="food" data-number="10">🍎</div>
+                  <div class="food" data-number="11">🍎</div>
+                  <div class="food" data-number="12">🍎</div>
+                  <div class="food" data-number="13">🍎</div>
+                  <div class="food" data-number="14">🍎</div>
+                  <div class="food" data-number="15">🍎</div>
+                  <div class="food" data-number="16">🍎</div>
+                  <div class="food" data-number="17">🍎</div>
+                  <div class="food" data-number="18">🍎</div>
+                  <div class="food" data-number="19">🍎</div>
+                  <div class="food" data-number="20">🍎</div>
+               </div>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const input = document.querySelector('.main__input');
+
+         input.addEventListener('keydown', (event) => {
+            target = event.target;
+
+            const prev = target.previousElementSibling;
+            const next = target.nextElementSibling;
+
+            if (prev && event.keyCode === 37) {
+               target.value = prev.dataset.number;
+               prev.remove();
+            }
+
+            if (next && event.keyCode === 39) {
+               target.value = next.dataset.number;
+               next.remove();
+            }
+         });
+      </script>
+   </body>
+</html>

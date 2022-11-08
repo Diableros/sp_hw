@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Урок 3.7. События. Часть 1</title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">Урок 3.7. События. Часть 1</h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="container">
+               <section class="main__box">
+                  <header>
+                     <div class="container1">
+                        <button class="main__btn _hover">Нажми меня</button>
+                     </div>
+                  </header>
+                  <main>
+                     <section>
+                        <div class="container2">
+                           <button class="main__btn _hover">Нажми меня</button>
+                        </div>
+                     </section>
+                  </main>
+                  <footer>
+                     <div>
+                        <section>
+                           <div class="container3">
+                              <button class="main__btn _hover">
+                                 Нажми меня
+                              </button>
+                           </div>
+                        </section>
+                     </div>
+                  </footer>
+               </section>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const box = document.querySelector('.main__box');
+         const buttons = box.querySelectorAll('.main__btn');
+
+         function showUserMsg(event) {
+            const userMsg = document.createElement('h1');
+            userMsg.classList.add('main__user-msg');
+            userMsg.textContent = 'Привет, пользователь!';
+
+            event.target.parentElement.appendChild(userMsg);
+
+            event.target.remove();
+         }
+
+         buttons.forEach((button) => {
+            button.addEventListener('click', showUserMsg);
+         });
+      </script>
+   </body>
+</html>

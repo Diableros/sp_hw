@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Урок 3.8. События. Часть 2</title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">Урок 3.8. События. Часть 2</h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="main__box">
+               <h1 class="main__header">Задание 1. Инпут несогласных</h1>
+               <input type="text" class="main__input" />
+               <button class="main__clear">Очистить</button>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const input = document.querySelector('.main__input');
+         const clear = document.querySelector('.main__clear');
+
+         const vowels = 'аоуэыяёеюиaeiouy'; // задаем все возможные гласные
+
+         input.addEventListener('input', () => {
+            // вешаем событие
+            const curVal = input.value.split(''); // текущее значение инпута в массив
+
+            const newVal = curVal.filter((char) =>
+               vowels.includes(char.toLowerCase())
+            ); // фильтруем массив по заданным гласным
+
+            input.value = newVal.join(''); // присваиваем значению инпута склеенный в строку массив
+         });
+
+         clear.addEventListener('click', () => (input.value = ''));
+      </script>
+   </body>
+</html>

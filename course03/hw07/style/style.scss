@@ -1,0 +1,138 @@
+// @import url(https://fonts.googleapis.com/css?family=Courier+Prime:regular,700);
+@import 'reset';
+
+$yel-color: #f0db4f;
+$dark-color: #323330;
+
+html {
+   font-size: 16px;
+}
+
+body {
+   font-family: courier;
+   background-color: $yel-color;
+   color: $dark-color;
+}
+
+.wrapper {
+   min-height: 100%;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+}
+
+.container {
+   max-width: calc(1100px + 1rem * 2);
+   margin: 0 auto;
+   padding: 0 1rem;
+   display: flex;
+   justify-content: center;
+}
+
+._hover {
+   transition: all 0.1s;
+
+   &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 10px 2px rgba($dark-color, 0.3);
+   }
+}
+
+.header {
+   &__box {
+      border-bottom: 1px solid $dark-color;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   &__logo {
+      margin: 0 2rem;
+   }
+
+   &__svg {
+      border: 1px solid $dark-color;
+      width: 4.5rem;
+      height: 4.5rem;
+   }
+
+   &__title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: right;
+      margin: 0 2rem;
+   }
+}
+
+.main {
+   flex: 1 1 auto;
+
+   &__box {
+      display: flex;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding: 3rem 0;
+      flex-direction: column;
+      width: 800px;
+      align-items: stretch;
+      align-content: center;
+   }
+
+   &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 3rem;
+      border: 1px solid $dark-color;
+      border-radius: 1rem;
+      text-align: center;
+      line-height: 1rem;
+      font-weight: 700;
+
+      &:hover {
+         cursor: pointer;
+      }
+
+      &_transparent {
+         background-color: $dark-color;
+         color: #fff;
+         filter: drop-shadow(0 0 3px #000);
+         font-weight: 400;
+      }
+   }
+
+   &__user-msg {
+      font-size: 24px;
+      font-weight: 900;
+      text-align: center;
+   }
+}
+
+.footer {
+   height: 120px;
+
+   &__text {
+      font-size: 1.2rem;
+      font-weight: 900;
+      line-height: 120px;
+   }
+}
+
+@media (max-width: 768px) {
+   .header {
+      &__title {
+         font-size: 1.6rem;
+      }
+   }
+}
+
+@media (max-width: 425px) {
+   .header {
+      &__title {
+         font-size: 1.1rem;
+         font-weight: 900;
+      }
+   }
+}

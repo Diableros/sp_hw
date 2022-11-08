@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Задание 1. Самый короткий квест</title>
+      <link rel="stylesheet" href="style_cave.css" />
+   </head>
+
+   <body>
+      <div class="dragon_img hidden" id="dragon-img"></div>
+      <div class="alert hidden" id="alert">О нет, тут дракон, бежим!</div>
+      <script>
+         setTimeout(
+            () =>
+               document.getElementById('dragon-img').classList.remove('hidden'),
+            3500
+         );
+
+         setTimeout(
+            () => document.getElementById('alert').classList.remove('hidden'),
+            4500
+         );
+
+         setTimeout(() => window.history.back(), 7000);
+      </script>
+   </body>
+</html>

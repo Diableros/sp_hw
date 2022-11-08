@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>
+         Урок 3.9. Работа с формами и элементами на странице. Часть 1
+      </title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">
+                     Урок 3.9. Работа с формами и элементами на странице. Часть
+                     1
+                  </h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="main__box">
+               <h1 class="main__header">Задание 1. Логин и пароль</h1>
+               <form class="form" action="form_handler.html" novalidate>
+                  <div class="form__login">
+                     <label class="form__label" for="login"> Логин: </label>
+                     <input
+                        class="form__field"
+                        type="text"
+                        id="login"
+                        name="login"
+                        autocomplete="username"
+                        required
+                     />
+                  </div>
+                  <div class="form__password">
+                     <label class="form__label" for="pass">Пароль:</label>
+                     <input
+                        class="form__field"
+                        type="password"
+                        id="pass"
+                        name="pass"
+                        autocomplete="current-password"
+                        required
+                     />
+                  </div>
+                  <button class="form__button main__btn _hover">Войти</button>
+               </form>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const form = document.querySelector('.form'); // находим форму
+
+         form.addEventListener('submit', (event) => {
+            target = event.target; // получаем элемент с возникшим событием
+            const fields = target.querySelectorAll('.form__field'); // получаем все поля элемента формы
+
+            for (let field of fields) {
+               if (field.value === '') {
+                  event.preventDefault();
+                  field.classList.add('form__field_invalid');
+               } else {
+                  field.classList.remove('form__field_invalid');
+               }
+            }
+         });
+      </script>
+   </body>
+</html>

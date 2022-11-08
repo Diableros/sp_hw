@@ -1,0 +1,90 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,regular,900);
+@-webkit-keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+   50% {
+      transform: rotate(180deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+   50% {
+      transform: rotate(180deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   outline: none;
+}
+
+body {
+   background: url('./img/cave.jpg');
+   background-position: center;
+   background-size: cover;
+   color: #ddd;
+   font-family: Montserrat;
+   height: 100vh;
+   position: relative;
+}
+
+.button {
+   border: none;
+   font-family: inherit;
+   color: inherit;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   text-align: center;
+   height: 130px;
+   width: 130px;
+   font-size: 24px;
+   background-color: #223;
+   border-radius: 50%;
+   transition: background-color 0.2s;
+   padding: 0 8px;
+   cursor: pointer;
+}
+.button-block {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 140px;
+   height: 140px;
+}
+.button:hover {
+   background-color: #334;
+}
+.button:active {
+   background-color: #445;
+}
+.button-bg {
+   display: block;
+   z-index: -1;
+   width: 140px;
+   height: 140px;
+   border-radius: 50%;
+   background: linear-gradient(
+      45deg,
+      rgb(255, 62, 14),
+      rgb(255, 213, 135),
+      rgb(255, 62, 14)
+   );
+   filter: drop-shadow(0px 0px 5px rgb(255, 62, 14));
+   -webkit-animation: 3s linear infinite spin;
+   animation: 3s linear infinite spin;
+}
+
+/*# sourceMappingURL=style.css.map */ /*# sourceMappingURL=style.css.map */

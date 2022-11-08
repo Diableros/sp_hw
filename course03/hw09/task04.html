@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>
+         Урок 3.9. Работа с формами и элементами на странице. Часть 1
+      </title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">
+                     Урок 3.9. Работа с формами и элементами на странице. Часть
+                     1
+                  </h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="main__box">
+               <h1 class="main__header">Задание 4. Еду в Магадан</h1>
+               <form action="./form_handler.html" class="form-city">
+                  <select
+                     class="form-city__select"
+                     name="city"
+                     id="city"
+                     disabled
+                  >
+                     <option
+                        class="form-city__default-option"
+                        value="null"
+                        selected
+                     >
+                        Загружаем список городов...
+                     </option>
+                  </select>
+                  <button class="form-city__button main__btn" disabled>
+                     Поехали!
+                  </button>
+                  <p class="form-city__message"></p>
+               </form>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const form = document.querySelector('.form-city');
+         const select = form.querySelector('.form-city__select');
+         const message = form.querySelector('.form-city__message');
+         const button = form.querySelector('.form-city__button');
+
+         const url =
+            'https://gist.githubusercontent.com/gorborukov/0722a93c35dfba96337b/raw/435b297ac6d90d13a68935e1ec7a69a225969e58/russia'; // JSON список городов РФ
+
+         const xmlHttpRequest = new XMLHttpRequest();
+
+         function optionsCreate(cityes) {
+            const fragment = document.createDocumentFragment();
+
+            cityes
+               .map((elem) => elem.city.trim()) // есть косячные города с пробелом вначале, поэтому тримим
+               .sort()
+               .map((city) => {
+                  const child = document.createElement('option');
+                  child.setAttribute('value', city);
+                  child.textContent = city;
+                  fragment.appendChild(child);
+               });
+
+            return fragment;
+         }
+
+         document.addEventListener('DOMContentLoaded', () => {
+            xmlHttpRequest.open('GET', url);
+            xmlHttpRequest.responseType = 'json';
+            xmlHttpRequest.onload = () => {
+               const cityes = xmlHttpRequest.response;
+               const select = document.querySelector('.form-city__select');
+               const defaultOption = document.querySelector(
+                  '.form-city__default-option'
+               ); // зацепляем опцию по умолчанию, чтоб вывести сообщение
+
+               select.appendChild(optionsCreate(cityes));
+               defaultOption.textContent = 'Выберите город...';
+               select.removeAttribute('disabled');
+               button.removeAttribute('disabled');
+               button.classList.add('_hover');
+            };
+            xmlHttpRequest.send();
+         });
+
+         form.addEventListener('submit', (event) => {
+            message.textContent = ''; // чистим сообщение (если оно было, но выбрали город, то некрасиво висит до перехода)
+            if (select.value === 'null') {
+               event.preventDefault();
+               message.textContent = 'Необходимо выбрать город!';
+            }
+         });
+      </script>
+   </body>
+</html>
