@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>
+         Урок 3.10. Работа с формами и элементами на странице. Часть 2
+      </title>
+      <link rel="stylesheet" href="./style/style.css" />
+      <link
+         rel="stylesheet"
+         href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="./index.html">
+                        <img
+                           src="./img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">
+                     Урок 3.10. Работа с формами и элементами на странице. Часть
+                     2
+                  </h1>
+               </div>
+            </div>
+         </div>
+
+         <main class="main">
+            <div class="main__box">
+               <h1 class="main__header">Задание 1. Комментарий с рейтингом</h1>
+               <form class="form">
+                  <h2 class="form__header">Оставьте отзыв о заведении</h2>
+                  <div class="form__ratebox" id="ratebox">
+                     <div class="form__starsbox">
+                        <input
+                           class="form__star-input"
+                           id="rate5"
+                           type="radio"
+                           name="rating"
+                           value="5"
+                           required
+                        />
+                        <label
+                           class="form__star fa fa-star-o fa-lg"
+                           for="rate5"
+                        ></label>
+                        <input
+                           class="form__star-input"
+                           id="rate4"
+                           type="radio"
+                           name="rating"
+                           value="4"
+                        />
+                        <label
+                           class="form__star fa fa-star-o fa-lg"
+                           for="rate4"
+                        ></label>
+                        <input
+                           class="form__star-input"
+                           id="rate3"
+                           type="radio"
+                           name="rating"
+                           value="3"
+                        />
+                        <label
+                           class="form__star fa fa-star-o fa-lg"
+                           for="rate3"
+                        ></label>
+                        <input
+                           class="form__star-input"
+                           id="rate2"
+                           type="radio"
+                           name="rating"
+                           value="2"
+                        />
+                        <label
+                           class="form__star fa fa-star-o fa-lg"
+                           for="rate2"
+                        ></label>
+                        <input
+                           class="form__star-input"
+                           id="rate1"
+                           type="radio"
+                           name="rating"
+                           value="1"
+                        />
+                        <label
+                           class="form__star fa fa-star-o fa-lg"
+                           for="rate1"
+                        ></label>
+                     </div>
+                  </div>
+                  <label class="form__label" for="comment">Ваш отзыв: </label>
+                  <div class="form__text-block">
+                     <textarea
+                        class="form__comment"
+                        type="text"
+                        name="comment"
+                        id="comment"
+                        maxlength="200"
+                        minlength="10"
+                        cols="42"
+                        rows="5"
+                        noresize
+                        required
+                     ></textarea>
+                     <p class="form__chars-left"></p>
+                  </div>
+                  <button class="form__submit main__btn _hover">
+                     Отправить
+                  </button>
+               </form>
+            </div>
+         </main>
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script>
+         const form = document.querySelector('.form');
+         const comment = form.querySelector('.form__comment');
+         const maxChars = comment.maxLength;
+         const maxCharsInfo = form.querySelector('.form__chars-left');
+
+         form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const rating = form.querySelector('.form__star-input:checked');
+
+            console.log({
+               rating: rating.value,
+               comment: comment.value,
+            });
+         });
+
+         comment.addEventListener('input', (event) => {
+            maxCharsInfo.textContent =
+               comment.value.length === 0
+                  ? ''
+                  : `${maxChars - comment.value.length}/${maxChars}`;
+            if (comment.value.length > maxChars) {
+               event.PreventDefault();
+            }
+         });
+         comment;
+      </script>
+   </body>
+</html>
