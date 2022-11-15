@@ -195,66 +195,40 @@ input {
   text-align: center;
 }
 
-.form {
-  width: 500px;
-  border: 1px solid #323330;
-  border-radius: 10px;
+.modal {
+  z-index: 10;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(50, 51, 48, 0.4);
+}
+.modal__window {
+  z-index: 15;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  width: 400px;
+  padding: 20px;
+  background-color: #f0db4f;
+  border: 1px solid #323330;
+  border-radius: 16px;
 }
-.form__header {
-  font-size: 24px;
-  font-weight: 700;
+.modal__header {
+  z-index: 20;
+  font-size: 20px;
+  font-weight: 900;
+  padding-bottom: 20px;
 }
-.form__ratebox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.form__starsbox {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-}
-.form__star-input {
-  position: relative;
-  opacity: 0;
-}
-.form__star::before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(0, -50%);
-}
-.form__star:hover:before, .form__star:hover ~ .form__star:before, .form__star-input:checked ~ .form__star:before {
-  content: "\f005";
-  color: yellow;
-  cursor: pointer;
-}
-.form__comment {
-  border: 1 solid #323330;
-  border-radius: 1rem;
-  padding: 6px 10px;
-  background: rgba(255, 255, 255, 0.2);
-  resize: none;
-  overflow: hidden;
-}
-.form__text-block {
-  position: relative;
-}
-.form__chars-left {
-  font-size: 14px;
-  position: absolute;
-  bottom: 8px;
-  right: 7px;
-  opacity: 0.6;
+.modal__message {
+  text-align: center;
+  z-index: 20;
+  font-size: 18px;
 }
 
 .footer {

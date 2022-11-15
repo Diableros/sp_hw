@@ -5,11 +5,9 @@
  */
 
 class Widget {
-   constructor(node) {
-      if (!(element instanceof HTMLElement)) {
+   checkNode(node) {
+      if (!(node instanceof HTMLElement)) {
          throw new Error('Передан не HTML элемент');
       }
-
-      this.node = node;
    }
 }
