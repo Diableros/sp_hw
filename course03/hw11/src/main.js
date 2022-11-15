@@ -1,6 +1,7 @@
-const node = document.querySelector('.container');
-const message = 'Сообщение!';
+const myModal = new MyModal(document.body);
 
-const modal = new Modal(document.body);
+const btn = document.querySelector('.btn');
 
-modal.show(message);
+btn.onclick = () => {
+   myModal.show('Важное сообщение!', 'Текст важного сообщения!', 5);
+};

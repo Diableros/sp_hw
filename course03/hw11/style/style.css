@@ -90,6 +90,22 @@ body {
     transform: scale(1);
   }
 }
+@-webkit-keyframes countdown {
+  100% {
+    transform: scaleX(0);
+  }
+  0% {
+    transform: scaleX(1);
+  }
+}
+@keyframes countdown {
+  100% {
+    transform: scaleX(0);
+  }
+  0% {
+    transform: scaleX(1);
+  }
+}
 .pulse {
   animation: pulse 0.7s ease 0s infinite reverse forwards;
 }
@@ -124,7 +140,9 @@ input {
   margin: 0 auto;
   padding: 0 1rem;
   display: flex;
+  height: 20vh;
   justify-content: center;
+  align-items: center;
 }
 
 ._hover {
@@ -209,7 +227,6 @@ input {
 }
 .modal__window {
   z-index: 15;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -220,6 +237,7 @@ input {
   border-radius: 16px;
 }
 .modal__header {
+  text-align: center;
   z-index: 20;
   font-size: 20px;
   font-weight: 900;
@@ -229,6 +247,13 @@ input {
   text-align: center;
   z-index: 20;
   font-size: 18px;
+  margin-bottom: 20px;
+}
+.modal__countdown {
+  display: block;
+  background-color: #323330;
+  height: 3px;
+  width: 100%;
 }
 
 .footer {
