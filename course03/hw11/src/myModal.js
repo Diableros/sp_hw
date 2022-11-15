@@ -9,7 +9,7 @@ class MyModal extends Widget {
    }
 
    hide() {
-      this.node.firstElementChild.style.display = 'none';
+      this.node.firstElementChild.remove();
    }
 
    show(header, message, timer) {
@@ -25,9 +25,6 @@ class MyModal extends Widget {
 MyModal.templateObj = (header, message, timer) => ({
    tag: 'div',
    cls: 'modal',
-   attrs: {
-      style: 'display: flex',
-   },
    content: [
       {
          tag: 'div',
