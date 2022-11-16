@@ -136,10 +136,6 @@ body {
     transform: scale(1);
   }
 }
-.pulse {
-  animation: pulse 0.7s ease 0s infinite reverse forwards;
-}
-
 html {
   font-size: 16px;
 }
@@ -309,6 +305,43 @@ input {
 .pin-create__msg {
   text-align: center;
   font-size: 14px;
+}
+
+.pin-enter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #323330;
+  border-radius: 16px;
+  padding: 20px;
+  gap: 16px;
+}
+.pin-enter__header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+}
+.pin-enter__box {
+  display: flex;
+  gap: 5px;
+}
+.pin-enter__input {
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+.pin-enter__input::-webkit-outer-spin-button, .pin-enter__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.pin-enter__input, .pin-enter__input:hover, .pin-enter__input:focus {
+  -webkit-appearance: none;
+          appearance: none;
+  -moz-appearance: textfield;
+}
+.pin-enter__reset-pin {
+  color: rgba(50, 51, 48, 0.4);
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .footer {

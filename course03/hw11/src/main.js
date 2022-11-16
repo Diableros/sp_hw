@@ -3,7 +3,7 @@ const pin = new PinCode(document.querySelector('.main'));
 
 if (localStorage.getItem('pin')) {
    // логика создания нового пин-кода
-   console.log('ПОКАЗАТЬ ФОРМУ ВВОДА И ПРОВЕРКИ ПИНКОДА');
+   pin.renderEnterForm();
 } else {
    myModal.show(
       'PIN-код не найден!',

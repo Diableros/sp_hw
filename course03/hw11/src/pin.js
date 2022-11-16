@@ -8,15 +8,13 @@ class PinCode extends Widget {
       this.showInvalidAnimation = this.showInvalidAnimation.bind(this);
    }
 
-   filterValue(value, length = 10) {
+   filterValue(value) {
       const validChars = '0123456789';
       value = value
          .split('')
          .filter((char) => validChars.includes(char))
-         .join('')
-         .slice(-[length]);
-      console.log(value);
-      return value === '' ? 0 : value;
+         .join('');
+      return value;
    }
 
    renderCreateForm() {
@@ -58,19 +56,25 @@ class PinCode extends Widget {
       const resetPinLink = this.node.querySelector('.pin-enter__reset-pin');
       const fields = this.node.querySelectorAll('.pin-enter__input');
 
-      form.addEventListener('keyup', (event) => {
+      const handler = (event) => {
          const target = event.target;
 
-         target.value = this.filterValue(target.value, 1);
-         if (target.nextElementSibling) target.nextElementSibling.focus();
-      });
-
-      form.addEventListener('submit', (event) => {
-         event.preventDefault();
-         for (const field of fields) {
-            console.log(field);
+         if (event.inputType === 'insertFromDrop') {
          }
-      });
+
+         if (event.inputType === 'insertText') {
+            target.value = this.filterValue(target.value);
+            if (target.value) this.focusNext(target);
+         }
+
+         if (event.key === 'Backspace' && target.value === '') {
+            if (target.previousElementSibling)
+               target.previousElementSibling.focus();
+         }
+      };
+
+      form.addEventListener('input', handler);
+      form.addEventListener('keydown', handler);
 
       resetPinLink.addEventListener('click', () => {
          if (
@@ -82,6 +86,10 @@ class PinCode extends Widget {
             this.home();
          }
       });
+   }
+
+   focusNext(node) {
+      if (node.nextElementSibling) node.nextElementSibling.focus();
    }
 
    showInvalidAnimation() {
@@ -126,12 +134,13 @@ PinCode.templateCreate = () => ({
          tag: 'input',
          cls: 'pin-create__input',
          attrs: {
-            size: 10,
+            name: 'pin',
+            size: '10',
             pattern: '(^[0-9]{4,10}$)',
             name: 'create_pin',
             maxlength: '10',
             minlength: '4',
-            required: 'required',
+            required: '',
          },
       },
       {
@@ -147,7 +156,6 @@ PinCode.templateEnter = (realPin) => ({
    cls: 'pin-enter',
    attrs: {
       novalidate: '',
-      autocomplete: 'off',
    },
    content: [
       {
@@ -162,15 +170,11 @@ PinCode.templateEnter = (realPin) => ({
             realPin.split('').map(() => {
                return {
                   tag: 'input',
-                  cls: 'pin-create__input',
+                  cls: 'pin-enter__input',
                   attrs: {
-                     class: 'pin-enter__input',
-                     size: 1,
-                     type: 'number',
-                     length: '1',
-                     min: '0',
-                     max: '9',
-                     required: '',
+                     size: '1',
+                     maxlength: '1',
+                     autocomplete: 'new-password',
                   },
                };
             }),
@@ -180,6 +184,9 @@ PinCode.templateEnter = (realPin) => ({
          tag: 'button',
          cls: ['pin-enter__btn', 'main__btn', '_hover'],
          content: 'Войти',
+         attrs: {
+            default: '',
+         },
       },
       {
          tag: 'p',
