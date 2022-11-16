@@ -55,26 +55,70 @@ class PinCode extends Widget {
       const form = this.node.querySelector('.pin-enter');
       const resetPinLink = this.node.querySelector('.pin-enter__reset-pin');
       const fields = this.node.querySelectorAll('.pin-enter__input');
+      const btn = this.node.querySelector('.pin-enter__btn');
+
+      btn.addEventListener('click', (event) => {
+         event.preventDefault();
+         const userPin = [...fields].map((field) => field.value).join('');
+         if (realPin === userPin) {
+            console.log('ПИН СОВПАЛ, ЗАХОДИМ');
+         } else {
+            console.log('ПИН НЕ СОВПАЛ, НЕ ЗАХОДИМ');
+         }
+      });
 
       const handler = (event) => {
+         event.preventDefault();
+
          const target = event.target;
 
+         const fillFields = (value) => {
+            for (let field of fields) {
+               field = '';
+            }
+
+            for (let i = 0; i < fields.length; i++) {
+               if (value[i]) {
+                  fields[i].value = value[i];
+               } else {
+                  fields[i].focus();
+                  break;
+               }
+            }
+         };
+
+         if (event.type === 'paste') {
+            fillFields(this.filterValue(event.clipboardData.getData('Text')));
+         }
+
          if (event.inputType === 'insertFromDrop') {
+            const value = target.value;
+            target.value = '';
+            fillFields(this.filterValue(value));
          }
 
-         if (event.inputType === 'insertText') {
-            target.value = this.filterValue(target.value);
-            if (target.value) this.focusNext(target);
+         if (event.type === 'keydown') {
+            if (!target.value) {
+               target.value = this.filterValue(event.key);
+               if (target.value) this.focusNext(target);
+            }
          }
 
-         if (event.key === 'Backspace' && target.value === '') {
-            if (target.previousElementSibling)
-               target.previousElementSibling.focus();
+         if (event.key === 'Backspace') {
+            if (target.value === '') {
+               if (target.previousElementSibling) {
+                  target.previousElementSibling.value = '';
+                  target.previousElementSibling.focus();
+               }
+            } else {
+               target.value = '';
+            }
          }
       };
 
       form.addEventListener('input', handler);
       form.addEventListener('keydown', handler);
+      form.addEventListener('paste', handler);
 
       resetPinLink.addEventListener('click', () => {
          if (
@@ -89,7 +133,10 @@ class PinCode extends Widget {
    }
 
    focusNext(node) {
-      if (node.nextElementSibling) node.nextElementSibling.focus();
+      if (node.nextElementSibling) {
+         node.nextElementSibling.value = '';
+         node.nextElementSibling.focus();
+      }
    }
 
    showInvalidAnimation() {
@@ -173,7 +220,7 @@ PinCode.templateEnter = (realPin) => ({
                   cls: 'pin-enter__input',
                   attrs: {
                      size: '1',
-                     maxlength: '1',
+                     // maxlength: '1',
                      autocomplete: 'new-password',
                   },
                };
