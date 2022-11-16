@@ -8,6 +8,17 @@ class PinCode extends Widget {
       this.showInvalidAnimation = this.showInvalidAnimation.bind(this);
    }
 
+   filterValue(value, length = 10) {
+      const validChars = '0123456789';
+      value = value
+         .split('')
+         .filter((char) => validChars.includes(char))
+         .join('')
+         .slice(-[length]);
+      console.log(value);
+      return value === '' ? 0 : value;
+   }
+
    renderCreateForm() {
       console.log('Рендерим форму создания пин-кода');
       this.node.appendChild(templateEngine(PinCode.templateCreate()));
@@ -15,13 +26,9 @@ class PinCode extends Widget {
       // сразу после создания навешиваем ограничения ввода
       const form = this.node.querySelector('.pin-create');
       const input = this.node.querySelector('.pin-create__input');
-      const validChars = '0123456789';
-
+      // const validChars = '0123456789';
       form.addEventListener('input', () => {
-         input.value = input.value
-            .split('')
-            .filter((char) => validChars.includes(char))
-            .join('');
+         input.value = this.filterValue(input.value);
          if (input.validity.valid) {
             input.style = 'border: 1px solid lightgreen';
          } else {
@@ -36,6 +43,43 @@ class PinCode extends Widget {
             this.showInvalidAnimation();
          } else {
             this.createNewPinCode(input.value);
+            this.home();
+         }
+      });
+   }
+
+   renderEnterForm() {
+      const realPin = localStorage.getItem('pin');
+      this.node.appendChild(templateEngine(PinCode.templateEnter(realPin)));
+
+      this.node.querySelector('.pin-enter__input').focus();
+
+      const form = this.node.querySelector('.pin-enter');
+      const resetPinLink = this.node.querySelector('.pin-enter__reset-pin');
+      const fields = this.node.querySelectorAll('.pin-enter__input');
+
+      form.addEventListener('keyup', (event) => {
+         const target = event.target;
+
+         target.value = this.filterValue(target.value, 1);
+         if (target.nextElementSibling) target.nextElementSibling.focus();
+      });
+
+      form.addEventListener('submit', (event) => {
+         event.preventDefault();
+         for (const field of fields) {
+            console.log(field);
+         }
+      });
+
+      resetPinLink.addEventListener('click', () => {
+         if (
+            confirm(
+               'Внимание!\nОтменить удаление будет НЕВОЗМОЖНО.\nДействительно хотите удалить?'
+            )
+         ) {
+            localStorage.removeItem('pin');
+            this.home();
          }
       });
    }
@@ -52,20 +96,11 @@ class PinCode extends Widget {
    }
 
    createNewPinCode(pin) {
-      try {
-         localStorage.setItem('pin', pin);
-         return true;
-      } catch (e) {
-         myModal.show(
-            'Внимание!',
-            'Ваш браузер не поддерживает функцию Local Storage! Измените настройки или воспользуйтесь другим браузером.',
-            7,
-            function () {
-               document.location.href = '/';
-            }
-         );
-         return false;
-      }
+      localStorage.setItem('pin', pin);
+   }
+
+   home() {
+      document.location.href = './';
    }
 }
 
@@ -74,6 +109,7 @@ PinCode.templateCreate = () => ({
    cls: 'pin-create',
    attrs: {
       novalidate: '',
+      autocomplete: 'off',
    },
    content: [
       {
@@ -90,7 +126,6 @@ PinCode.templateCreate = () => ({
          tag: 'input',
          cls: 'pin-create__input',
          attrs: {
-            autocomplete: 'off',
             size: 10,
             pattern: '(^[0-9]{4,10}$)',
             name: 'create_pin',
@@ -102,32 +137,54 @@ PinCode.templateCreate = () => ({
       {
          tag: 'button',
          cls: ['pin-create__btn', 'main__btn', '_hover'],
-         content: 'создать',
+         content: 'Создать PIN-код',
       },
    ],
 });
 
-{
-   /* <form class="pin-create">
-               <h1 class="pin-create__header">Создать PIN-код</h1>
-               <p class="pin-create__msg">
-                  PIN-код должен состоять из 4-10 цифр
-               </p>
-               <input
-                  class="pin-create__input"
-                  size="10"
-                  pattern="(^[0-9]{4,10}$)"
-                  name="pin"
-                  maxlength="10"
-                  minlength="4"
-                  required="required"
-               />
-               <button
-                  class="pin-create__btn main__btn _hover"
-                  pin-create__button
-               >
-                  Создать
-               </button>
-            </form> */
-}
-PinCode.templateEnter = () => ({});
+PinCode.templateEnter = (realPin) => ({
+   tag: 'form',
+   cls: 'pin-enter',
+   attrs: {
+      novalidate: '',
+      autocomplete: 'off',
+   },
+   content: [
+      {
+         tag: 'h1',
+         cls: 'pin-enter__header',
+         content: 'Введите PIN-код',
+      },
+      {
+         tag: 'div',
+         cls: 'pin-enter__box',
+         content: [
+            realPin.split('').map(() => {
+               return {
+                  tag: 'input',
+                  cls: 'pin-create__input',
+                  attrs: {
+                     class: 'pin-enter__input',
+                     size: 1,
+                     type: 'number',
+                     length: '1',
+                     min: '0',
+                     max: '9',
+                     required: '',
+                  },
+               };
+            }),
+         ],
+      },
+      {
+         tag: 'button',
+         cls: ['pin-enter__btn', 'main__btn', '_hover'],
+         content: 'Войти',
+      },
+      {
+         tag: 'p',
+         cls: 'pin-enter__reset-pin',
+         content: 'Сбросить PIN-code',
+      },
+   ],
+});
