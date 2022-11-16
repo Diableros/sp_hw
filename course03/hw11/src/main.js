@@ -2,13 +2,12 @@ const myModal = new MyModal(document.body);
 const pin = new PinCode(document.querySelector('.main'));
 
 if (localStorage.getItem('pin')) {
-   // логика создания нового пин-кода
    pin.renderEnterForm();
 } else {
    myModal.show(
       'PIN-код не найден!',
       'Создайте PIN-код в специальной форме.',
-      1,
+      5,
       pin.renderCreateForm
    );
 }

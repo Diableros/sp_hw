@@ -18,19 +18,27 @@ class PinCode extends Widget {
    }
 
    renderCreateForm() {
-      console.log('Рендерим форму создания пин-кода');
       this.node.appendChild(templateEngine(PinCode.templateCreate()));
 
-      // сразу после создания навешиваем ограничения ввода
       const form = this.node.querySelector('.pin-create');
       const input = this.node.querySelector('.pin-create__input');
-      // const validChars = '0123456789';
+
       form.addEventListener('input', () => {
          input.value = this.filterValue(input.value);
+
          if (input.validity.valid) {
-            input.style = 'border: 1px solid lightgreen';
-         } else {
-            input.style = 'border: 1px solid red';
+            input.classList.remove('pin-create__input--invalid');
+            input.classList.add('pin-create__input--valid');
+         }
+
+         if (!input.validity.valid) {
+            input.classList.remove('pin-create__input--valid');
+            input.classList.add('pin-create__input--invalid');
+         }
+
+         if (input.value === '') {
+            input.classList.remove('pin-create__input--valid');
+            input.classList.remove('pin-create__input--invalid');
          }
       });
 
@@ -59,11 +67,18 @@ class PinCode extends Widget {
 
       btn.addEventListener('click', (event) => {
          event.preventDefault();
+
          const userPin = [...fields].map((field) => field.value).join('');
+
          if (realPin === userPin) {
-            console.log('ПИН СОВПАЛ, ЗАХОДИМ');
+            myModal.show('Поздравляю вы вошли!', '', 5, this.home);
          } else {
-            console.log('ПИН НЕ СОВПАЛ, НЕ ЗАХОДИМ');
+            myModal.show(
+               'PIN-код не верный.',
+               'Попробуйте ещё раз.',
+               5,
+               this.home
+            );
          }
       });
 

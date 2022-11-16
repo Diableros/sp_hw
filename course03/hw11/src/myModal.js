@@ -13,7 +13,7 @@ class MyModal extends Widget {
       if (callBack instanceof Function) callBack();
    }
 
-   show(header, message, timer, callBack = null) {
+   show(header, message = '', timer = 5, callBack = null) {
       this.node.insertBefore(
          templateEngine(MyModal.templateObj(header, message, timer)),
          this.node.firstElementChild

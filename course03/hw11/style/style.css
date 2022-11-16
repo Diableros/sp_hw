@@ -253,6 +253,7 @@ input {
 }
 .modal__window {
   z-index: 15;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -296,6 +297,12 @@ input {
 }
 .pin-create__input {
   background-color: rgba(255, 255, 255, 0.5);
+}
+.pin-create__input--invalid {
+  filter: drop-shadow(0 0 4px coral);
+}
+.pin-create__input--valid {
+  filter: drop-shadow(0 0 4px lightgreen);
 }
 .pin-create__header {
   text-align: center;
