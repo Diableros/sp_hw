@@ -8,17 +8,18 @@ class MyModal extends Widget {
       this.hide = this.hide.bind(this);
    }
 
-   hide() {
+   hide(callBack) {
       this.node.firstElementChild.remove();
+      if (callBack instanceof Function) callBack();
    }
 
-   show(header, message, timer) {
+   show(header, message, timer, callBack = null) {
       this.node.insertBefore(
          templateEngine(MyModal.templateObj(header, message, timer)),
          this.node.firstElementChild
       );
 
-      setTimeout(this.hide, timer * 1000);
+      setTimeout(this.hide, timer * 1000, callBack);
    }
 }
 

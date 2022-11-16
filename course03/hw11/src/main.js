@@ -1,9 +1,14 @@
 const myModal = new MyModal(document.body);
-
-const btn = document.querySelector('.btn');
+const pin = new PinCode(document.querySelector('.main'));
 
 if (localStorage.getItem('pin')) {
-   console.log('Показываем виджет ввода пинкода');
+   // логика создания нового пин-кода
+   console.log('ПОКАЗАТЬ ФОРМУ ВВОДА И ПРОВЕРКИ ПИНКОДА');
 } else {
-   console.log('Показываем виджет создания пинкода');
+   myModal.show(
+      'PIN-код не найден!',
+      'Создайте PIN-код в специальной форме.',
+      1,
+      pin.renderCreateForm
+   );
 }
