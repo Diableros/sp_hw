@@ -79,11 +79,7 @@ class PinCode extends Widget {
 
       btn.addEventListener('click', (event) => {
          event.preventDefault();
-         let flag = false;
-         for (let field of fields) {
-            field.value === '' ? (flag = false) : (flag = true);
-         }
-         if (flag) this.checkEnter(event, fields, realPin);
+         this.checkEnter(event, fields, realPin);
       });
 
       const handler = (event) => {
@@ -154,7 +150,7 @@ class PinCode extends Widget {
             'confirm',
             'Внимание!',
             'Отменить удаление будет НЕВОЗМОЖНО. Действительно хотите удалить?',
-            0,
+            '',
             () => {
                localStorage.removeItem('pin');
                this.home();
@@ -169,16 +165,15 @@ class PinCode extends Widget {
 
       const userPin = [...fields].map((field) => field.value).join('');
 
+      if (realPin.length > userPin.length) {
+         myModal.show('alert', 'Внимание!', 'Введены не все цифры!', 1.5);
+         return;
+      }
+
       if (realPin === userPin) {
          myModal.show('alert', 'Поздравляю вы вошли!', '', 5, this.home);
       } else {
-         myModal.show(
-            'alert',
-            'PIN-код не верный.',
-            'Попробуйте ещё раз.',
-            3,
-            this.home
-         );
+         myModal.show('alert', 'PIN-код не верный.', 'Попробуйте ещё раз.', 3);
       }
    }
 

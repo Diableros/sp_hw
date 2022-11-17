@@ -10,16 +10,10 @@ class MyModal extends Widget {
 
    hide(callBack) {
       this.node.firstElementChild.remove();
-      if (callBack instanceof Function) callBack();
+      if (callBack instanceof Function || callBack) callBack();
    }
 
    show(type, header, message = '', timer = 5, callBack = null) {
-      // console.log('type: ', type);
-      // console.log('header: ', header);
-      // console.log('message: ', message);
-      // console.log('timer: ', timer);
-      // console.log('callBack: ', callBack);
-
       if (type === 'alert') {
          this.node.insertBefore(
             templateEngine(MyModal.templateAlert(header, message, timer)),
@@ -30,6 +24,7 @@ class MyModal extends Widget {
       }
 
       if (type === 'confirm') {
+         console.log('Модальный конфирм');
          this.node.insertBefore(
             templateEngine(MyModal.templateConfirm(header, message)),
             this.node.firstElementChild
