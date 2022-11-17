@@ -1,5 +1,5 @@
 class MyModal extends Widget {
-   constructor(node) {
+   constructor(node = document.body) {
       super(Widget.checkNode);
       this.node = node;
 
@@ -13,17 +13,26 @@ class MyModal extends Widget {
       if (callBack instanceof Function) callBack();
    }
 
-   show(header, message = '', timer = 5, callBack = null) {
-      this.node.insertBefore(
-         templateEngine(MyModal.templateObj(header, message, timer)),
-         this.node.firstElementChild
-      );
+   show(type, header, message = '', timer = 5, callBack = null) {
+      if (type === 'alert') {
+         this.node.insertBefore(
+            templateEngine(MyModal.templateAlert(header, message, timer)),
+            this.node.firstElementChild
+         );
 
-      setTimeout(this.hide, timer * 1000, callBack);
+         setTimeout(this.hide, timer * 1000, callBack);
+      }
+
+      if (type === 'confirm') {
+         this.node.insertBefore(
+            templateEngine(MyModal.templateAlert(header, message, timer)),
+            this.node.firstElementChild
+         );
+      }
    }
 }
 
-MyModal.templateObj = (header, message, timer) => ({
+MyModal.templateAlert = (header, message, timer) => ({
    tag: 'div',
    cls: 'modal',
    content: [

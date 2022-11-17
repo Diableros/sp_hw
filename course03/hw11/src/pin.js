@@ -6,6 +6,18 @@ class PinCode extends Widget {
       this.checkNode(this.node);
       this.renderCreateForm = this.renderCreateForm.bind(this);
       this.showInvalidAnimation = this.showInvalidAnimation.bind(this);
+
+      if (localStorage.getItem('pin')) {
+         this.renderEnterForm();
+      } else {
+         myModal.show(
+            'alert',
+            'PIN-код не найден!',
+            'Создайте PIN-код в специальной форме.',
+            5,
+            this.renderCreateForm
+         );
+      }
    }
 
    filterValue(value) {
@@ -66,20 +78,7 @@ class PinCode extends Widget {
       const btn = this.node.querySelector('.pin-enter__btn');
 
       btn.addEventListener('click', (event) => {
-         event.preventDefault();
-
-         const userPin = [...fields].map((field) => field.value).join('');
-
-         if (realPin === userPin) {
-            myModal.show('Поздравляю вы вошли!', '', 5, this.home);
-         } else {
-            myModal.show(
-               'PIN-код не верный.',
-               'Попробуйте ещё раз.',
-               5,
-               this.home
-            );
-         }
+         this.checkEnter(event, fields, realPin);
       });
 
       const handler = (event) => {
@@ -147,6 +146,25 @@ class PinCode extends Widget {
       });
    }
 
+   // не помню для чего, но для чего то проверку вынес в отдельный метод Ж))
+   checkEnter(event, fields, realPin) {
+      event.preventDefault();
+
+      const userPin = [...fields].map((field) => field.value).join('');
+
+      if (realPin === userPin) {
+         myModal.show('alert', 'Поздравляю вы вошли!', '', 5, this.home);
+      } else {
+         myModal.show(
+            'alert',
+            'PIN-код не верный.',
+            'Попробуйте ещё раз.',
+            5,
+            this.home
+         );
+      }
+   }
+
    focusNext(node) {
       if (node.nextElementSibling) {
          node.nextElementSibling.value = '';
@@ -157,11 +175,10 @@ class PinCode extends Widget {
    showInvalidAnimation() {
       const msg = this.node.querySelector('.pin-create__msg');
 
-      msg.style.animation = '3 0.4s  ease invalidInput';
+      msg.classList.add('blink');
 
       setTimeout(function () {
-         console.log('Пытаемся удалить моргание текста');
-         msg.removeAttribute('style');
+         msg.classList.remove('blink');
       }, 1500);
    }
 
@@ -235,7 +252,7 @@ PinCode.templateEnter = (realPin) => ({
                   cls: 'pin-enter__input',
                   attrs: {
                      size: '1',
-                     // maxlength: '1',
+                     required: '',
                      autocomplete: 'new-password',
                   },
                };
