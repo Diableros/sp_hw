@@ -283,6 +283,20 @@ input {
   height: 3px;
   width: 100%;
 }
+.modal__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 20px;
+}
+.modal__button {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  width: 100px;
+  padding: 10px;
+}
 
 .pin-create {
   width: 400px;
@@ -344,6 +358,12 @@ input {
   -webkit-appearance: none;
           appearance: none;
   -moz-appearance: textfield;
+}
+.pin-enter__input--invalid {
+  filter: drop-shadow(0 0 4px coral);
+}
+.pin-enter__input--valid {
+  filter: drop-shadow(0 0 4px lightgreen);
 }
 .pin-enter__reset-pin {
   color: rgba(50, 51, 48, 0.4);

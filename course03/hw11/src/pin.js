@@ -14,7 +14,7 @@ class PinCode extends Widget {
             'alert',
             'PIN-код не найден!',
             'Создайте PIN-код в специальной форме.',
-            5,
+            4,
             this.renderCreateForm
          );
       }
@@ -78,7 +78,12 @@ class PinCode extends Widget {
       const btn = this.node.querySelector('.pin-enter__btn');
 
       btn.addEventListener('click', (event) => {
-         this.checkEnter(event, fields, realPin);
+         event.preventDefault();
+         let flag = false;
+         for (let field of fields) {
+            field.value === '' ? (flag = false) : (flag = true);
+         }
+         if (flag) this.checkEnter(event, fields, realPin);
       });
 
       const handler = (event) => {
@@ -128,6 +133,16 @@ class PinCode extends Widget {
                target.value = '';
             }
          }
+
+         for (let field of fields) {
+            if (field.validity.valid) {
+               field.classList.add('pin-enter__input--valid');
+               field.classList.remove('pin-enter__input--invalid');
+            } else {
+               field.classList.add('pin-enter__input--invalid');
+               field.classList.remove('pin-enter__input--valid');
+            }
+         }
       };
 
       form.addEventListener('input', handler);
@@ -135,14 +150,16 @@ class PinCode extends Widget {
       form.addEventListener('paste', handler);
 
       resetPinLink.addEventListener('click', () => {
-         if (
-            confirm(
-               'Внимание!\nОтменить удаление будет НЕВОЗМОЖНО.\nДействительно хотите удалить?'
-            )
-         ) {
-            localStorage.removeItem('pin');
-            this.home();
-         }
+         myModal.show(
+            'confirm',
+            'Внимание!',
+            'Отменить удаление будет НЕВОЗМОЖНО. Действительно хотите удалить?',
+            0,
+            () => {
+               localStorage.removeItem('pin');
+               this.home();
+            }
+         );
       });
    }
 
@@ -159,7 +176,7 @@ class PinCode extends Widget {
             'alert',
             'PIN-код не верный.',
             'Попробуйте ещё раз.',
-            5,
+            3,
             this.home
          );
       }
