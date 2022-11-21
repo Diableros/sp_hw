@@ -4,17 +4,17 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Урок 3.5. Шаблонизация. Часть 1</title>
+      <title>3.13. AJAX и работа с данными. Часть 1</title>
       <link rel="stylesheet" href="./style/style.css" />
    </head>
 
    <body>
       <div class="wrapper">
-         <header class="header">
+         <div class="header">
             <div class="container">
                <div class="header__box">
                   <div class="header__logo _hover">
-                     <a class="header__link" href="index.html">
+                     <a class="header_link" href="./index.html">
                         <img
                            src="./img/js_logo.svg"
                            alt="Logo"
@@ -23,33 +23,40 @@
                      </a>
                   </div>
                   <h1 class="header__title">
-                     Урок 3.4. Document Object Model. Часть 2
+                     3.13. AJAX и работа с данными. Часть 1
                   </h1>
                </div>
             </div>
-         </header>
-         <div class="container">
-            <div class="main__box"></div>
-            <div class="main__spinner main__spinner--hidden">
-               <svg class="spinner" viewBox="0 0 50 50">
-                  <circle
-                     class="path"
-                     cx="25"
-                     cy="25"
-                     r="20"
-                     fill="none"
-                     stroke-width="5"
-                  ></circle>
-               </svg>
-            </div>
          </div>
+         <h1 class="main__header">Задание 1. Укорачиватель URL</h1>
+
+         <div class="main__spinner main__spinner--hidden">
+            <svg class="spinner" viewBox="0 0 50 50">
+               <circle
+                  class="path"
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  fill="none"
+                  stroke-width="5"
+               ></circle>
+            </svg>
+         </div>
+
          <main class="main"></main>
+
          <footer class="footer">
             <div class="container">
                <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
             </div>
          </footer>
       </div>
-      <script src="./js/script.js"></script>
+      <script src="./src/Widget.js"></script>
+      <script src="./lib/templateEngine.js"></script>
+      <script src="./src/ShortURL.js"></script>
+      <script>
+         const rootNode = document.querySelector('.main');
+         const shortURL = new ShortURL(rootNode);
+      </script>
    </body>
 </html>
