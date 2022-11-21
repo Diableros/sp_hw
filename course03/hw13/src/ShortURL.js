@@ -63,10 +63,32 @@ class ShortURL extends Widget {
    }
 
    renderResult(resObj) {
+      console.log(resObj);
       if (resObj.status === 201) {
          this.node.appendChild(
             templateEngine(ShortURL.tmplResult(resObj.short))
          );
+
+         const btn = this.node.querySelector('.form__btn');
+
+         btn.addEventListener('click', () => {
+            navigator.clipboard
+               .writeText(
+                  this.node.querySelector('.main__result-link').textContent
+               )
+               .then(() => {
+                  btn.textContent = 'URL скопирован в буфер';
+               })
+               .catch(() => {
+                  btn.textContent = 'Что то пошло не так...';
+               });
+         });
+      } else {
+         this.showSpinner(false);
+         const alert = document.createElement('h1');
+         alert.classList.add('form__msg');
+         alert.textContent = 'Что то пошло не так. Попробуйте ещё раз позже.';
+         this.node.appendChild(alert);
       }
    }
 

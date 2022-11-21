@@ -288,6 +288,7 @@ input {
   font-weight: 900;
   margin-bottom: 32px;
   cursor: pointer;
+  text-align: center;
 }
 .main__result-box {
   display: flex;
