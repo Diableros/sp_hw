@@ -28,7 +28,11 @@
                </div>
             </div>
          </div>
-         <main class="main"></main>
+
+         <main class="main">
+            <h1 class="main__header">Задание 1. Укорачиватель URL</h1>
+         </main>
+
          <footer class="footer">
             <div class="container">
                <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
@@ -37,7 +41,10 @@
       </div>
       <script src="./src/Widget.js"></script>
       <script src="./lib/templateEngine.js"></script>
-      <script src="./src/ShorURL.js"></script>
-      <script></script>
+      <script src="./src/ShortURL.js"></script>
+      <script>
+         const rootNode = document.querySelector('.main');
+         const shortURL = new ShortURL(rootNode);
+      </script>
    </body>
 </html>
