@@ -24,7 +24,11 @@ class ShortURL extends Widget {
          const valid = this.checkValidity(input.value);
 
          if (event.type === 'submit' && valid) {
-            console.log('Отправляем запрос на сервак');
+            console.log('Request short URL generate from server');
+
+            this.showSpinner(true);
+
+            this.getShortURL(input.value);
          }
 
          if (event.type === 'submit' && !valid) {
@@ -44,7 +48,42 @@ class ShortURL extends Widget {
       input.addEventListener('input', eventHandler);
    }
 
-   getShortURL(longURL) {}
+   getShortURL(longURL) {
+      const requestURL = 'https://api.1pt.co/addURL?long=' + longURL;
+      const xmlHttpRequest = new XMLHttpRequest();
+
+      xmlHttpRequest.open('GET', requestURL);
+      xmlHttpRequest.responseType = 'json';
+      xmlHttpRequest.onload = () => {
+         this.renderResult(xmlHttpRequest.response);
+
+         this.showSpinner(false);
+      };
+      xmlHttpRequest.send();
+   }
+
+   renderResult(resObj) {
+      if (resObj.status === 201) {
+         this.node.appendChild(
+            templateEngine(ShortURL.tmplResult(resObj.short))
+         );
+      }
+   }
+
+   showSpinner(state = false) {
+      if (state) {
+         console.log('Clear form');
+         while (this.node.lastChild) this.node.lastChild.remove();
+         console.log('Show loader');
+         document
+            .querySelector('.main__spinner')
+            .classList.remove('main__spinner--hidden');
+      } else {
+         document
+            .querySelector('.main__spinner')
+            .classList.add('main__spinner--hidden');
+      }
+   }
 
    checkValidity(url) {
       const regExp = new RegExp(
@@ -82,19 +121,30 @@ ShortURL.tmplStart = () => ({
          content: 'Не правильный формат URL',
       },
    ],
-
-   // <form class="form">
-   //    <input
-   //       class="form__input"
-   //       type="text"
-   //       name="url"
-   //       placeholder="Введите полный URL"
-   //       size="30"
-   //    />
-   //    <button class="form__btn main__btn _hover">
-   //       Получить которткий URL
-   //    </button>
-   // </form>
 });
 
-ShortURL.tmplResult = () => ({});
+ShortURL.tmplResult = (resUrl) => ({
+   tag: 'div',
+   cls: 'main__result-box',
+   content: [
+      {
+         tag: 'a',
+         cls: 'main__result-link',
+         attrs: {
+            href: 'https://1pt.co/' + resUrl,
+            target: '_blank',
+         },
+         content: 'https://1pt.co/' + resUrl,
+      },
+
+      {
+         tag: 'button',
+         cls: ['form__btn', 'main__btn', '_hover'],
+         content: 'Скопировать в буфер',
+      },
+      {
+         tag: 'p',
+         cls: ['form__msg', 'form__msg--hidden'],
+      },
+   ],
+});
