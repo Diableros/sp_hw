@@ -234,66 +234,21 @@ input {
   text-align: center;
   margin-top: 32px;
 }
-.main__spinner {
-  -webkit-animation: rotate 2s linear infinite;
-          animation: rotate 2s linear infinite;
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -25px 0 0 -25px;
-  width: 50px;
-  height: 50px;
+
+.task1__h1, .task1__h2, .task1__p {
+  width: 600px;
+  text-align: center;
 }
-.main__spinner .path {
-  stroke: #323330;
-  stroke-linecap: round;
-  -webkit-animation: dash 1.5s ease-in-out infinite;
-          animation: dash 1.5s ease-in-out infinite;
-}
-.main__spinner--hidden {
-  display: none;
-}
-.main__result-link {
+.task1__h1 {
   font-size: 20px;
   font-weight: 900;
-  margin-bottom: 32px;
-  cursor: pointer;
-  text-align: center;
 }
-.main__result-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  gap: 16px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.form__input {
-  background: rgba(255, 255, 255, 0.3);
-}
-.form__input::-moz-placeholder {
-  color: rgba(50, 51, 48, 0.3);
-}
-.form__input:-ms-input-placeholder {
-  color: rgba(50, 51, 48, 0.3);
-}
-.form__input::placeholder {
-  color: rgba(50, 51, 48, 0.3);
-}
-.form__msg {
+.task1__h2 {
   font-size: 18px;
-  color: red;
   font-weight: 900;
-  text-align: center;
 }
-.form__msg--hidden {
-  display: none;
+.task1__p {
+  font-size: 16px;
 }
 
 .footer {
