@@ -234,6 +234,31 @@ input {
   text-align: center;
   margin-top: 32px;
 }
+.main__link {
+  font-size: 24px;
+  font-weight: 900;
+}
+.main__link:hover {
+  text-decoration: underline;
+}
+.main__back {
+  cursor: pointer;
+}
+
+.about__header,
+.contacts__header {
+  font-size: 24px;
+  font-weight: 900;
+}
+.about__text,
+.contacts__text {
+  width: 700px;
+  text-align: justify;
+}
+.about__link,
+.contacts__link {
+  text-align: center;
+}
 
 .task1__h1, .task1__h2, .task1__p {
   width: 600px;
