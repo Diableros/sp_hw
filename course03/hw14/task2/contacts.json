@@ -1,0 +1,31 @@
+[
+	{
+		"tag": "h1",
+		"cls": "contacts__header",
+		"content": "Контакты"
+	},
+	{
+		"tag": "a",
+		"cls": "contacts__link",
+		"content": "email@sky.pro",
+        "attrs": {
+            "href":"mailto:email@sky.pro"
+        }
+	},
+    {
+		"tag": "a",
+		"cls": "contacts__link",
+		"content": "+7 (900) 123-45-67",
+        "attrs": {
+            "href": "tel:+79001234567"
+        }
+	},
+	{
+		"tag": "p",
+		"cls": "main__back",
+		"content": "<< Назад",
+        "attrs": {
+            "onClick": "getData('./index.json');"
+        }
+	}
+]

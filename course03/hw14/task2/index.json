@@ -1,0 +1,18 @@
+[
+	{
+		"tag": "a",
+		"cls": "main__link",
+		"content": "Узнать о нас",
+		"attrs": {
+			"href": "./about.html"
+		}
+	},
+	{
+		"tag": "a",
+		"cls": "main__link",
+		"content": "Контакты",
+		"attrs": {
+			"href": "./contacts.html"
+		}
+	}
+]

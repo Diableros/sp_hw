@@ -1,0 +1,20 @@
+[
+	{
+		"tag": "h1",
+		"cls": "about__header",
+		"content": "О нас"
+	},
+	{
+		"tag": "p",
+		"cls": "about__text",
+		"content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt iste reprehenderit vero, voluptatibus quisquam exercitationem dolores voluptate, laborum voluptas, fugiat id corrupti totam harum dolor. Cumque esse unde a eum. Dolorem sequi ex quam iste eaque? Quisquam, ea corrupti, soluta error aut eos, autem quis sunt provident ad officiis et."
+	},
+	{
+		"tag": "p",
+		"cls": "main__back",
+		"content": "<< Назад",
+        "attrs": {
+            "onClick": "getData('./index.json');"
+        }
+	}
+]
