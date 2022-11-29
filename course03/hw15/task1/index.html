@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>3.15. Работа с API. Часть 1</title>
+      <link rel="stylesheet" href="../style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="../index.html">
+                        <img
+                           src="../img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">3.15. Работа с API. Часть 1</h1>
+               </div>
+            </div>
+         </div>
+         <h1 class="main__header">Задание 1. Вход на сайт</h1>
+         <main class="main"></main>
+
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script src="../lib/request.js"></script>
+      <script src="../lib/templateEngine.js"></script>
+      <script>
+         const forms = [
+            {
+               type: 'success',
+               header: 'Форма получающая статус ОК',
+               url: './api_success.json',
+            },
+            {
+               type: 'error',
+               header: 'Форма получающая статус ERROR',
+               url: './api_error.json',
+            },
+            {
+               type: 'nofile',
+               header: 'Форма получающая статус FILE NOT EXIST',
+               url: './not_exist.json',
+            },
+         ];
+
+         const formHandler = function (event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const fields = form.querySelectorAll('.field');
+            checkValidity(fields);
+         };
+
+         const checkValidity = (fields) => {
+            fields.forEach((field) => console.log(field.validity));
+         };
+
+         document.addEventListener('DOMContentLoaded', () => {
+            const main = document.querySelector('.main');
+
+            forms.forEach((form) => {
+               const child = templateEngine(formTemplate(form));
+               child.addEventListener('submit', formHandler);
+               main.appendChild(child);
+            });
+
+            // request({
+            //    url: './api.json',
+            //    onSuccess: (data) => {
+
+            //    },
+            // });
+         });
+
+         const formTemplate = ({ type, header }) => ({
+            tag: 'form',
+            cls: ['form'],
+            attrs: {
+               'data-type': type,
+               novalidate: '',
+            },
+            content: [
+               {
+                  tag: 'h2',
+                  cls: 'form__header',
+                  content: header,
+               },
+               {
+                  tag: 'input',
+                  cls: ['form__login', 'field'],
+                  attrs: {
+                     type: 'text',
+                     minlength: '4',
+                     maxlength: '20',
+                     placeholder: 'Логин',
+                     required: '',
+                  },
+               },
+               {
+                  tag: 'input',
+                  cls: ['form__pass', 'field'],
+                  attrs: {
+                     type: 'password',
+                     minlength: '8',
+                     maxlength: '20',
+                     placeholder: 'Пароль',
+                     required: '',
+                  },
+               },
+               {
+                  tag: 'button',
+                  cls: ['main__btn', '_hover'],
+                  attrs: {
+                     'data-url': url,
+                  },
+                  content: 'Войти',
+               },
+            ],
+         });
+      </script>
+   </body>
+</html>
