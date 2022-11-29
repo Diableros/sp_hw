@@ -35,23 +35,24 @@
             </div>
          </footer>
       </div>
+      <script src="../lib/Widget.js"></script>
+      <script src="../lib/myModal.js"></script>
       <script src="../lib/request.js"></script>
       <script src="../lib/templateEngine.js"></script>
       <script>
-         const forms = [
+         const modal = new MyModal();
+
+         const formsData = [
             {
-               type: 'success',
                header: 'Форма получающая статус ОК',
                url: './api_success.json',
             },
             {
-               type: 'error',
                header: 'Форма получающая статус ERROR',
                url: './api_error.json',
             },
             {
-               type: 'nofile',
-               header: 'Форма получающая статус FILE NOT EXIST',
+               header: 'Форма получающая статус NOT FOUND',
                url: './not_exist.json',
             },
          ];
@@ -61,35 +62,82 @@
 
             const form = event.target;
             const fields = form.querySelectorAll('.field');
-            checkValidity(fields);
+            if (checkValidity(fields)) {
+               request({
+                  url: form.querySelector('.main__btn').dataset.url,
+                  onSuccess: (data) => {
+                     switch (data.status) {
+                        case 'ok':
+                           modal.show(
+                              'alert',
+                              'Поздравляю!',
+                              `Вы вошли со статусом '${data.status}'`,
+                              5
+                           );
+                           break;
+                        case 'error':
+                           modal.show(
+                              'alert',
+                              'Внимание!',
+                              `Вы не вошли со статусом '${data.status}'`,
+                              5
+                           );
+                           break;
+                        default:
+                           modal.show(
+                              'alert',
+                              'Внимание!',
+                              'Неизвестный статус',
+                              5
+                           );
+                           break;
+                     }
+                  },
+                  onError: (data) => {
+                     modal.show(
+                        'alert',
+                        'Внимание!',
+                        `Проблема на сервере: ${data}`,
+                        5
+                     );
+                  },
+               });
+            }
          };
 
          const checkValidity = (fields) => {
-            fields.forEach((field) => console.log(field.validity));
+            let result = '';
+
+            fields.forEach((field) => {
+               for (let key in field.validity) {
+                  if (key !== 'valid' && field.validity[key] === true) {
+                     result += `${field.name}: ${key} `;
+                  }
+               }
+            });
+
+            if (result) {
+               modal.show('alert', 'Ошибка валидации', result, 5);
+               return false;
+            }
+
+            return true;
          };
 
          document.addEventListener('DOMContentLoaded', () => {
             const main = document.querySelector('.main');
 
-            forms.forEach((form) => {
+            formsData.forEach((form) => {
                const child = templateEngine(formTemplate(form));
                child.addEventListener('submit', formHandler);
                main.appendChild(child);
             });
-
-            // request({
-            //    url: './api.json',
-            //    onSuccess: (data) => {
-
-            //    },
-            // });
          });
 
-         const formTemplate = ({ type, header }) => ({
+         const formTemplate = ({ type, header, url }) => ({
             tag: 'form',
             cls: ['form'],
             attrs: {
-               'data-type': type,
                novalidate: '',
             },
             content: [
@@ -102,6 +150,7 @@
                   tag: 'input',
                   cls: ['form__login', 'field'],
                   attrs: {
+                     name: 'Login',
                      type: 'text',
                      minlength: '4',
                      maxlength: '20',
@@ -113,6 +162,7 @@
                   tag: 'input',
                   cls: ['form__pass', 'field'],
                   attrs: {
+                     name: 'Pass',
                      type: 'password',
                      minlength: '8',
                      maxlength: '20',
