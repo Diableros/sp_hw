@@ -79,11 +79,7 @@
                      type="text"
                      placeholder="Введите город..."
                   />
-                  <div
-                     class="form__select form__select--hidden"
-                     multiple
-                     name="city"
-                  >
+                  <div class="form__select form__select--hidden">
                      <div
                         class="form__select-content"
                         style="margin-top: 0"
@@ -123,6 +119,7 @@
          const scrollListContent = scrollListBox.querySelector(
             '.form__select-content'
          );
+         const weather = document.querySelector('.weather');
 
          const citiesArray = [];
          let weatherType = '';
@@ -143,6 +140,7 @@
 
          function changeWeatherType() {
             weatherType = form.querySelector('.radioBtn:checked').defaultValue;
+            // console.log('Weather type: ', weatherType);
 
             switch (weatherType) {
                case 'city':
@@ -215,8 +213,6 @@
          });
 
          scrollListBox.addEventListener('click', (event) => {
-            // логика для ввода полного названия города по клику в инпут
-            // console.log(event.target.dataset.city);
             inputField.value = event.target.dataset.city;
             submitCityBtn.classList.remove('form__submit-city--hidden');
             scrollListBox.classList.add('form__select--hidden');
@@ -224,16 +220,78 @@
 
          form.addEventListener('submit', (event) => {
             event.preventDefault();
-            const target = event.target;
+            weather.textContent = 'Загружаем данные...';
 
             if (weatherType === 'city') {
-               console.log('Погода по городу');
+               render(getWeather(inputField.value));
             }
 
             if (weatherType === 'geo') {
-               console.log('Погода по геолокации');
+               navigator.geolocation.getCurrentPosition(
+                  (data) => {
+                     const { latitude, longitude } = data.coords;
+                     request({
+                        url: `https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=933551250699546639802x77317`,
+                        onSuccess: (data) => {
+                           getWeather(data.alt.loc[2].city);
+                        },
+                     });
+                  },
+                  (error) => {
+                     weather.textContent =
+                        'Ошибка при получении координат: ' + error;
+                  }
+               );
             }
          });
+
+         function render(obj) {
+            weather.appendChild(templateEngine(getWeatherTemplate(obj)));
+            weather.firstChild.remove();
+         }
+
+         function getWeather(city) {
+            request({
+               url: `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(
+                  city
+               )}&APPID=a0c43aa3e2ae0d57a48ef203a9d75536`,
+               onSuccess: render,
+               onError: (error) =>
+                  (weather.textContent = 'Ошибка получения погоды: ' + error),
+            });
+         }
+
+         function getWeatherTemplate(obj) {
+            return [
+               {
+                  tag: 'h3',
+                  cls: 'weather__city',
+                  content: obj.name,
+               },
+               {
+                  tag: 'h4',
+                  cls: 'weather__temp',
+                  content: `${(obj.main.temp - 273.15).toFixed(2)}°C`,
+               },
+               {
+                  tag: 'p',
+                  cls: 'weather__cloud',
+                  content: obj.weather[0].description,
+               },
+               {
+                  tag: 'p',
+                  cls: 'weather__hum',
+                  content: `Влажность: ${obj.main.humidity}%`,
+               },
+               {
+                  tag: 'p',
+                  cls: 'weather__pres',
+                  content: `Давление: ${Math.round(
+                     obj.main.pressure / 7.5
+                  )} мм.рт.ст.`,
+               },
+            ];
+         }
       </script>
    </body>
 </html>
