@@ -265,6 +265,22 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+}
+.weather__city {
+  font-size: 32px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 32px;
+}
+.weather__temp {
+  font-size: 48px;
+  font-weight: 900;
+  align-self: flex-end;
+  margin-bottom: 32px;
+}
+.weather__cloud, .weather__hum, .weather__pres {
+  font-size: 24px;
 }
 
 .modal {
