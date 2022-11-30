@@ -6,6 +6,24 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>3.15. Работа с API. Часть 1</title>
       <link rel="stylesheet" href="../style/style.css" />
+      <style>
+         .form {
+            width: 400px;
+            height: 400px;
+            justify-content: flex-start;
+            position: relative;
+         }
+
+         .form__checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            align-self: flex-start;
+         }
+         .form__header {
+            margin-bottom: 20px;
+         }
+      </style>
    </head>
 
    <body>
@@ -29,7 +47,63 @@
          <h1 class="main__header">
             Задание 2. Виджет погоды с саджестом городов
          </h1>
-         <main class="main"></main>
+         <main class="main">
+            <form class="form">
+               <h2 class="form__header">Узнать текущую погоду</h2>
+
+               <div class="form__checkbox">
+                  <input
+                     class="radioBtn"
+                     type="radio"
+                     name="type"
+                     value="city"
+                     id="city"
+                     checked
+                  />
+                  <label class="form__label" for="city">По городу</label>
+               </div>
+
+               <div class="form__checkbox">
+                  <input
+                     class="radioBtn"
+                     type="radio"
+                     name="type"
+                     value="geo"
+                     id="geo"
+                  />
+                  <label for="geo">По геолокации</label>
+               </div>
+               <div class="form__box-city form__box-city--hidden">
+                  <input
+                     class="inputField"
+                     type="text"
+                     placeholder="Введите город..."
+                  />
+                  <div
+                     class="form__select form__select--hidden"
+                     multiple
+                     name="city"
+                  >
+                     <div
+                        class="form__select-content"
+                        style="margin-top: 0"
+                        onmousedown="return false"
+                        onselectstart="return false"
+                     ></div>
+                  </div>
+                  <button
+                     class="main__btn form__submit-city form__submit-city--hidden"
+                  >
+                     Показать погоду
+                  </button>
+               </div>
+
+               <button class="main__btn form__submit-geo form__box-geo--hidden">
+                  Показать погоду
+               </button>
+            </form>
+            <div class="weather">Здесь будет погода</div>
+         </main>
 
          <footer class="footer">
             <div class="container">
@@ -39,6 +113,127 @@
       </div>
       <script src="../lib/request.js"></script>
       <script src="../lib/templateEngine.js"></script>
-      <script></script>
+      <script>
+         const form = document.querySelector('.form');
+         const inputField = form.querySelector('.inputField');
+         const submitCityBtn = form.querySelector('.form__submit-city');
+         const formBoxCity = form.querySelector('.form__box-city');
+         const formBoxGeo = form.querySelector('.form__submit-geo');
+         const scrollListBox = form.querySelector('.form__select');
+         const scrollListContent = scrollListBox.querySelector(
+            '.form__select-content'
+         );
+
+         const citiesArray = [];
+         let weatherType = '';
+
+         document.addEventListener('DOMContentLoaded', () => {
+            // инициализируем состояние
+            changeWeatherType();
+
+            request({
+               url: './rus_cities.json',
+               onSuccess: (data) => {
+                  data.forEach((elem) => citiesArray.push(elem.city));
+               },
+               onError: () =>
+                  console.warn('Ошибка чтения файла названий городов'),
+            });
+         });
+
+         function changeWeatherType() {
+            weatherType = form.querySelector('.radioBtn:checked').defaultValue;
+
+            switch (weatherType) {
+               case 'city':
+                  formBoxCity.classList.remove('form__box-city--hidden');
+                  formBoxGeo.classList.add('form__box-geo--hidden');
+                  break;
+               case 'geo':
+                  formBoxCity.classList.add('form__box-city--hidden');
+                  formBoxGeo.classList.remove('form__box-geo--hidden');
+                  break;
+               default:
+                  console.warn('Неизвестный тип представления');
+                  break;
+            }
+         }
+
+         form.addEventListener('input', (event) => {
+            const target = event.target;
+
+            if (target.className === 'radioBtn') {
+               changeWeatherType();
+            }
+
+            if (target.className === 'inputField') {
+               // console.log(citiesArray);
+               const filteredCityArray = citiesArray.filter((city) =>
+                  city.toLowerCase().startsWith(inputField.value.toLowerCase())
+               );
+               if (filteredCityArray.length > 0) {
+                  scrollListContent.replaceChildren();
+                  scrollListContent.style.marginTop = 0;
+                  scrollListContent.appendChild(
+                     templateEngine(
+                        filteredCityArray.map((elem) => getCityOptionObj(elem))
+                     )
+                  );
+                  submitCityBtn.classList.add('form__submit-city--hidden');
+                  scrollListBox.classList.remove('form__select--hidden');
+               }
+            }
+         });
+
+         function getCityOptionObj(city) {
+            // console.log(city);
+            return {
+               tag: 'p',
+               attrs: {
+                  'data-city': city,
+               },
+               content: city,
+            };
+         }
+
+         scrollListBox.addEventListener('wheel', (event) => {
+            event.preventDefault();
+
+            const curMargin = +scrollListContent.style.marginTop.slice(0, -2);
+            const newMargin = curMargin - event.deltaY / 5;
+
+            const maxMargin =
+               -((scrollListContent.children.length + 3) * 20) +
+               scrollListBox.clientHeight;
+
+            // работаем с отрицательным margin!
+            if (newMargin <= 0 && newMargin >= maxMargin) {
+               scrollListContent.style.marginTop = newMargin + 'px';
+            } else {
+               scrollListContent.style.marginTop = curMargin + 'px';
+            }
+         });
+
+         scrollListBox.addEventListener('click', (event) => {
+            // логика для ввода полного названия города по клику в инпут
+            // console.log(event.target.dataset.city);
+            inputField.value = event.target.dataset.city;
+            submitCityBtn.classList.remove('form__submit-city--hidden');
+            scrollListBox.classList.add('form__select--hidden');
+         });
+
+         form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const target = event.target;
+
+            if (weatherType === 'city') {
+               console.log('Погода по городу');
+            }
+
+            if (weatherType === 'geo') {
+               console.log('Погода по геолокации');
+            }
+         });
+      </script>
    </body>
 </html>

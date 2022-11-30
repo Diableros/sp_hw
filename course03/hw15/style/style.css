@@ -216,6 +216,56 @@ input {
 .form input::placeholder {
   color: rgba(50, 51, 48, 0.7);
 }
+.form__select {
+  position: absolute;
+  top: 45%;
+  width: 240px;
+  height: 200px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 5px 0;
+  overflow: hidden;
+}
+.form__select p {
+  padding: 2px 8px;
+  line-height: 18px;
+}
+.form__select p:hover {
+  background: royalblue;
+  color: white;
+  cursor: pointer;
+}
+.form__select--hidden {
+  display: none;
+}
+.form__submit-city--hidden, .form__submit-geo--hidden {
+  display: none;
+}
+.form__box-city {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.form__box-city--hidden, .form__box-geo--hidden {
+  display: none;
+}
+
+.weather {
+  border: 1px solid #323330;
+  padding: 16px;
+  border-radius: 8px;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .modal {
   z-index: 10;
