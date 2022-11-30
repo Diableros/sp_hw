@@ -254,7 +254,7 @@
             request({
                url: `https://api.openweathermap.org/data/2.5/weather?q=${encodeURI(
                   city
-               )}&APPID=a0c43aa3e2ae0d57a48ef203a9d75536`,
+               )}&lang=ru&APPID=a0c43aa3e2ae0d57a48ef203a9d75536`,
                onSuccess: render,
                onError: (error) =>
                   (weather.textContent = 'Ошибка получения погоды: ' + error),
