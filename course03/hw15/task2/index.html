@@ -198,13 +198,17 @@
 
          scrollListBox.addEventListener('wheel', (event) => {
             event.preventDefault();
-
+            const rowScrollHeight =
+               scrollListContent.querySelector('p').scrollHeight;
             const curMargin = +scrollListContent.style.marginTop.slice(0, -2);
-            const newMargin = curMargin - event.deltaY / 5;
-
+            const scrollDelta = (event.deltaY / 100) * rowScrollHeight;
+            const newMargin = curMargin - scrollDelta;
+            const endListEmptyRows = 2;
             const maxMargin =
-               -((scrollListContent.children.length + 3) * 20) +
-               scrollListBox.clientHeight;
+               -(
+                  (scrollListContent.childElementCount + endListEmptyRows) *
+                  rowScrollHeight
+               ) + scrollListBox.clientHeight;
 
             // работаем с отрицательным margin!
             if (newMargin <= 0 && newMargin >= maxMargin) {

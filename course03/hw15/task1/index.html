@@ -106,18 +106,18 @@
          };
 
          const checkValidity = (fields) => {
-            let result = '';
+            let errorsMsg = '';
 
             fields.forEach((field) => {
                for (let key in field.validity) {
                   if (key !== 'valid' && field.validity[key] === true) {
-                     result += `${field.name}: ${key} `;
+                     errorsMsg += `${field.name}: ${key} `;
                   }
                }
             });
 
-            if (result) {
-               modal.show('alert', 'Ошибка валидации', result, 5);
+            if (errorsMsg) {
+               modal.show('alert', 'Ошибка валидации', errorsMsg, 5);
                return false;
             }
 

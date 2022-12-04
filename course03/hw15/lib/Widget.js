@@ -1,11 +1,10 @@
 /*
  *   Родительский класс для всех виджетов
- *   содержит конструктор с проверкой приходящего узла
- *   на принадлежность его к HTML элементам
+ *   Будет содержать методы общие для разных виджетов
  */
 
 class Widget {
-   checkNode(node) {
+   static checkNode(node) {
       if (!(node instanceof HTMLElement)) {
          throw new Error('Передан не HTML элемент');
       }

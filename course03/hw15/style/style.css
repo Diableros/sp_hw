@@ -220,13 +220,12 @@ input {
   position: absolute;
   top: 45%;
   width: 240px;
-  height: 200px;
+  height: 198px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.5);
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  padding: 5px 0;
   overflow: hidden;
 }
 .form__select p {

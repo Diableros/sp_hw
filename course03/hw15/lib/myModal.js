@@ -1,32 +1,28 @@
-class MyModal extends Widget {
+class MyModal {
    constructor(node = document.body) {
-      super(Widget.checkNode);
       this.node = node;
 
-      this.checkNode(this.node);
-
-      this.hide = this.hide.bind(this);
+      Widget.checkNode(this.node);
    }
 
-   hide(callBack) {
+   #hide = (callBack) => {
       this.node.firstElementChild.remove();
-      if (callBack instanceof Function || callBack) callBack();
-   }
+      if (callBack instanceof Function && callBack) callBack();
+   };
 
    show(type, header, message = '', timer = 5, callBack = null) {
       if (type === 'alert') {
          this.node.insertBefore(
-            templateEngine(MyModal.templateAlert(header, message, timer)),
+            templateEngine(this.#templateAlert(header, message, timer)),
             this.node.firstElementChild
          );
 
-         setTimeout(this.hide, timer * 1000, callBack);
+         setTimeout(this.#hide, timer * 1000, callBack);
       }
 
       if (type === 'confirm') {
-         console.log('Модальный конфирм');
          this.node.insertBefore(
-            templateEngine(MyModal.templateConfirm(header, message)),
+            templateEngine(this.#templateConfirm(header, message)),
             this.node.firstElementChild
          );
          const buttons = this.node.querySelector('.modal__buttons');
@@ -48,79 +44,79 @@ class MyModal extends Widget {
          });
       }
    }
-}
 
-MyModal.templateAlert = (header, message, timer) => ({
-   tag: 'div',
-   cls: 'modal',
-   content: [
-      {
-         tag: 'div',
-         cls: 'modal__window',
-         content: [
-            {
-               tag: 'h1',
-               cls: 'modal__header',
-               content: header,
-            },
-            {
-               tag: 'p',
-               cls: 'modal__message',
-               content: message,
-            },
-            {
-               tag: 'div',
-               cls: 'modal__countdown',
-               attrs: {
-                  style: `animation: countdown ${timer}s linear`,
+   #templateAlert = (header, message, timer) => ({
+      tag: 'div',
+      cls: 'modal',
+      content: [
+         {
+            tag: 'div',
+            cls: 'modal__window',
+            content: [
+               {
+                  tag: 'h1',
+                  cls: 'modal__header',
+                  content: header,
                },
-            },
-         ],
-      },
-   ],
-});
+               {
+                  tag: 'p',
+                  cls: 'modal__message',
+                  content: message,
+               },
+               {
+                  tag: 'div',
+                  cls: 'modal__countdown',
+                  attrs: {
+                     style: `animation: countdown ${timer}s linear`,
+                  },
+               },
+            ],
+         },
+      ],
+   });
 
-MyModal.templateConfirm = (header, message) => ({
-   tag: 'div',
-   cls: 'modal',
-   content: [
-      {
-         tag: 'div',
-         cls: 'modal__window',
-         content: [
-            {
-               tag: 'h1',
-               cls: 'modal__header',
-               content: header,
-            },
-            {
-               tag: 'p',
-               cls: 'modal__message',
-               content: message,
-            },
-            {
-               tag: 'div',
-               cls: 'modal__buttons',
-               content: [
-                  {
-                     tag: 'button',
-                     cls: ['modal__button', 'main__btn', '_hover'],
-                     attrs: {
-                        'data-command': 'ok',
+   #templateConfirm = (header, message) => ({
+      tag: 'div',
+      cls: 'modal',
+      content: [
+         {
+            tag: 'div',
+            cls: 'modal__window',
+            content: [
+               {
+                  tag: 'h1',
+                  cls: 'modal__header',
+                  content: header,
+               },
+               {
+                  tag: 'p',
+                  cls: 'modal__message',
+                  content: message,
+               },
+               {
+                  tag: 'div',
+                  cls: 'modal__buttons',
+                  content: [
+                     {
+                        tag: 'button',
+                        cls: ['modal__button', 'main__btn', '_hover'],
+                        attrs: {
+                           'data-command': 'ok',
+                        },
+                        content: 'Да',
                      },
-                     content: 'Да',
-                  },
-                  {
-                     tag: 'button',
-                     cls: ['modal__button', 'main__btn', '_hover'],
-                     attrs: {
-                        'data-command': 'cancel',
+                     {
+                        tag: 'button',
+                        cls: ['modal__button', 'main__btn', '_hover'],
+                        attrs: {
+                           'data-command': 'cancel',
+                        },
+                        content: 'Отмена',
                      },
-                     content: 'Отмена',
-                  },
-               ],
-            },
-         ],
-      },
-   ],
-});
+                  ],
+               },
+            ],
+         },
+      ],
+   });
+}
