@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>3.15. Работа с API. Часть 1</title>
+      <link rel="stylesheet" href="../style/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="header">
+            <div class="container">
+               <div class="header__box">
+                  <div class="header__logo _hover">
+                     <a class="header_link" href="../index.html">
+                        <img
+                           src="../img/js_logo.svg"
+                           alt="Logo"
+                           class="header__svg"
+                        />
+                     </a>
+                  </div>
+                  <h1 class="header__title">3.15. Работа с API. Часть 1</h1>
+               </div>
+            </div>
+         </div>
+         <h1 class="main__header">Задание 1. Вход на сайт</h1>
+         <main class="main"></main>
+
+         <footer class="footer">
+            <div class="container">
+               <div class="footer__text">SkyPro WebDev_7.0 © 2022</div>
+            </div>
+         </footer>
+      </div>
+      <script src="../lib/Widget.js"></script>
+      <script src="../lib/myModal.js"></script>
+      <script src="../lib/request.js"></script>
+      <script src="../lib/templateEngine.js"></script>
+      <script>
+         const modal = new MyModal();
+
+         const formsData = [
+            {
+               header: 'Форма получающая статус ОК',
+               url: './api_success.json',
+            },
+            {
+               header: 'Форма получающая статус ERROR',
+               url: './api_error.json',
+            },
+            {
+               header: 'Форма получающая статус NOT FOUND',
+               url: './not_exist.json',
+            },
+         ];
+
+         const formHandler = function (event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const fields = form.querySelectorAll('.field');
+            if (checkValidity(fields)) {
+               request({
+                  url: form.querySelector('.main__btn').dataset.url,
+                  onSuccess: (data) => {
+                     switch (data.status) {
+                        case 'ok':
+                           modal.show(
+                              'alert',
+                              'Поздравляю!',
+                              `Вы вошли со статусом '${data.status}'`,
+                              5
+                           );
+                           break;
+                        case 'error':
+                           modal.show(
+                              'alert',
+                              'Внимание!',
+                              `Вы не вошли со статусом '${data.status}'`,
+                              5
+                           );
+                           break;
+                        default:
+                           modal.show(
+                              'alert',
+                              'Внимание!',
+                              'Неизвестный статус',
+                              5
+                           );
+                           break;
+                     }
+                  },
+                  onError: (data) => {
+                     modal.show(
+                        'alert',
+                        'Внимание!',
+                        `Проблема на сервере: ${data}`,
+                        5
+                     );
+                  },
+               });
+            }
+         };
+
+         const checkValidity = (fields) => {
+            let errorsMsg = '';
+
+            fields.forEach((field) => {
+               for (let key in field.validity) {
+                  if (key !== 'valid' && field.validity[key] === true) {
+                     errorsMsg += `${field.name}: ${key} `;
+                  }
+               }
+            });
+
+            if (errorsMsg) {
+               modal.show('alert', 'Ошибка валидации', errorsMsg, 5);
+               return false;
+            }
+
+            return true;
+         };
+
+         document.addEventListener('DOMContentLoaded', () => {
+            const main = document.querySelector('.main');
+
+            formsData.forEach((form) => {
+               const child = templateEngine(formTemplate(form));
+               child.addEventListener('submit', formHandler);
+               main.appendChild(child);
+            });
+         });
+
+         const formTemplate = ({ type, header, url }) => ({
+            tag: 'form',
+            cls: ['form'],
+            attrs: {
+               novalidate: '',
+            },
+            content: [
+               {
+                  tag: 'h2',
+                  cls: 'form__header',
+                  content: header,
+               },
+               {
+                  tag: 'input',
+                  cls: ['form__login', 'field'],
+                  attrs: {
+                     name: 'Login',
+                     type: 'text',
+                     minlength: '4',
+                     maxlength: '20',
+                     placeholder: 'Логин',
+                     required: '',
+                  },
+               },
+               {
+                  tag: 'input',
+                  cls: ['form__pass', 'field'],
+                  attrs: {
+                     name: 'Pass',
+                     type: 'password',
+                     minlength: '8',
+                     maxlength: '20',
+                     placeholder: 'Пароль',
+                     required: '',
+                  },
+               },
+               {
+                  tag: 'button',
+                  cls: ['main__btn', '_hover'],
+                  attrs: {
+                     'data-url': url,
+                  },
+                  content: 'Войти',
+               },
+            ],
+         });
+      </script>
+   </body>
+</html>
