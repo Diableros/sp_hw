@@ -33,7 +33,6 @@ class MyModal {
             if (target.dataset['command'] === 'ok') {
                this.node.firstElementChild.remove();
                callBack();
-               pin.home();
                return true;
             }
 

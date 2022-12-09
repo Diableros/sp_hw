@@ -1,7 +1,7 @@
 const noop = () => {};
 const NO_PARAMS = {};
 const NO_HEADERS = {};
-const OK_200 = [200];
+const OK_200 = [200, 201];
 
 function request({
    method = 'GET',
