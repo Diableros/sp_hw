@@ -1,0 +1,296 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:visited, a:focus, a:hover {
+  color: inherit;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+  outline: none;
+}
+
+button,
+input[type=submit] {
+  box-shadow: none;
+  background-color: transparent;
+  background: none;
+  cursor: pointer;
+}
+
+input:focus,
+input:active,
+button:focus,
+button:active {
+  outline: none;
+}
+
+html,
+body {
+  height: 100%;
+  line-height: 1;
+}
+
+@-webkit-keyframes countdown {
+  100% {
+    width: 0;
+  }
+  0% {
+    width: 100%;
+  }
+}
+
+@keyframes countdown {
+  100% {
+    width: 0;
+  }
+  0% {
+    width: 100%;
+  }
+}
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: courier;
+  background-color: #f0db4f;
+  color: #323330;
+}
+
+input {
+  height: 32px;
+  background: transparent;
+  border-radius: 10px;
+  padding: 0 12px;
+  border: 1px solid #323330;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: calc(1100px + 2rem);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+._hover {
+  transition: all 50ms;
+}
+._hover:hover {
+  box-shadow: 0 0 10px 2px rgba(50, 51, 48, 0.3);
+}
+._hover:active {
+  transform: scale(0.98);
+}
+
+.header__box {
+  border-bottom: 1px solid #323330;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+  margin: 0 2rem;
+}
+.header__svg {
+  border: 1px solid #323330;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+.header__title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: right;
+  margin: 0 2rem;
+}
+
+.main {
+  padding-top: 50px;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-flow: column nowrap;
+  gap: 20px;
+}
+.main__box {
+  display: flex;
+  gap: 2rem;
+  padding: 3rem 0;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+}
+.main__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px;
+  height: 3rem;
+  border: 1px solid #323330;
+  border-radius: 1rem;
+  text-align: center;
+  line-height: 1rem;
+  font-weight: 700;
+}
+.main__btn:hover {
+  cursor: pointer;
+}
+.main__header {
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.modal {
+  z-index: 10;
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(50, 51, 48, 0.4);
+}
+.modal__window {
+  z-index: 15;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  padding: 20px;
+  background-color: #f0db4f;
+  border: 1px solid #323330;
+  border-radius: 16px;
+}
+.modal__header {
+  text-align: center;
+  z-index: 20;
+  font-size: 20px;
+  font-weight: 900;
+  padding-bottom: 20px;
+}
+.modal__message {
+  text-align: center;
+  z-index: 20;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.modal__countdown {
+  display: block;
+  background-color: #323330;
+  height: 3px;
+  width: 100%;
+}
+.modal__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 20px;
+}
+.modal__button {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  width: 100px;
+  padding: 10px;
+}
+
+.footer {
+  height: 120px;
+}
+.footer__text {
+  font-size: 1.2rem;
+  font-weight: 900;
+  line-height: 120px;
+}
+
+@media (max-width: 768px) {
+  .header__title {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 425px) {
+  .header__title {
+    font-size: 1.1rem;
+    font-weight: 900;
+  }
+}
+.form {
+  width: 500px;
+  border: 1px solid #323330;
+  min-height: 250px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  gap: 16px;
+}
+.form__header {
+  width: 350px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+.form__text {
+  text-align: center;
+  padding: 10px;
+}
+.form__input {
+  background: rgba(255, 255, 255, 0.3);
+}/*# sourceMappingURL=style.css.map */
