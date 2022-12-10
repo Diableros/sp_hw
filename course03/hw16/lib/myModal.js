@@ -10,14 +10,14 @@ class MyModal {
       if (callBack instanceof Function && callBack) callBack();
    };
 
-   show(type, header, message = '', timer = 5, callBack = null) {
+   show(type, header, message = '', seconds = 5, callBack = null) {
       if (type === 'alert') {
          this.node.insertBefore(
-            templateEngine(this.#templateAlert(header, message, timer)),
+            templateEngine(this.#templateAlert(header, message, seconds)),
             this.node.firstElementChild
          );
 
-         setTimeout(this.#hide, timer * 1000, callBack);
+         setTimeout(this.#hide, seconds * 1000, callBack);
       }
 
       if (type === 'confirm') {
@@ -44,7 +44,7 @@ class MyModal {
       }
    }
 
-   #templateAlert = (header, message, timer) => ({
+   #templateAlert = (header, message, seconds) => ({
       tag: 'div',
       cls: 'modal',
       content: [
@@ -66,7 +66,7 @@ class MyModal {
                   tag: 'div',
                   cls: 'modal__countdown',
                   attrs: {
-                     style: `animation: countdown ${timer}s linear`,
+                     style: `animation: countdown ${seconds}s linear`,
                   },
                },
             ],

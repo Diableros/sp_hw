@@ -49,16 +49,14 @@ const clickHandler = (event) => {
                   request({
                      url: API_BASE_URL + '/posts/' + itemId,
                      method: 'DELETE',
-                     onSuccess: (data) => {
-                        if (JSON.stringify(data) === '{}') {
-                           modal.show(
-                              'alert',
-                              'Post was deleted.',
-                              null,
-                              2,
-                              showAllPosts()
-                           );
-                        }
+                     onSuccess: () => {
+                        modal.show(
+                           'alert',
+                           'Post was deleted.',
+                           null,
+                           2,
+                           showAllPosts()
+                        );
                      },
                      onError: (error) => {
                         console.log(error);
