@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="./node_modules/pinlogin/dist/pinlogin.css" />
+      <title>Document</title>
+      <style>
+         * {
+            margin: 0;
+            padding: 0;
+         }
+         .pinlogin {
+            background: #f0db4f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+         }
+         .pinlogin .pinlogin-field:read-only,
+         .pinlogin .pinlogin-field {
+            border: 1px solid #323330;
+            color: #323330;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="pinlogin"></div>
+      <script src="./node_modules/pinlogin/dist/pinlogin.pkgd.min.js"></script>
+      <script>
+         const pinlogin = new Pinlogin(document.querySelector('.pinlogin'), {
+            fields: 5,
+            complete: function (pin) {
+               alert('Awesome! You entered: ' + pin);
+
+               // further processing here
+            },
+         });
+      </script>
+   </body>
+</html>
