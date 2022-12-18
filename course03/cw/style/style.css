@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Play:regular,700);
 *,
 *::before,
 *::after {
@@ -65,4 +67,116 @@ html,
 body {
   height: 100%;
   line-height: 1;
+}
+
+* {
+  font-family: inherit;
+  color: inherit;
+  border: none;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Play, Arial, Helvetica, sans-serif;
+  color: #333;
+  font-size: 1rem;
+}
+
+.header {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 32px;
+  font-size: 32px;
+  font-weight: 700;
+  color: royalblue;
+}
+
+.footer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 32px;
+}
+
+.container {
+  border: 2px solid royalblue;
+  border-radius: 6px;
+  min-height: 600px;
+  width: 320px;
+}
+
+.screen {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.screen__header {
+  font-size: 24px;
+}
+.screen__input {
+  padding: 8px 16px;
+  border-radius: 6px;
+  line-height: 1rem;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+.screen__input::-moz-placeholder {
+  color: #ccc;
+}
+.screen__input:-ms-input-placeholder {
+  color: #ccc;
+}
+.screen__input::placeholder {
+  color: #ccc;
+}
+.screen__button {
+  background: royalblue;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  line-height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+.screen__players-box {
+  width: 50%;
+}
+.screen__players-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+.screen__players-item, .screen__players-you {
+  width: 100%;
+  padding: 10px;
+  background: #ddd;
+  border-radius: 6px;
+}
+.screen__players-you {
+  order: -1;
+  margin-bottom: 10px;
+  background: royalblue;
+  color: white;
+}
+.screen__players-you::before {
+  content: "Вы: ";
 }/*# sourceMappingURL=style.css.map */

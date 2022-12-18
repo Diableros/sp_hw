@@ -4,16 +4,17 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Document</title>
+      <title>Rock, Scissors, Paper</title>
+      <link rel="stylesheet" href="./style/style.css" />
    </head>
    <body>
-      <script type="module">
-         import ky from './node_modules/ky/distribution/index.js';
-
-         const BASE_URL = 'https://skypro-rock-scissors-paper.herokuapp.com/';
-
-         const resp = await ky.get(BASE_URL + 'ping').json();
-         console.log(resp);
-      </script>
+      <header class="header">Rock, Scissors, Paper</header>
+      <main class="container"></main>
+      <footer class="footer">© SkyPro 2022</footer>
+      <script src="./lib/templateEngine.js"></script>
+      <script src="./src/request.js" type="module"></script>
+      <script src="./src/login.js"></script>
+      <script src="./src/lobby.js"></script>
+      <script src="./src/main.js" type="module"></script>
    </body>
 </html>
