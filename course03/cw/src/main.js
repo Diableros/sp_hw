@@ -1,6 +1,5 @@
 'use strict';
 import KyReq from './request.js';
-// export * from './lobby.js';
 
 const BASE_URL = 'https://skypro-rock-scissors-paper.herokuapp.com/';
 
@@ -11,10 +10,7 @@ window.app = {
       if (!screens[screenName])
          throw Error('Вызов рендера несуществующего экрана!');
 
-      if (window.app.timers.length > 0) {
-         window.app.timers.forEach((timer) => clearInterval(timer));
-         window.app.timers = [];
-      }
+         clearTimers()
 
       window.app.mainNode.replaceChildren();
 
@@ -27,23 +23,38 @@ window.app = {
       blocks[blockName](container);
    },
    timers: [],
+   clearTimers: clearTimers,
    player: {},
    mainNode: document.querySelector('.container'),
+   req: new KyReq(BASE_URL),
 };
-
-window.app.req = new KyReq(BASE_URL);
 
 const blocks = window.app.blocks;
 const screens = window.app.screens;
 
+// ЛОГИН
+screens['startScreen'] = renderStartScreen;
+blocks['createBtn'] = renderCreateButton;
+
+// ЛОББИ
 screens['lobbyScreen'] = renderLobbyScreen;
 blocks['playersOnline'] = renderPlayersOnline;
 blocks['startGameBtn'] = renderStartGameBtn;
 
-screens['startScreen'] = renderStartScreen;
-blocks['createBtn'] = renderCreateButton;
+screens['gameWaitScreen'] = renderGameWaitScreen;
+blocks['gameStatusBlock'] = renderGameWaitStatusBlock;
 
-// инициализация начального состояния приложения
+screens['inGameScreen'] = renderInGameScreen;
+blocks['inGameBlock'] = renderInGameBlock;
+blocks['goToLobby'] = renderGoToLobby;
+
+function clearTimers(){
+   if (window.app.timers.length > 0) {
+      window.app.timers.forEach((timer) => clearInterval(timer));
+      window.app.timers = [];
+   }
+}
+
 function initApp() {
    if (
       !localStorage.getItem('rspUserName') ||
@@ -59,8 +70,6 @@ function initApp() {
 
       // проверяем живой ли токен
       window.app.req.getPlayerStatus(window.app.player.token, (data) => {
-         // console.log(data);
-
          if (data.status === 'error') {
             console.log('Token was expired. Request new token.');
 
@@ -73,14 +82,25 @@ function initApp() {
                   window.app.renderScreen('lobbyScreen');
                }
             );
-
-            // window.app.req.getPlayersList(
-            //    localStorage.getItem('rspToken'),
-            //    (data) => console.log(data)
-            // );
          } else if (data.status === 'ok') {
             console.log('User token alive!');
-            window.app.renderScreen('lobbyScreen');
+            window.app.req.getPlayerStatus(window.app.player.token, (data) => {
+               if (!data.status === 'ok')
+                  throw Error('No player with this token');
+               console.log(data);
+               switch (data['player-status'].status) {
+                  case 'game':
+                     console.log('Current user now in game!');
+                     window.app.player.gameId = data['player-status'].game.id;
+                     window.app.renderScreen('inGameScreen');
+                     break;
+                  case 'lobby':
+                     window.app.renderScreen('lobbyScreen');
+                     break;
+                  default:
+                     throw Error('Unknown player status');
+               }
+            });
          }
       });
    }

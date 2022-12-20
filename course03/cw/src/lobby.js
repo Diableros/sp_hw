@@ -1,6 +1,5 @@
-// экран лобби
+'use strict';
 function renderLobbyScreen() {
-   window.app.player.token = localStorage.getItem('rspToken');
    console.log('Render lobby screen');
 
    window.app.mainNode.appendChild(templateEngine(lobbyScreenTemplate()));
@@ -11,18 +10,16 @@ function renderLobbyScreen() {
    window.app.renderBlock('startGameBtn', screen);
 }
 
-// блок списка игроков онлайн
 function renderPlayersOnline(container) {
    container.appendChild(templateEngine(playersOnlineTemplate()));
 
    window.app.timers.push(
       setInterval(() => {
          refreshPlayersList();
-      }, 10000)
+      }, 1000)
    );
 }
 
-// обновить список игроков
 function refreshPlayersList() {
    const playersList = document.querySelector('.screen__players-box');
 
@@ -35,14 +32,13 @@ function refreshPlayersList() {
    });
 }
 
-// кнопка старта новой игры (в лобби)
 function renderStartGameBtn(container) {
    container.appendChild(templateEngine(startGameBtnTemplate()));
 
    container.closest('.form').addEventListener('submit', (event) => {
       event.preventDefault();
 
-      console.log('Click button to enter the game');
+      window.app.renderScreen('gameWaitScreen');
    });
 }
 

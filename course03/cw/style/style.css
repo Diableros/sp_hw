@@ -113,7 +113,7 @@ body {
 .container {
   border: 2px solid royalblue;
   border-radius: 6px;
-  min-height: 600px;
+  min-height: 450px;
   width: 320px;
 }
 
@@ -125,9 +125,13 @@ body {
   justify-content: center;
   align-items: center;
   gap: 16px;
+  padding: 0 24px;
 }
 .screen__header {
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: 900;
+  color: royalblue;
+  text-align: center;
 }
 .screen__input {
   padding: 8px 16px;
@@ -179,4 +183,47 @@ body {
 }
 .screen__players-you::before {
   content: "Вы: ";
+}
+.screen__status-box {
+  padding: 24px;
+}
+.screen__status-text {
+  text-align: center;
+}
+.screen__player {
+  align-self: flex-start;
+}
+.screen__game-lose, .screen__game-win {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 900;
+  padding: 32px 0;
+}
+.screen__game-lose {
+  color: red;
+}
+.screen__game-win {
+  color: green;
+}
+.screen__game-box {
+  display: flex;
+  height: 50%;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.screen__game-header {
+  align-self: center;
+  font-size: 18px;
+  color: royalblue;
+}
+.screen__game-move {
+  width: 100%;
+  padding: 18px;
+  background: royalblue;
+  color: white;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
 }/*# sourceMappingURL=style.css.map */

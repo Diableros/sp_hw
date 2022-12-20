@@ -1,10 +1,9 @@
-// экран входа для нового игрока
+'use strict';
 function renderStartScreen() {
    window.app.mainNode.appendChild(templateEngine(startScreenTemplate()));
    window.app.renderBlock('createBtn', document.querySelector('.screen'));
 }
 
-// Кнопка содздания нового игрока
 function renderCreateButton(container) {
    container.appendChild(templateEngine(createBtnTemplate()));
 

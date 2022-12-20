@@ -34,6 +34,24 @@ class KyReq {
 
       return callback(res);
    }
+
+   async startGame(token, callback) {
+      const res = await ky.get(this.BASE_URL + 'start?token=' + token).json();
+
+      return callback(res);
+   }
+
+   async getGameStatus(token, gameId, callback) {
+      const res = await ky.get(this.BASE_URL + 'game-status?token=' + token + '&id=' + gameId).json();
+
+      return callback(res);
+   }
+
+   async move(token, gameId, move, callback) {
+      const res = await ky.get(this.BASE_URL + 'play?token=' + token + '&id=' + gameId + '&move=' + move).json();
+
+      return callback(res);
+   }
 }
 
 export default KyReq;
