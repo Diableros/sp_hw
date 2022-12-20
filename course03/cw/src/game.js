@@ -109,7 +109,7 @@ function renderInGameBlock(container) {
                   container.replaceChildren(
                      templateEngine(youLoseTemplate(data))
                   );
-                  window.app.renderBlock('goToLobby', container);
+                  window.app.renderBlock('finishGameButtons', container);
                   window.app.clearTimers();
                   break;
 
@@ -118,7 +118,7 @@ function renderInGameBlock(container) {
                   container.replaceChildren(
                      templateEngine(youWinTemplate(data))
                   );
-                  window.app.renderBlock('goToLobby', container);
+                  window.app.renderBlock('finishGameButtons', container);
                   window.app.clearTimers();
                   break;
 
@@ -138,20 +138,31 @@ function renderInGameBlock(container) {
    );
 }
 
-function renderGoToLobby(container) {
-   container.appendChild(templateEngine(goToLobbyTemplate()));
+function renderfinishGameButtons(container) {
+   container.appendChild(templateEngine(finishGameButtonsTemplate()));
 
-   container.querySelector('.screen__button').addEventListener('click', () => {
+   container.querySelector('.new-game').addEventListener('click', () => {
+      window.app.renderScreen('gameWaitScreen');
+   });
+
+   container.querySelector('.to-lobby').addEventListener('click', () => {
       window.app.renderScreen('lobbyScreen');
    });
 }
 
-function goToLobbyTemplate() {
-   return {
-      tag: 'button',
-      cls: 'screen__button',
-      content: 'В лобби',
-   };
+function finishGameButtonsTemplate() {
+   return [
+      {
+         tag: 'button',
+         cls: ['screen__button', 'new-game'],
+         content: 'Играть ещё',
+      },
+      {
+         tag: 'button',
+         cls: ['screen__button', 'to-lobby'],
+         content: 'В лобби',
+      },
+   ];
 }
 
 function youLoseTemplate() {

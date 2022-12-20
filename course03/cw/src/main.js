@@ -10,7 +10,7 @@ window.app = {
       if (!screens[screenName])
          throw Error('Вызов рендера несуществующего экрана!');
 
-         clearTimers()
+      clearTimers();
 
       window.app.mainNode.replaceChildren();
 
@@ -46,9 +46,9 @@ blocks['gameStatusBlock'] = renderGameWaitStatusBlock;
 
 screens['inGameScreen'] = renderInGameScreen;
 blocks['inGameBlock'] = renderInGameBlock;
-blocks['goToLobby'] = renderGoToLobby;
+blocks['finishGameButtons'] = renderfinishGameButtons;
 
-function clearTimers(){
+function clearTimers() {
    if (window.app.timers.length > 0) {
       window.app.timers.forEach((timer) => clearInterval(timer));
       window.app.timers = [];
