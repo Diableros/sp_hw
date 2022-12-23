@@ -1,57 +1,46 @@
-'use strict';
-import ky from '../node_modules/ky/distribution/index.js';
+function req(type, callback, move = null) {
+   let url = 'https://skypro-rock-scissors-paper.herokuapp.com/';
 
-class KyReq {
-   constructor(BASE_URL) {
-      console.log('Create Request Class instance.');
-      this.BASE_URL = BASE_URL;
-      this.checkPing();
+   const token = localStorage.getItem('rspToken');
+   const login = localStorage.getItem('rspUserName');
+   const gameId = window.app.player.gameId;
+
+   switch (type) {
+      case 'ping':
+         url += 'ping';
+         break;
+
+      case 'getPlayerStatus':
+         url += 'player-status?token=' + token;
+         break;
+
+      case 'createNewPlayer':
+         url += 'login?login=' + login;
+         break;
+
+      case 'getPlayersList':
+         url += 'player-list?token=' + token;
+         break;
+
+      case 'startGame':
+         url += 'start?token=' + token;
+         break;
+
+      case 'getGameStatus':
+         url += 'game-status?token=' + token + '&id=' + gameId;
+         break;
+
+      case 'move':
+         url += 'play?token=' + token + '&id=' + gameId + '&move=' + move;
+         break;
+
+      default:
+         throw Error('Unknown type of req() was called');
    }
 
-   async checkPing() {
-      const ping = await ky.get(this.BASE_URL + 'ping').json();
-      console.log(`Server: I'm ${ping.status}! I say ${ping.message}!`);
-   }
+   if (DEBUG) console.log('URL:' + url);
 
-   async createNewPlayer(login, callback) {
-      const res = await ky.get(this.BASE_URL + 'login?login=' + login).json();
-
-      return callback(res);
-   }
-
-   async getPlayersList(token, callback) {
-      const res = await ky
-         .get(this.BASE_URL + 'player-list?token=' + token)
-         .json();
-
-      return callback(res.list);
-   }
-
-   async getPlayerStatus(token, callback) {
-      const res = await ky
-         .get(this.BASE_URL + 'player-status?token=' + token)
-         .json();
-
-      return callback(res);
-   }
-
-   async startGame(token, callback) {
-      const res = await ky.get(this.BASE_URL + 'start?token=' + token).json();
-
-      return callback(res);
-   }
-
-   async getGameStatus(token, gameId, callback) {
-      const res = await ky.get(this.BASE_URL + 'game-status?token=' + token + '&id=' + gameId).json();
-
-      return callback(res);
-   }
-
-   async move(token, gameId, move, callback) {
-      const res = await ky.get(this.BASE_URL + 'play?token=' + token + '&id=' + gameId + '&move=' + move).json();
-
-      return callback(res);
-   }
+   fetch(url)
+      .then((response) => response.json())
+      .then((data) => callback(data));
 }
-
-export default KyReq;

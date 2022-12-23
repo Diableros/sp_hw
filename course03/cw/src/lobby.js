@@ -1,19 +1,19 @@
 'use strict';
 function renderLobbyScreen() {
-   console.log('Render lobby screen');
+   if (DEBUG) console.log('Render lobby screen');
 
-   window.app.mainNode.appendChild(templateEngine(lobbyScreenTemplate()));
+   mainNode.appendChild(templateEngine(lobbyScreenTemplate()));
    const screen = document.querySelector('.screen');
 
-   window.app.renderBlock('playersOnline', screen);
+   renderBlock('playersOnline', screen);
    refreshPlayersList();
-   window.app.renderBlock('startGameBtn', screen);
+   renderBlock('startGameBtn', screen);
 }
 
 function renderPlayersOnline(container) {
    container.appendChild(templateEngine(playersOnlineTemplate()));
 
-   window.app.timers.push(
+   timers.push(
       setInterval(() => {
          refreshPlayersList();
       }, 1000)
@@ -23,12 +23,13 @@ function renderPlayersOnline(container) {
 function refreshPlayersList() {
    const playersList = document.querySelector('.screen__players-box');
 
-   window.app.req.getPlayersList(window.app.player.token, (players) => {
-      console.log(`Online ${players.length} players`);
+   req('getPlayersList', (players) => {
+      if (DEBUG) console.log(`Online ${players.list.length} players`);
+      if (DEBUG) console.log(players.list);
 
-      playersList.replaceChildren(
-         templateEngine(playersOnlineListTemplate(players))
-      );
+      setLocalPlayerStats(players);
+
+      playersList.replaceChildren(templateEngine(playersOnlineListTemplate(players.list)));
    });
 }
 
@@ -38,7 +39,7 @@ function renderStartGameBtn(container) {
    container.closest('.form').addEventListener('submit', (event) => {
       event.preventDefault();
 
-      window.app.renderScreen('gameWaitScreen');
+      renderScreen('gameWaitScreen');
    });
 }
 
@@ -74,12 +75,10 @@ function playersOnlineListTemplate(playersArray) {
    return {
       tag: 'ul',
       cls: 'screen__players-list',
-      content: playersArray.map((elem) => ({
+      content: playersArray.map((player) => ({
          tag: 'li',
-         cls: elem.hasOwnProperty('you')
-            ? 'screen__players-you'
-            : 'screen__players-item',
-         content: elem.login,
+         cls: player.hasOwnProperty('you') ? 'screen__players-you' : 'screen__players-item',
+         content: getPlayerInfoTemplate(player),
       })),
    };
 }

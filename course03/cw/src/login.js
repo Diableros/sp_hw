@@ -1,7 +1,8 @@
 'use strict';
 function renderStartScreen() {
-   window.app.mainNode.appendChild(templateEngine(startScreenTemplate()));
-   window.app.renderBlock('createBtn', document.querySelector('.screen'));
+   mainNode.appendChild(templateEngine(startScreenTemplate()));
+
+   renderBlock('createBtn', document.querySelector('.screen'));
 }
 
 function renderCreateButton(container) {
@@ -12,17 +13,15 @@ function renderCreateButton(container) {
 
       const newUserLogin = container.querySelector('.screen__input').value;
 
-      window.app.req.createNewPlayer(newUserLogin, (data) => {
+      localStorage.setItem('rspUserName', newUserLogin);
+
+      req('createNewPlayer', (data) => {
+         if (DEBUG) console.log(data);
          if (!data.status === 'ok') throw Error("New user wasn't create");
 
-         console.log(`User ${newUserLogin} successfully created`);
-         window.app.player.userName = newUserLogin;
-         window.app.player.token = data.token;
-
-         localStorage.setItem('rspUserName', newUserLogin);
+         if (DEBUG) console.log(`User ${newUserLogin} successfully created`);
          localStorage.setItem('rspToken', data.token);
-
-         window.app.renderScreen('lobbyScreen');
+         renderScreen('lobbyScreen');
       });
    });
 }

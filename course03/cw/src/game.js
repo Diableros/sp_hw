@@ -1,34 +1,25 @@
 'use strict';
 function renderGameWaitScreen() {
-   console.log('Render game wait screen');
+   if (DEBUG) console.log('Render game wait screen');
 
-   window.app.mainNode.appendChild(templateEngine(gameWaitScreenTemplate()));
+   mainNode.appendChild(templateEngine(gameWaitScreenTemplate()));
    const screen = document.querySelector('.screen__status-box');
 
-   window.app.renderBlock('gameStatusBlock', screen);
+   renderBlock('gameStatusBlock', screen);
 }
 
 function renderGameWaitStatusBlock(container) {
-   window.app.req.startGame(window.app.player.token, (data) => {
-      console.log(data);
-
+   req('startGame', (data) => {
+      if (DEBUG) console.log(data);
       if (data.status === 'error') {
          switch (data.message) {
             case "token doesn't exist":
-               container.appendChild(
-                  templateEngine(
-                     gameWaitBlockTemplate('Нет игрока с таким токеном')
-                  )
-               );
+               container.appendChild(templateEngine(gameWaitBlockTemplate('Нет игрока с таким токеном')));
                break;
 
             case 'player is already in game':
                container.appendChild(
-                  templateEngine(
-                     gameWaitBlockTemplate(
-                        'Игрок уже в игре, нельзя начать две игры одновременно'
-                     )
-                  )
+                  templateEngine(gameWaitBlockTemplate('Игрок уже в игре, нельзя начать две игры одновременно'))
                );
                break;
 
@@ -36,117 +27,121 @@ function renderGameWaitStatusBlock(container) {
                throw Error('Unknown error in renderGameStatusBlock()');
          }
       } else if (data.status === 'ok') {
-         window.app.player.gameId = data['player-status'].game.id;
-         window.app.renderScreen('inGameScreen');
+         player.gameId = data['player-status'].game.id;
+         renderScreen('inGameScreen');
+      } else {
+         throw Error('Something very wrong...');
       }
    });
 }
 
 function renderInGameScreen() {
-   console.log('Render in game screen');
+   if (DEBUG) console.log('Render in game screen');
 
-   window.app.mainNode.appendChild(templateEngine(inGameScreenTemplate()));
+   mainNode.appendChild(templateEngine(inGameScreenTemplate()));
 
    document.querySelector('.screen').addEventListener('click', (event) => {
       const target = event.target;
-      const player = window.app.player;
 
-      // console.log(player.token, player.gameId, target.dataset.move);
+      if (!target.dataset.move) return;
 
-      window.app.req.move(
-         player.token,
-         player.gameId,
-         target.dataset.move,
+      req(
+         'move',
          (data) => {
-            console.log(data);
-         }
+            if (DEBUG) console.log('Your move: ' + target.dataset.move);
+            if (DEBUG) console.log(data);
+            updateLocalPlayerStats();
+         },
+         target.dataset.move
       );
+
+      renderScreen('inGameScreen');
    });
 
    const box = document.querySelector('.screen__game-box');
 
-   window.app.renderBlock('inGameBlock', box);
+   renderBlock('inGameBlock', box);
 
-   window.app.timers.push(
+   timers.push(
       setInterval(() => {
-         window.app.renderBlock('inGameBlock', box);
+         renderBlock('inGameBlock', box);
       }, 1000)
    );
 }
 
 function renderInGameBlock(container) {
-   window.app.req.getGameStatus(
-      window.app.player.token,
-      window.app.player.gameId,
-      (data) => {
-         console.log(data);
+   req('getGameStatus', (data) => {
+      if (DEBUG) console.log(data);
+      if (data.status === 'ok') {
+         switch (data['game-status'].status) {
+            case 'waiting-for-start':
+               if (DEBUG) console.log('Waiting for the enemy to enter the game');
+               container.replaceChildren(templateEngine(waitingForStartTemplate()));
+               break;
 
-         if (data.status === 'ok') {
-            switch (data['game-status'].status) {
-               case 'waiting-for-start':
-                  console.log('Waiting for the enemy to enter the game');
-                  container.replaceChildren(
-                     templateEngine(waitingForStartTemplate())
-                  );
-                  break;
+            case 'waiting-for-your-move':
+               if (DEBUG) console.log('Waiting for your move');
+               clearTimers();
+               container.replaceChildren(templateEngine(waitingForYourMoveTemplate(data)));
+               break;
 
-               case 'waiting-for-your-move':
-                  console.log('Waiting for your move');
-                  container.replaceChildren(
-                     templateEngine(waitingForYourMoveTemplate(data))
-                  );
-                  break;
+            case 'waiting-for-enemy-move':
+               if (DEBUG) console.log('Waiting for enemy move');
+               container.replaceChildren(templateEngine(waitingForEnemyMoveTemplate(data)));
+               break;
 
-               case 'waiting-for-enemy-move':
-                  console.log('Waiting for enemy move');
-                  container.replaceChildren(
-                     templateEngine(waitingForEnemyMoveTemplate(data))
-                  );
-                  break;
+            case 'lose':
+               if (DEBUG) console.log('You are loooooseeeer!');
 
-               case 'lose':
-                  console.log('You are loooooseeeer!');
-                  container.replaceChildren(
-                     templateEngine(youLoseTemplate(data))
-                  );
-                  window.app.renderBlock('finishGameButtons', container);
-                  window.app.clearTimers();
-                  break;
+               container.replaceChildren(templateEngine(youLoseTemplate(data)));
+               renderBlock('finishGameButtons', container);
+               clearTimers();
+               break;
 
-               case 'win':
-                  console.log('You are WINNER!');
-                  container.replaceChildren(
-                     templateEngine(youWinTemplate(data))
-                  );
-                  window.app.renderBlock('finishGameButtons', container);
-                  window.app.clearTimers();
-                  break;
+            case 'win':
+               if (DEBUG) console.log('You are WINNER!');
 
-               default:
-                  throw Error('Unknown game status');
-            }
-         } else if (data.status === 'error') {
-            console.log('Error: ' + data.message);
+               container.replaceChildren(templateEngine(youWinTemplate(data)));
+               renderBlock('finishGameButtons', container);
+               clearTimers();
+               break;
 
-            container.replaceChildren(
-               templateEngine(gameWaitBlockTemplate('Ошибка приложения.'))
-            );
-         } else {
-            throw Error('Something very wrong...');
+            default:
+               throw Error('Unknown game status');
          }
+      } else if (data.status === 'error') {
+         if (DEBUG) console.log('Error: ' + data.message);
+
+         container.replaceChildren(templateEngine(gameWaitBlockTemplate('Ошибка приложения.')));
+      } else {
+         throw Error('Something very wrong...');
       }
-   );
+   });
+}
+
+function updateLocalPlayerStats() {
+   req('getPlayersList', (players) => {
+      setLocalPlayerStats(players);
+   });
+}
+
+function setLocalPlayerStats(players) {
+   players.list.forEach((elem) => {
+      if (elem.hasOwnProperty('you')) {
+         localStorage.setItem('rspStats', JSON.stringify({ wins: elem.wins, loses: elem.loses }));
+      }
+   });
 }
 
 function renderfinishGameButtons(container) {
    container.appendChild(templateEngine(finishGameButtonsTemplate()));
 
    container.querySelector('.new-game').addEventListener('click', () => {
-      window.app.renderScreen('gameWaitScreen');
+      renderScreen('gameWaitScreen');
    });
 
    container.querySelector('.to-lobby').addEventListener('click', () => {
-      window.app.renderScreen('lobbyScreen');
+      renderScreen('lobbyScreen');
    });
 }
 
@@ -181,12 +176,39 @@ function youWinTemplate() {
    };
 }
 
+function getPlayerInfoTemplate(player) {
+   return {
+      tag: 'p',
+      cls: 'player',
+      content: [
+         player.login + ' ',
+         {
+            tag: 'div',
+            cls: 'player-rate',
+            content: [
+               {
+                  tag: 'span',
+                  cls: 'player-rate__wins',
+                  content: player.wins,
+               },
+               '/',
+               {
+                  tag: 'span',
+                  cls: 'player-rate__loses',
+                  content: player.loses,
+               },
+            ],
+         },
+      ],
+   };
+}
+
 function waitingForEnemyMoveTemplate(data) {
    return [
       {
          tag: 'p',
          cls: 'screen__game-enemy',
-         content: `Противник: ${data['game-status'].enemy.login}`,
+         content: ['Противник:', getPlayerInfoTemplate(data['game-status'].enemy)],
       },
       {
          tag: 'p',
@@ -201,7 +223,7 @@ function waitingForYourMoveTemplate(data) {
       {
          tag: 'p',
          cls: 'screen__game-enemy',
-         content: `Противник: ${data['game-status'].enemy.login}`,
+         content: ['Противник:', getPlayerInfoTemplate(data['game-status'].enemy)],
       },
       {
          tag: 'p',
@@ -210,7 +232,7 @@ function waitingForYourMoveTemplate(data) {
       },
       {
          tag: 'button',
-         cls: ['screen__game-move', 'move'],
+         cls: ['screen__button', 'screen__button--move'],
          content: 'Камень',
          attrs: {
             'data-move': 'rock',
@@ -218,7 +240,7 @@ function waitingForYourMoveTemplate(data) {
       },
       {
          tag: 'button',
-         cls: ['screen__game-move', 'move'],
+         cls: ['screen__button', 'screen__button--move'],
          content: 'Ножнитсы',
          attrs: {
             'data-move': 'scissors',
@@ -226,7 +248,7 @@ function waitingForYourMoveTemplate(data) {
       },
       {
          tag: 'button',
-         cls: ['screen__game-move', 'move'],
+         cls: ['screen__button', 'screen__button--move'],
          content: 'Бумаго',
          attrs: {
             'data-move': 'paper',
@@ -239,7 +261,7 @@ function waitingForStartTemplate() {
    return {
       tag: 'p',
       cls: 'screen__status-text',
-      content: 'Ожидаем подключения соперника...',
+      content: 'Ожидаем подключение соперника...',
    };
 }
 
@@ -256,7 +278,13 @@ function inGameScreenTemplate() {
          {
             tag: 'h1',
             cls: 'screen__player',
-            content: 'Вы: ' + window.app.player.userName,
+            content: [
+               'Вы: ',
+               getPlayerInfoTemplate({
+                  login: localStorage.getItem('rspUserName'),
+                  ...JSON.parse(localStorage.getItem('rspStats')),
+               }),
+            ],
          },
          {
             tag: 'div',

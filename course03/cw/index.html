@@ -9,15 +9,118 @@
    </head>
    <body>
       <header class="header">
-         <a class="header" href="/">Rock, Scissors, Paper</a>
+         <a href="/">Rock, Scissors, Paper</a>
       </header>
       <main class="container"></main>
       <footer class="footer">© SkyPro 2022</footer>
       <script src="./lib/templateEngine.js"></script>
-      <script src="./src/request.js" type="module"></script>
+      <script src="./src/request.js"></script>
       <script src="./src/login.js"></script>
       <script src="./src/lobby.js"></script>
       <script src="./src/game.js"></script>
-      <script src="./src/main.js" type="module"></script>
+      <script>
+         'use strict';
+
+         const DEBUG = false;
+
+         window.app = {
+            blocks: {},
+            screens: {},
+            renderScreen: (screenName) => {
+               if (!screens[screenName]) throw Error('Call unknown screen');
+
+               clearTimers();
+               mainNode.replaceChildren();
+               screens[screenName]();
+            },
+            renderBlock: (blockName, container) => {
+               if (!blocks[blockName]) throw Error('Call unknown block');
+
+               blocks[blockName](container);
+            },
+            timers: [],
+            player: {},
+            mainNode: document.querySelector('.container'),
+         };
+
+         const blocks = window.app.blocks;
+         const screens = window.app.screens;
+         const renderScreen = window.app.renderScreen;
+         const renderBlock = window.app.renderBlock;
+         const timers = window.app.timers;
+         const player = window.app.player;
+         const mainNode = window.app.mainNode;
+
+         screens['startScreen'] = renderStartScreen;
+         blocks['createBtn'] = renderCreateButton;
+
+         screens['lobbyScreen'] = renderLobbyScreen;
+         blocks['playersOnline'] = renderPlayersOnline;
+         blocks['startGameBtn'] = renderStartGameBtn;
+
+         screens['gameWaitScreen'] = renderGameWaitScreen;
+         blocks['gameStatusBlock'] = renderGameWaitStatusBlock;
+
+         screens['inGameScreen'] = renderInGameScreen;
+         blocks['inGameBlock'] = renderInGameBlock;
+         blocks['finishGameButtons'] = renderfinishGameButtons;
+
+         function clearTimers() {
+            if (timers.length > 0) {
+               if (DEBUG) console.log(timers);
+               timers.forEach((timer) => clearInterval(timer));
+               timers.length = 0;
+            }
+         }
+
+         function initApp() {
+            if (DEBUG) req('ping', (data) => console.log(`Server: I'm ${data.status}! I'say ${data.message}!`));
+
+            if (!localStorage.getItem('rspUserName') || !localStorage.getItem('rspToken')) {
+               if (DEBUG) console.log('Registered user not found. Render create user screen.');
+               renderScreen('startScreen');
+            } else {
+               if (DEBUG) console.log('Current user exist');
+
+               req('getPlayerStatus', (data) => {
+                  if (data.status === 'error') {
+                     if (DEBUG) console.log('Token was expired. Request new token.');
+
+                     req('createNewPlayer', (data) => {
+                        if (data.status === 'ok') {
+                           if (DEBUG) console.log('Save new token to local storage');
+
+                           localStorage.setItem('rspToken', data.token);
+
+                           renderScreen('lobbyScreen');
+                        } else {
+                           if (DEBUG) console.log('New token was NOT received');
+                        }
+                     });
+                  }
+
+                  if (data.status === 'ok') {
+                     if (DEBUG) console.log('User token alive!');
+
+                     switch (data['player-status'].status) {
+                        case 'game':
+                           if (DEBUG) console.log('Current user now in game!');
+                           player.gameId = data['player-status'].game.id;
+                           renderScreen('inGameScreen');
+                           break;
+
+                        case 'lobby':
+                           renderScreen('lobbyScreen');
+                           break;
+
+                        default:
+                           throw Error('Unknown player status');
+                     }
+                  }
+               });
+            }
+         }
+         initApp();
+      </script>
    </body>
 </html>

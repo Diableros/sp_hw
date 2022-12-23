@@ -123,7 +123,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
   padding: 0 24px;
@@ -159,9 +159,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: baseline;
+  transition: 0.1s;
+}
+.screen__button--move {
+  width: 100%;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.screen__button:active {
+  transform: scale(0.95);
+}
+.screen__button:disabled {
+  background: #ccc;
 }
 .screen__players-box {
-  width: 50%;
+  width: 100%;
 }
 .screen__players-list {
   display: flex;
@@ -177,6 +191,8 @@ body {
   border-radius: 6px;
 }
 .screen__players-you {
+  display: flex;
+  gap: 8px;
   order: -1;
   margin-bottom: 10px;
   background: royalblue;
@@ -187,12 +203,22 @@ body {
 }
 .screen__status-box {
   padding: 24px;
+  height: 100%;
 }
 .screen__status-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  height: 200px;
+  font-size: 20px;
+  font-weight: 900;
+  flex-grow: 1;
 }
 .screen__player {
   align-self: flex-start;
+  display: flex;
+  gap: 8px;
 }
 .screen__game-lose, .screen__game-win {
   text-align: center;
@@ -208,23 +234,41 @@ body {
 }
 .screen__game-box {
   display: flex;
-  height: 50%;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
 .screen__game-header {
+  margin-top: 20px;
   align-self: center;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 900;
   color: royalblue;
 }
-.screen__game-move {
-  width: 100%;
-  padding: 18px;
-  background: royalblue;
-  color: white;
-  border-radius: 6px;
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: uppercase;
+.screen__game-enemy {
+  display: flex;
+  gap: 8px;
+}
+
+.player {
+  display: flex;
+  gap: 8px;
+  font-weight: 900;
+}
+.player-rate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  font-size: 12px;
+  border: 0.5px solid #333;
+  border-radius: 3px;
+  color: #333;
+  padding: 0 3px;
+}
+.player-rate__wins {
+  color: green;
+}
+.player-rate__loses {
+  color: red;
 }/*# sourceMappingURL=style.css.map */
