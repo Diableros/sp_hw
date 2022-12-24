@@ -35,6 +35,24 @@ function renderGameWaitStatusBlock(container) {
    });
 }
 
+function renderPlayerInfoBlock(container, result = null) {
+   let [win, lose] = [0, 0];
+
+   if (result === 'win') win = 1;
+   if (result === 'lose') lose = 1;
+
+   container.replaceChildren();
+   container.appendChild(
+      templateEngine(
+         getPlayerInfoTemplate({
+            login: creds.get('login'),
+            wins: creds.get('wins') + win,
+            loses: creds.get('loses') + lose,
+         })
+      )
+   );
+}
+
 function renderInGameScreen() {
    if (DEBUG) console.log('Render in game screen');
 
@@ -50,13 +68,14 @@ function renderInGameScreen() {
          (data) => {
             if (DEBUG) console.log('Your move: ' + target.dataset.move);
             if (DEBUG) console.log(data);
-            updateLocalPlayerStats();
          },
          target.dataset.move
       );
 
       renderScreen('inGameScreen');
    });
+
+   renderBlock('playerInfoBlock', mainNode.querySelector('.screen__player'));
 
    const box = document.querySelector('.screen__game-box');
 
@@ -65,7 +84,7 @@ function renderInGameScreen() {
    timers.push(
       setInterval(() => {
          renderBlock('inGameBlock', box);
-      }, 1000)
+      }, 500)
    );
 }
 
@@ -94,7 +113,11 @@ function renderInGameBlock(container) {
                if (DEBUG) console.log('You are loooooseeeer!');
 
                container.replaceChildren(templateEngine(youLoseTemplate(data)));
+
+               renderBlock('playerInfoBlock', mainNode.querySelector('.screen__player'), 'lose');
                renderBlock('finishGameButtons', container);
+               updateLocalPlayerStats();
+
                clearTimers();
                break;
 
@@ -102,7 +125,11 @@ function renderInGameBlock(container) {
                if (DEBUG) console.log('You are WINNER!');
 
                container.replaceChildren(templateEngine(youWinTemplate(data)));
+
+               renderBlock('playerInfoBlock', mainNode.querySelector('.screen__player'), 'win');
                renderBlock('finishGameButtons', container);
+               updateLocalPlayerStats();
+
                clearTimers();
                break;
 
@@ -128,7 +155,7 @@ function updateLocalPlayerStats() {
 function setLocalPlayerStats(players) {
    players.list.forEach((elem) => {
       if (elem.hasOwnProperty('you')) {
-         localStorage.setItem('rspStats', JSON.stringify({ wins: elem.wins, loses: elem.loses }));
+         creds.set({ wins: elem.wins, loses: elem.loses });
       }
    });
 }
@@ -276,15 +303,16 @@ function inGameScreenTemplate() {
             content: 'Игра',
          },
          {
-            tag: 'h1',
+            tag: 'p',
             cls: 'screen__player',
-            content: [
-               'Вы: ',
-               getPlayerInfoTemplate({
-                  login: localStorage.getItem('rspUserName'),
-                  ...JSON.parse(localStorage.getItem('rspStats')),
-               }),
-            ],
+            // content: [
+            //    'Вы: ',
+            //    getPlayerInfoTemplate({
+            //       login: creds.get('login'),
+            //       wins: creds.get('wins'),
+            //       loses: creds.get('loses'),
+            //    }),
+            // ],
          },
          {
             tag: 'div',

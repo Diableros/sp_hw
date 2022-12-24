@@ -1,8 +1,6 @@
 function req(type, callback, move = null) {
    let url = 'https://skypro-rock-scissors-paper.herokuapp.com/';
 
-   const token = localStorage.getItem('rspToken');
-   const login = localStorage.getItem('rspUserName');
    const gameId = window.app.player.gameId;
 
    switch (type) {
@@ -11,34 +9,34 @@ function req(type, callback, move = null) {
          break;
 
       case 'getPlayerStatus':
-         url += 'player-status?token=' + token;
+         url += 'player-status?token=' + creds.get('token');
          break;
 
       case 'createNewPlayer':
-         url += 'login?login=' + login;
+         url += 'login?login=' + creds.get('login');
          break;
 
       case 'getPlayersList':
-         url += 'player-list?token=' + token;
+         url += 'player-list?token=' + creds.get('token');
          break;
 
       case 'startGame':
-         url += 'start?token=' + token;
+         url += 'start?token=' + creds.get('token');
          break;
 
       case 'getGameStatus':
-         url += 'game-status?token=' + token + '&id=' + gameId;
+         url += 'game-status?token=' + creds.get('token') + '&id=' + gameId;
          break;
 
       case 'move':
-         url += 'play?token=' + token + '&id=' + gameId + '&move=' + move;
+         url += 'play?token=' + creds.get('token') + '&id=' + gameId + '&move=' + move;
          break;
 
       default:
          throw Error('Unknown type of req() was called');
    }
 
-   if (DEBUG) console.log('URL:' + url);
+   // if (DEBUG) console.log('URL:' + url);
 
    fetch(url)
       .then((response) => response.json())

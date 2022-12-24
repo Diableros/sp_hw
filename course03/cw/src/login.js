@@ -13,14 +13,14 @@ function renderCreateButton(container) {
 
       const newUserLogin = container.querySelector('.screen__input').value;
 
-      localStorage.setItem('rspUserName', newUserLogin);
+      creds.set({ login: newUserLogin });
 
       req('createNewPlayer', (data) => {
          if (DEBUG) console.log(data);
          if (!data.status === 'ok') throw Error("New user wasn't create");
 
          if (DEBUG) console.log(`User ${newUserLogin} successfully created`);
-         localStorage.setItem('rspToken', data.token);
+         creds.set({ token: data.token });
          renderScreen('lobbyScreen');
       });
    });
