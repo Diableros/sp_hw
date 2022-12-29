@@ -42,7 +42,7 @@ function startScreenTemplate() {
             attrs: {
                type: 'text',
                placeholder: 'Логин',
-               pattern: '^[A-Za-z0-9]{4,10}$',
+               pattern: '^[A-Za-z0-9]{3,10}$',
                title: 'Имя пользователя должно состоять из 4-10 латинских символов/цифр',
                required: '',
             },

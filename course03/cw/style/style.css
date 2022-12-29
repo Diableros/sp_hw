@@ -200,6 +200,7 @@ body {
 }
 .screen__players-you::before {
   content: "Вы: ";
+  font-weight: 400;
 }
 .screen__status-box {
   padding: 24px;
@@ -219,6 +220,10 @@ body {
   align-self: flex-start;
   display: flex;
   gap: 8px;
+}
+.screen__player--you::before {
+  content: "Вы: ";
+  font-weight: 400;
 }
 .screen__game-lose, .screen__game-win {
   text-align: center;
