@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Rock, Scissors, Paper</title>
+      <link rel="stylesheet" href="./style/style.css" />
+   </head>
+   <body>
+      <header class="header">
+         <a href="/">Rock, Scissors, Paper</a>
+      </header>
+      <main class="container"></main>
+      <footer class="footer">© SkyPro 2022</footer>
+      <script src="./lib/templateEngine.js"></script>
+      <script src="./src/creds.js"></script>
+      <script src="./src/request.js"></script>
+      <script src="./src/login.js"></script>
+      <script src="./src/lobby.js"></script>
+      <script src="./src/game.js"></script>
+      <script>
+         'use strict';
+
+         const DEBUG = true;
+
+         const creds = new Creds();
+
+         window.app = {
+            blocks: {},
+            screens: {},
+            renderScreen: (screenName) => {
+               if (!screens[screenName]) throw Error('Call unknown screen');
+
+               clearTimers();
+               mainNode.replaceChildren();
+               screens[screenName]();
+            },
+            renderBlock: (blockName, container, result) => {
+               if (!blocks[blockName]) throw Error('Call unknown block');
+
+               blocks[blockName](container, result);
+            },
+            timers: [],
+            player: {},
+            mainNode: document.querySelector('.container'),
+         };
+
+         const blocks = window.app.blocks;
+         const screens = window.app.screens;
+         const renderScreen = window.app.renderScreen;
+         const renderBlock = window.app.renderBlock;
+         const timers = window.app.timers;
+         const player = window.app.player;
+         const mainNode = window.app.mainNode;
+
+         screens['startScreen'] = renderStartScreen;
+         blocks['createBtn'] = renderCreateButton;
+
+         screens['lobbyScreen'] = renderLobbyScreen;
+         blocks['playersOnline'] = renderPlayersOnline;
+         blocks['startGameBtn'] = renderStartGameBtn;
+
+         screens['gameWaitScreen'] = renderGameWaitScreen;
+         blocks['gameStatusBlock'] = renderGameWaitStatusBlock;
+
+         screens['inGameScreen'] = renderInGameScreen;
+         blocks['inGameBlock'] = renderInGameBlock;
+         blocks['finishGameButtons'] = renderfinishGameButtons;
+         blocks['playerInfoBlock'] = renderPlayerInfoBlock;
+
+         function clearTimers() {
+            if (timers.length > 0) {
+               if (DEBUG) console.log(timers);
+               timers.forEach((timer) => clearInterval(timer));
+               timers.length = 0;
+            }
+         }
+
+         function initApp() {
+            if (DEBUG) req('ping', (data) => console.log(`Server: I'm ${data.status}! I'say ${data.message}!`));
+
+            if (!creds.checkUser()) {
+               if (DEBUG) console.log('Registered user not found. Render create user screen.');
+               renderScreen('startScreen');
+            } else {
+               if (DEBUG) console.log('Current user exist');
+
+               req('getPlayerStatus', (data) => {
+                  if (data.status === 'error') {
+                     if (DEBUG) console.log('Token was expired. Request new token.');
+
+                     req('createNewPlayer', (data) => {
+                        if (data.status === 'ok') {
+                           if (DEBUG) console.log('Save new token to local storage');
+
+                           creds.set({ token: data.token });
+
+                           renderScreen('lobbyScreen');
+                        } else {
+                           if (DEBUG) console.log('New token was NOT received');
+                        }
+                     });
+                  }
+
+                  if (data.status === 'ok') {
+                     if (DEBUG) console.log('User token alive!');
+
+                     switch (data['player-status'].status) {
+                        case 'game':
+                           if (DEBUG) console.log('Current user now in game!');
+                           player.gameId = data['player-status'].game.id;
+                           renderScreen('inGameScreen');
+                           break;
+
+                        case 'lobby':
+                           renderScreen('lobbyScreen');
+                           break;
+
+                        default:
+                           throw Error('Unknown player status');
+                     }
+                  }
+               });
+            }
+         }
+         initApp();
+      </script>
+   </body>
+</html>

@@ -1,83 +1,83 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:100,regular,900);
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   outline: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
 }
 
 body {
-   background-color: #445;
-   color: #ddd;
-   font-family: Montserrat;
-   display: flex;
-   height: 100vh;
-   justify-content: center;
+  background-color: #445;
+  color: #ddd;
+  font-family: Montserrat;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
 }
 
 h1,
 input,
 button {
-   font-family: inherit;
-   color: inherit;
+  font-family: inherit;
+  color: inherit;
 }
 
 input,
 button {
-   border-radius: 6px;
+  border-radius: 6px;
 }
 
 h1 {
-   font-size: 32px;
-   width: 100%;
+  font-size: 32px;
+  width: 100%;
 }
 
 .container {
-   padding-bottom: 50vh;
-   width: 400px;
-   min-height: auto;
-   display: flex;
-   justify-content: flex-end;
-   align-items: center;
-   flex-direction: column;
-   gap: 16px;
+  padding-bottom: 50vh;
+  width: 400px;
+  min-height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .input {
-   width: 100%;
-   text-align: center;
-   height: 32px;
-   font-size: 16px;
-   background-color: #667;
-   border: 1px solid #222;
-   padding: 0 16px;
+  width: 100%;
+  text-align: center;
+  height: 32px;
+  font-size: 16px;
+  background-color: #667;
+  border: 1px solid #222;
+  padding: 0 16px;
 }
 .input::-moz-placeholder {
-   color: #aaa;
-   font-family: inherit;
+  color: #aaa;
+  font-family: inherit;
 }
 .input:-ms-input-placeholder {
-   color: #aaa;
-   font-family: inherit;
+  color: #aaa;
+  font-family: inherit;
 }
 .input::placeholder {
-   color: #aaa;
-   font-family: inherit;
+  color: #aaa;
+  font-family: inherit;
 }
 
 .button {
-   text-align: center;
-   align-self: end;
-   height: 32px;
-   font-size: 16px;
-   background-color: #223;
-   border: 1px solid #000;
-   transition: background-color 0.2s;
-   padding: 0 8px;
+  text-align: center;
+  align-self: end;
+  height: 32px;
+  font-size: 16px;
+  background-color: #223;
+  border: 1px solid #000;
+  transition: background-color 0.2s;
+  padding: 0 8px;
 }
 .button:hover {
-   background-color: #334;
+  background-color: #334;
 }
 .button:active {
-   background-color: #445;
-} /*# sourceMappingURL=style.css.map */
+  background-color: #445;
+}/*# sourceMappingURL=style.css.map */
