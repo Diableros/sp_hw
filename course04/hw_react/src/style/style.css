@@ -91,6 +91,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 40px 0 50px;
 } /*# sourceMappingURL=style.css.map */
 .start-screen {
   width: 480px;
@@ -141,4 +142,52 @@ body {
   color: #fff;
   font-size: 24px;
   border-radius: 12px;
+}
+
+.game-screen {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.game-screen__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+.game-screen .timer {
+  display: flex;
+  flex-direction: column;
+}
+.game-screen .timer__titles {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+}
+.game-screen .timer__title {
+  width: 50%;
+  text-align: right;
+}
+.game-screen .timer__title:not(:last-child) {
+  padding-right: 8px;
+}
+.game-screen .timer__digits {
+  font-size: 64px;
+  margin-right: -4px;
+}
+.game-screen__restart {
+  width: 246px;
+  height: 50px;
+  font-size: 24px;
+  background: #7ac100;
+  border-radius: 12px;
+  padding-bottom: 5px;
+}
+.game-screen__playfield {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }/*# sourceMappingURL=style.css.map */

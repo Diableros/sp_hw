@@ -3,20 +3,20 @@ import GameScreen from './screens/GameScreen';
 import StartScreen from './screens/StartScreen';
 
 const App: React.FC = () => {
-	const [game, setGame] = useState({});
+	console.log('Render App');
+	const [diff, setDiff] = useState<number>(0);
 
 	const setDifficult = (value: number): void => {
-		console.log(`Difficulty ${value} selected`);
-
-		if (value) setGame({ ...game, difficult: value });
+		setDiff(value);
+		console.log(`Difficulty ${diff} selected`);
 	};
 
 	return (
 		<main className="main">
-			{game.hasOwnProperty('difficult') ? (
-				<GameScreen />
-			) : (
+			{diff === 0 ? (
 				<StartScreen setDifficult={setDifficult} />
+			) : (
+				<GameScreen diff={diff} restart={setDifficult} />
 			)}
 		</main>
 	);
