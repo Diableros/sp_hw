@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import PlayField from '../components/PlayField';
 import RestartButton from '../components/RestartButton';
 import Timer from '../components/Timer';
-import getCards from '../helpers/cards';
+import getCards from '../helpers/getCards';
 import { IGame } from '../types/game';
 
 interface IGameScreen {
@@ -29,7 +30,7 @@ const GameScreen: React.FC<IGameScreen> = (props) => {
 				<RestartButton restart={restart} />
 			</header>
 			<section className="game-screen__playfield">
-				ОСНОВНОЕ ИГРОВОЕ ПОЛЕ
+				<PlayField game={game} />
 			</section>
 		</div>
 	);

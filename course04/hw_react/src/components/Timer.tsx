@@ -5,15 +5,23 @@ interface ITimer {
 	setGameTime: (time: string) => void;
 }
 
+const MAX_GAME_TIME_MINUTES = 59;
+const MAX_GAME_TIME_SECONDS = 59;
+
+const maxGameTime = MAX_GAME_TIME_MINUTES * 60 + MAX_GAME_TIME_SECONDS;
+
 const Timer: React.FC<ITimer> = () => {
 	// console.log('Render Timer');
 	const [time, setTime] = useState<number>(0);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setTime((time) => time + 1);
+			setTime((time) => (time < maxGameTime ? time + 1 : 0));
 		}, 1000);
-		return () => clearInterval(interval);
+		return () => {
+			clearInterval(interval);
+			console.log('Timer was cleared');
+		};
 	}, []);
 
 	const min = getPadTime(Math.floor(time / 60));
