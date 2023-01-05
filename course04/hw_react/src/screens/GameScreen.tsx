@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import PlayField from '../components/PlayField';
 import RestartButton from '../components/RestartButton';
 import Timer from '../components/Timer';
-import getCards from '../helpers/getCards';
-import { IGame } from '../types/game';
 
 interface IGameScreen {
 	diff: number;
@@ -13,24 +11,30 @@ interface IGameScreen {
 const GameScreen: React.FC<IGameScreen> = (props) => {
 	const { diff, restart } = props;
 
-	const [game, setGame] = useState<IGame>({
-		cards: getCards(diff),
-	});
+	const [timerStop, setTimerStop] = useState(false);
+	const [gameTime, setGameTime] = useState('');
 
-	console.log(game.cards);
+	const getTime = (time: string): void => {
+		setGameTime(time);
+	};
 
-	const setGameTime = (time: string): void => {
-		setGame({ ...game, time: time });
+	const stopTimer = (value: boolean) => {
+		setTimerStop(value);
 	};
 
 	return (
 		<div className="game-screen">
 			<header className="game-screen__header">
-				<Timer setGameTime={setGameTime} />
-				<RestartButton restart={restart} />
+				<Timer getTime={getTime} timerStop={timerStop} />
+				<RestartButton restart={restart} title={'Начать заново'} />
 			</header>
 			<section className="game-screen__playfield">
-				<PlayField game={game} />
+				<PlayField
+					diff={diff}
+					restart={restart}
+					gameTime={gameTime}
+					stopTimer={stopTimer}
+				/>
 			</section>
 		</div>
 	);

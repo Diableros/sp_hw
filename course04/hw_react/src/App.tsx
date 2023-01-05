@@ -8,7 +8,6 @@ const App: React.FC = () => {
 
 	const setDifficult = (value: number): void => {
 		setDiff(value);
-		// console.log(`Difficulty ${diff} selected`);
 	};
 
 	return (

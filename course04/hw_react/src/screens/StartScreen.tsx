@@ -10,13 +10,11 @@ const StartScreen: React.FC<IStartScreen> = ({ setDifficult }) => {
 	const buttonsArr: number[] = [1, 2, 3];
 
 	const clickDiffButtonHandler = (btn: number): void => {
-		console.log(`Set difficult ${btn}`);
 		setDiffButton(btn);
 	};
 
 	const clickStartButtonHandler = (): void => {
 		if (diffButton === 0) return;
-		console.log(`Start with ${diffButton} difficult`);
 		setDifficult(diffButton);
 	};
 

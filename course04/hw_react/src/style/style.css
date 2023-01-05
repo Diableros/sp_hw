@@ -182,6 +182,7 @@ body {
   background: #7ac100;
   border-radius: 12px;
   padding-bottom: 5px;
+  color: white;
 }
 .game-screen__playfield {
   flex-grow: 1;
@@ -194,11 +195,68 @@ body {
 .game-screen .playfield__box {
   display: grid;
   gap: 15px;
+  padding-top: 20px;
 }
 .game-screen .playfield__card {
   height: 133px;
   width: 95px;
   background-size: cover;
   background-position: center;
+  transition: transform 0.15s;
   cursor: pointer;
+}
+.game-screen .playfield__card:hover {
+  transform: scale(1.04);
+}
+.game-screen .playfield__card-shirt {
+  width: 100%;
+  height: 100%;
+  background: url(../../public/img/shirt.svg);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.modal__content-box {
+  height: 480px;
+  width: 459px;
+  background: #c2f5ff;
+  color: #004980;
+  border-radius: 12px;
+  padding: 32px 0 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal__img {
+  width: 91px;
+  height: 91px;
+}
+.modal__title {
+  font-size: 40px;
+}
+.modal__time-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: black;
+}
+.modal__time-title {
+  font-size: 24px;
+}
+.modal__time {
+  font-size: 64px;
 }/*# sourceMappingURL=style.css.map */
