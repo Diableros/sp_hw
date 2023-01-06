@@ -15,17 +15,23 @@ const PlayCard: React.FC<IPlayCard> = (props): JSX.Element => {
 	}, []);
 
 	return (
-		<div
-			className="playfield__card"
-			style={{
-				background: `url(../../img/${card}.svg)`,
-			}}
-			onClick={() => {
-				setShowCard(true);
-				setMove(card);
-			}}
-		>
-			{!showCard && <div className="playfield__card-shirt"></div>}
+		<div className="playfield__card">
+			<div
+				className="playfield__card-face"
+				style={{
+					background: `url(../../img/${card}.svg)`,
+				}}
+			/>
+			{!showCard && (
+				<div
+					className="playfield__card-shirt"
+					onClick={() => {
+						setShowCard(true);
+						setMove(card);
+						console.log('Click by card!');
+					}}
+				/>
+			)}
 		</div>
 	);
 };
