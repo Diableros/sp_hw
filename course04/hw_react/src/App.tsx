@@ -6,16 +6,12 @@ const App: React.FC = () => {
 	console.log('Render App');
 	const [diff, setDiff] = useState<number>(0);
 
-	const setDifficult = (value: number): void => {
-		setDiff(value);
-	};
-
 	return (
 		<main className="main">
-			{diff === 0 ? (
-				<StartScreen setDifficult={setDifficult} />
+			{diff ? (
+				<GameScreen diff={diff} restart={() => setDiff(0)} />
 			) : (
-				<GameScreen diff={diff} restart={setDifficult} />
+				<StartScreen setDifficult={setDiff} />
 			)}
 		</main>
 	);

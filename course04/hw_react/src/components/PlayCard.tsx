@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-interface IPlayCard {
+type PlayCardType = {
 	card: string;
 	setMove: (card: string) => void;
-}
+};
 
-const PlayCard: React.FC<IPlayCard> = (props): JSX.Element => {
-	const { card, setMove } = props;
-
+const PlayCard = ({ card, setMove }: PlayCardType): JSX.Element => {
 	const [showCard, setShowCard] = useState(true);
 
 	useEffect(() => {
-		setTimeout(() => setShowCard(false), 5000);
+		const timer = setTimeout(() => setShowCard(false), 5000);
+		return () => clearTimeout(timer);
 	}, []);
+
+	const onClickCardHandler = (): void => {
+		setShowCard(true);
+		setMove(card);
+	};
 
 	return (
 		<div className="playfield__card">
@@ -22,16 +26,12 @@ const PlayCard: React.FC<IPlayCard> = (props): JSX.Element => {
 					background: `url(../../img/${card}.svg)`,
 				}}
 			/>
-			{!showCard && (
+			{!showCard ? (
 				<div
 					className="playfield__card-shirt"
-					onClick={() => {
-						setShowCard(true);
-						setMove(card);
-						console.log('Click by card!');
-					}}
+					onClick={onClickCardHandler}
 				/>
-			)}
+			) : null}
 		</div>
 	);
 };

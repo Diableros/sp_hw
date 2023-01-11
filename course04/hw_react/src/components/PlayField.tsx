@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { IGame } from '../types/game';
 import PlayCard from './PlayCard';
 import getCards from '../helpers/getCards';
 import Modal from './Modal';
 
-interface IPlayField {
+const cardsMultiplierForCalc = 2;
+
+type PlayFieldType = {
 	diff: number;
-	restart: (value: number) => void;
+	restart: () => void;
 	gameTime: string;
 	stopTimer: (value: boolean) => void;
-}
+};
 
-const PlayField: React.FC<IPlayField> = (props): JSX.Element => {
+type GameStatusType = 'game' | 'win' | 'lose';
+
+const PlayField = ({
+	diff,
+	restart,
+	gameTime,
+	stopTimer,
+}: PlayFieldType): JSX.Element => {
 	console.log('render PlayField');
 
-	const [gameStatus, setGameStatus] = useState<string>('game');
-
-	const { diff, restart, gameTime, stopTimer } = props;
+	const [gameStatus, setGameStatus] = useState<GameStatusType>('game');
 
 	let game: IGame = {
 		cards: getCards(diff),
@@ -24,7 +31,6 @@ const PlayField: React.FC<IPlayField> = (props): JSX.Element => {
 		prevCard: undefined,
 	};
 
-	const cardsMultiplierForCalc = 2;
 	const calcGridColumns = Math.floor(
 		Math.sqrt(game.cards.length * cardsMultiplierForCalc)
 	);
@@ -59,14 +65,14 @@ const PlayField: React.FC<IPlayField> = (props): JSX.Element => {
 			{game.cards.map((card, index) => (
 				<PlayCard key={index} card={card} setMove={setMove} />
 			))}
-			{gameStatus !== 'game' && (
+			{gameStatus !== 'game' ? (
 				<Modal
 					restart={restart}
 					gameTime={gameTime}
 					gameStatus={gameStatus}
 					stopTimer={stopTimer}
 				/>
-			)}
+			) : null}
 		</div>
 	);
 };

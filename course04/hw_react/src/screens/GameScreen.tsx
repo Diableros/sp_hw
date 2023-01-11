@@ -1,31 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PlayField from '../components/PlayField';
 import RestartButton from '../components/RestartButton';
 import Timer from '../components/Timer';
 
-interface IGameScreen {
+type GameScreenType = {
 	diff: number;
-	restart: (value: number) => void;
-}
+	restart: () => void;
+};
 
-const GameScreen: React.FC<IGameScreen> = (props) => {
-	const { diff, restart } = props;
-
-	const [timerStop, setTimerStop] = useState(false);
-	const [gameTime, setGameTime] = useState('');
-
-	const getTime = (time: string): void => {
-		setGameTime(time);
-	};
-
-	const stopTimer = (value: boolean) => {
-		setTimerStop(value);
-	};
+const GameScreen = ({ diff, restart }: GameScreenType): JSX.Element => {
+	const [timerStop, setTimerStop] = useState<boolean>(false);
+	const [gameTime, setGameTime] = useState<string>('');
 
 	return (
 		<div className="game-screen">
 			<header className="game-screen__header">
-				<Timer getTime={getTime} timerStop={timerStop} />
+				<Timer getTime={setGameTime} timerStop={timerStop} />
 				<RestartButton restart={restart} title={'Начать заново'} />
 			</header>
 			<section className="game-screen__playfield">
@@ -33,7 +23,7 @@ const GameScreen: React.FC<IGameScreen> = (props) => {
 					diff={diff}
 					restart={restart}
 					gameTime={gameTime}
-					stopTimer={stopTimer}
+					stopTimer={setTimerStop}
 				/>
 			</section>
 		</div>

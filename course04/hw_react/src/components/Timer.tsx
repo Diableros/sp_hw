@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import getPadTime from '../helpers/getPadTime';
 
 const MAX_GAME_TIME_MINUTES = 59;
@@ -6,14 +6,12 @@ const MAX_GAME_TIME_SECONDS = 59;
 
 const maxGameTime = MAX_GAME_TIME_MINUTES * 60 + MAX_GAME_TIME_SECONDS;
 
-interface ITimer {
+type TimerType = {
 	getTime: (time: string) => void;
 	timerStop: boolean;
-}
+};
 
-const Timer: React.FC<ITimer> = (props) => {
-	const { getTime, timerStop } = props;
-
+const Timer = ({ getTime, timerStop }: TimerType) => {
 	const [time, setTime] = useState<number>(0);
 
 	useEffect(() => {
@@ -22,7 +20,6 @@ const Timer: React.FC<ITimer> = (props) => {
 		}, 1000);
 		return () => {
 			clearInterval(interval);
-			// console.log('Timer was cleared');
 		};
 	}, [timerStop]);
 

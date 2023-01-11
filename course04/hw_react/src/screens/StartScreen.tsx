@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-interface IStartScreen {
+type StartScreenType = {
 	setDifficult: (value: number) => void;
-}
+};
 
-const StartScreen: React.FC<IStartScreen> = ({ setDifficult }) => {
+const difficultButtonsArr: number[] = [1, 2, 3];
+
+const StartScreen = ({ setDifficult }: StartScreenType): JSX.Element => {
 	const [diffButton, setDiffButton] = useState<number>(0);
-
-	const buttonsArr: number[] = [1, 2, 3];
-
-	const clickDiffButtonHandler = (btn: number): void => {
-		setDiffButton(btn);
-	};
 
 	const clickStartButtonHandler = (): void => {
 		if (diffButton === 0) return;
@@ -22,18 +18,18 @@ const StartScreen: React.FC<IStartScreen> = ({ setDifficult }) => {
 		<div className="start-screen">
 			<h1 className="start-screen__header">Выбери сложность</h1>
 			<div className="start-screen__difficult-box">
-				{buttonsArr.map((btn) => {
+				{difficultButtonsArr.map((btn) => {
 					return (
 						<div
 							className="start-screen__difficult-button"
 							key={btn}
-							onClick={() => clickDiffButtonHandler(btn)}
+							onClick={() => setDiffButton(btn)}
 						>
-							{diffButton === btn && (
+							{diffButton === btn ? (
 								<div
 									className={'start-screen__difficult-button--active'}
 								></div>
-							)}
+							) : null}
 							{btn}
 						</div>
 					);

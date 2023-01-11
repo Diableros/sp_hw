@@ -1,13 +1,11 @@
-import React from 'react';
-
-interface IButton {
-	restart: (diff: number) => void;
+type ButtonType = {
+	restart: () => void;
 	title: string;
-}
+};
 
-const RestartButton: React.FC<IButton> = ({ restart, title }) => {
+const RestartButton = ({ restart, title }: ButtonType): JSX.Element => {
 	return (
-		<button className="game-screen__restart" onClick={() => restart(0)}>
+		<button className="game-screen__restart" onClick={restart}>
 			{title}
 		</button>
 	);

@@ -209,6 +209,7 @@ body {
   background: url(../../public/img/shirt.svg);
   cursor: pointer;
   z-index: 1;
+  transition: 0.15s transform;
 }
 .game-screen .playfield__card-shirt:hover {
   transform: scale(1.04);
